@@ -1,0 +1,9 @@
+
+{
+    "extends": "../fuse-js/tsconfig.json",
+    "files": [],
+    "include": [
+        "./src/**/*.ts",
+        "./src/*.ts"
+    ]
+}

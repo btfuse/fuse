@@ -1,0 +1,86 @@
+
+/*
+Copyright 2023 Norman Breau 
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+plugins {
+    id 'com.android.application'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = file('../../../fuse-android/GRADLE_VERSION').text.trim()
+}
+
+android {
+    namespace 'ca.nbsolutions.fuse.testapp'
+    compileSdk 34
+
+    aaptOptions {
+        noCompress ""
+    }
+
+    defaultConfig {
+        applicationId "ca.nbsolutions.fuse.testapp"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(path: ':fuse')
+    implementation project(path: ':EchoPlugin')
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+task prepareCore(type: Exec) {
+    workingDir '../../..'
+    commandLine './build.sh', 'core'
+}
+
+task prepareTestJS(type: Exec) {
+    workingDir '../../..'
+    commandLine './build.sh', 'tests'
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.startsWith("assemble")) {
+        task.dependsOn prepareCore, prepareTestJS
+    }
+}

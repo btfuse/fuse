@@ -1,0 +1,10 @@
+/node_modules
+/build
+gradle
+gradlew
+gradlew.bat
+.gradle 
+xcuserdata
+/largeFile.txt
+assets/*
+!assets/index.html

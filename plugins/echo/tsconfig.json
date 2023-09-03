@@ -1,0 +1,12 @@
+
+{
+    "extends": "../../fuse-js/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./lib"
+    },
+    "files": [],
+    "include": [
+        "./src/**/*.ts",
+        "./src/*.ts"
+    ]
+}

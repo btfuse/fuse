@@ -1,0 +1,9 @@
+[submodule "fuse-js"]
+	path = fuse-js
+	url = https://github.com/nbsfuse/fuse-js.git
+[submodule "fuse-android"]
+	path = fuse-android
+	url = https://github.com/nbsfuse/fuse-android.git
+[submodule "fuse-ios"]
+	path = fuse-ios
+	url = https://github.com/nbsfuse/fuse-ios.git
