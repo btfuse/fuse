@@ -13,7 +13,7 @@ JavaScript Requirements:
 
 Supported Platforms:
 - Android API 24+
-- iOS 11
+- iOS 13
 
 Supported platforms and requirements are subjected to change without notice.
 
