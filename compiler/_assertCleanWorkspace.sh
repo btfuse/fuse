@@ -14,6 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+PWD=`pwd`
+
+cd $REPO
+
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     echo "Not in a Git repository."
     exit 1
@@ -23,3 +27,5 @@ if ! git diff-index --quiet HEAD --; then
     echo "Git repository is not clean. There are uncommitted changes."
     exit 1
 fi
+
+cd $PWD
