@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PWD=`pwd`
+ORIG="$(pwd)"
 
 cd $REPO
 
@@ -28,4 +28,4 @@ if ! git diff-index --quiet HEAD --; then
     exit 1
 fi
 
-cd $PWD
+cd $ORIG
