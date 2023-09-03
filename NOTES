@@ -1,0 +1,4 @@
+Notes for when building guides/docs
+
+When importing the fuse framework, cocoapods sucks and won't install the framework in a consumable fashion.
+Easiest way to fix it is to add `"(SRCROOT)/Pods"` recursive Header Search Path. This doesn't appear to be case if importing the fuse pod into an Application project however. It's just an issue when importing the pod into a framework project (say when authoring a plugin)
