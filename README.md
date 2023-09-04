@@ -17,6 +17,8 @@ Supported Platforms:
 
 Supported platforms and requirements are subjected to change without notice.
 
+For Android, we aim to support the minimum API that the [system webview](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/build/config/android/config.gni#67) supports. However, factory webview versions that ships with API 24 devices will not support all JS features required by this framework. These devices needs to be connected to an App Store to receive the latest webview updates for compatibility.
+
 ## What is it?
 
 NBSFuse (referred to as Fuse, or Fuse framework from here on out) is a framework for hybrid native-web building mobile applications.
