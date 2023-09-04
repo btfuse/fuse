@@ -29,7 +29,7 @@ public class EchoPlugin extends FusePlugin {
                 response.setStatus(FuseAPIResponseStatus.OK);
                 response.setContentType("text/plain");
                 response.setContentLength(packet.getContentLength());
-                response.finishHeaders();
+                response.didFinishHeaders();
 
                 byte[] buffer = new byte[4096];
                 InputStream io = packet.getInputStream();
@@ -41,7 +41,7 @@ public class EchoPlugin extends FusePlugin {
                     response.pushData(buffer);
                 }
 
-                response.finish();
+                response.didFinish();
             }
         });
 
@@ -56,7 +56,7 @@ public class EchoPlugin extends FusePlugin {
                 AssetFileDescriptor lffd = getContext().getActivityContext().getAssets().openFd("largeFile.txt");
                 response.setContentLength(lffd.getLength());
                 lffd.close();
-                response.finishHeaders();
+                response.didFinishHeaders();
 
                 InputStream io = getContext().getActivityContext().getAssets().open("largeFile.txt");
                 int bytesRead;
@@ -64,7 +64,7 @@ public class EchoPlugin extends FusePlugin {
                     response.pushData(buffer);
                 }
 
-                response.finish();
+                response.didFinish();
                 io.close();
             }
         });
@@ -80,8 +80,8 @@ public class EchoPlugin extends FusePlugin {
 
                 String callbackID = new String(buffer, StandardCharsets.UTF_8);
 
-                response.finishHeaders();
-                response.finish();
+                response.didFinishHeaders();
+                response.didFinish();
 
                 APIHandler<FusePlugin> self = this;
 

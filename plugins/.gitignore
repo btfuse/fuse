@@ -6,3 +6,4 @@ gradle
 .gradle
 gradlew
 gradlew.bat
+package-lock.json
