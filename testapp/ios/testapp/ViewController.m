@@ -50,14 +50,15 @@ limitations under the License.
 - (void) initialize {
     self.$context = [[NBSFuseContext alloc] init];
     [self.$context registerPlugin:[[EchoPlugin alloc] init: self.$context]];
-    
-    if (@available(iOS 16.4, *)) {
-        [self.$context getWebview].inspectable = true;
-    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (@available(iOS 16.4, *)) {
+        [self.$context getWebview].inspectable = true;
+    }
+    
     // Do any additional setup after loading the view.
     
     UIViewController* fuseController = [self.$context getViewController];
