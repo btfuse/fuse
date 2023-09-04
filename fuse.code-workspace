@@ -1,0 +1,28 @@
+{
+    "folders": [
+        {
+            "path": "./fuse-android"
+        },
+        {
+            "path": "fuse-ios"
+        },
+        {
+            "path": "testapp"
+        },
+        {
+            "path": "plugins"
+        },
+        {
+            "path": "fuse-js"
+        },
+        {
+            "path": "compiler"
+        },
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "java.configuration.updateBuildConfiguration": "disabled"
+    }
+}
