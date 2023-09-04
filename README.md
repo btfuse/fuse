@@ -8,7 +8,7 @@ This framework is entering **alpha** stage, and not intended to be used in produ
 [Documentation]('./docs/main.md) is pending.
 
 JavaScript Requirements:
-- ES6
+- ES2017
 - Some kind of bundler (e.g. [Webpack](https://webpack.js.org/))
 
 Supported Platforms:
