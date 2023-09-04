@@ -8,12 +8,12 @@ This framework is entering **alpha** stage, and not intended to be used in produ
 [Documentation]('./docs/main.md) is pending.
 
 JavaScript Requirements:
-- ES2017
+- ES2018/ES9
 - Some kind of bundler (e.g. [Webpack](https://webpack.js.org/))
 
 Supported Platforms:
 - Android API 24+
-- iOS 13
+- iOS 14
 
 Supported platforms and requirements are subjected to change without notice.
 
