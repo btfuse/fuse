@@ -5,6 +5,9 @@ gradlew
 gradlew.bat
 .gradle 
 xcuserdata
-/largeFile.txt
+largeFile.txt
 assets/*
 !assets/index.html
+/package-lock.json
+main.js
+*.map

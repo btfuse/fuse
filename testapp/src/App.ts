@@ -37,3 +37,5 @@ document.body.onclick = async () => {
 echoPlugin.subscribe((data: string) => {
     console.log('Receives callback payload', data);
 });
+
+(window as any).fusecontext = context;
