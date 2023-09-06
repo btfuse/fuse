@@ -17,25 +17,38 @@ limitations under the License.
 
 package ca.nbsolutions.fuse.testapp;
 
+import androidx.annotation.ContentView;
+import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import ca.nbsolutions.fuse.FuseActivity;
 import ca.nbsolutions.fuse.FuseContext;
 
 import ca.nbsolutions.fuse.plugins.EchoPlugin;
 
-public class MainActivity extends AppCompatActivity {
-    private FuseContext $context;
+public class MainActivity extends FuseActivity {
+//    private FuseContext $context;
+
+//    public MainActivity() {
+//        super();
+//    }
+
+//    @ContentView
+//    public MainActivity(@LayoutRes int contentLayoutId) {
+//        super(contentLayoutId);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
 
-        $context = new FuseContext(this);
-        $context.registerPlugin(new EchoPlugin($context));
+//        $context = new FuseContext(this);
+        FuseContext fuseContext = getFuseContext();
+        fuseContext.registerPlugin(new EchoPlugin(fuseContext));
 
-        setContentView($context.getWebview());
+//        setContentView($context.getWebview());
     }
 }

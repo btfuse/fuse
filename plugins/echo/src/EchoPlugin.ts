@@ -17,7 +17,7 @@ limitations under the License.
 
 import {
     FusePlugin,
-    FuseAPIContentType
+    ContentType
 } from '@nbsfuse/core';
 
 export class EchoPlugin extends FusePlugin {
@@ -26,7 +26,7 @@ export class EchoPlugin extends FusePlugin {
     }
 
     public async echo(message: string): Promise<string> {
-        let r: ArrayBuffer = await this._exec('echo', FuseAPIContentType.STRING, message);
+        let r: ArrayBuffer = await this._exec('echo', ContentType.TEXT, message);
         console.log('ECHO RESPONSE', r);
         return await new Blob([r]).text();
     }
@@ -36,7 +36,7 @@ export class EchoPlugin extends FusePlugin {
             cb(payload);
         });
 
-        await this._exec('subscribe', FuseAPIContentType.STRING, callbackID);
+        await this._exec('subscribe', ContentType.TEXT, callbackID);
 
         return callbackID;
     }

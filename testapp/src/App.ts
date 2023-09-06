@@ -15,11 +15,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {FuseContext} from '@nbsfuse/core';
+import {
+    FuseContext
+} from '@nbsfuse/core';
 import {EchoPlugin} from 'echo';
 
 let context: FuseContext = new FuseContext();
 let echoPlugin: EchoPlugin = new EchoPlugin(context);
+
+context.registerPauseHandler(() => {
+    console.log('ON PAUSE!');
+});
+
+context.registerResumeHandler(() => {
+    console.log('ON RESUME!');
+});
 
 (async () => {
     let response: string = await echoPlugin.echo('Hi from TS');
@@ -34,8 +44,8 @@ document.body.onclick = async () => {
     console.log('big resp', resp);
 };
 
-echoPlugin.subscribe((data: string) => {
-    console.log('Receives callback payload', data);
-});
+// echoPlugin.subscribe((data: string) => {
+//     console.log('Receives callback payload', data);
+// });
 
 (window as any).fusecontext = context;
