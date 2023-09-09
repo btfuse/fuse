@@ -80,7 +80,7 @@ task prepareTestJS(type: Exec) {
 }
 
 tasks.whenTaskAdded { task ->
-    if (task.name.startsWith("assemble")) {
+    if (task.name == "generateDebugResources" || task.name == "generateReleaseResources") {
         task.dependsOn prepareCore, prepareTestJS
     }
 }
