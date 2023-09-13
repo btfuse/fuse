@@ -17,7 +17,8 @@ limitations under the License.
 
 import {
     FusePlugin,
-    ContentType
+    ContentType,
+    FuseAPIResponse
 } from '@nbsfuse/core';
 
 export class EchoPlugin extends FusePlugin {
@@ -26,9 +27,8 @@ export class EchoPlugin extends FusePlugin {
     }
 
     public async echo(message: string): Promise<string> {
-        let r: ArrayBuffer = await this._exec('echo', ContentType.TEXT, message);
-        console.log('ECHO RESPONSE', r);
-        return await new Blob([r]).text();
+        let r: FuseAPIResponse = await this._exec('echo', ContentType.TEXT, message);
+        return await r.readAsText();
     }
 
     public async subscribe(cb: (data: string) => void): Promise<string> {
@@ -42,9 +42,7 @@ export class EchoPlugin extends FusePlugin {
     }
 
     public async bigResponse(): Promise<ArrayBuffer> {
-        console.log('calling big api');
-        let r: ArrayBuffer = await this._exec('big');
-        console.log('BIG RESP', r);
-        return r;
+        let r: FuseAPIResponse = await this._exec('big');
+        return await r.readAsArrayBuffer();
     }
 }

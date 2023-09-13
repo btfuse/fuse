@@ -26,22 +26,7 @@ public class EchoPlugin extends FusePlugin {
         this.attachHandler("/echo", new APIHandler<EchoPlugin>(this) {
             @Override
             public void execute(FuseAPIPacket packet, FuseAPIResponse response) throws IOException {
-                response.setStatus(FuseAPIResponseStatus.OK);
-                response.setContentType("text/plain");
-                response.setContentLength(packet.getContentLength());
-                response.didFinishHeaders();
-
-                byte[] buffer = new byte[4096];
-                InputStream io = packet.getInputStream();
-                long bytesRead;
-                long totalBytesRead = 0;
-                long expected = packet.getContentLength();
-                while (totalBytesRead < expected && (bytesRead = io.read(buffer)) != -1) {
-                    totalBytesRead += bytesRead;
-                    response.pushData(buffer);
-                }
-
-                response.didFinish();
+                response.send(packet.readAsBinary(), packet.getContentType());
             }
         });
 

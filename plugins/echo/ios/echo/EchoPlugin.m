@@ -70,7 +70,7 @@ limitations under the License.
         NSString* callbackID = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
         __block int num = 0;
-        NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:true block:^(NSTimer * _Nonnull timer) {
+        [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:true block:^(NSTimer * _Nonnull timer) {
             num++;
             
             [[self getContext] execCallback:callbackID withData:[[NSString alloc] initWithFormat:@"%d", num]];
