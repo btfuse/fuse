@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Build a test plugin
+# Build the test echo plugin
 cd plugins/echo
 npm install file:../../fuse-js/fuse.tgz
 npx tsc
@@ -21,10 +21,19 @@ TGZ_NAME=$(npm pack --pack-destination)
 mv ./$TGZ_NAME ./echo-plugin.tgz
 cd  ../..
 
+# Build the test permission plugin
+cd plugins/permission
+npm install file:../../fuse-js/fuse.tgz
+npx tsc
+TGZ_NAME=$(npm pack --pack-destination)
+mv ./$TGZ_NAME ./permission-plugin.tgz
+cd  ../..
+
 # Build the test app JS
 cd testapp
 npm install file:../fuse-js/fuse.tgz
 npm install file:../plugins/echo/echo-plugin.tgz
+npm install file:../plugins/permission/permission-plugin.tgz
 npx webpack --config ./webpack.config.js --mode development --progress
 cp ./build/* ./ios/testapp/assets/
 cp ./build/* ./android/testapp/src/main/assets/

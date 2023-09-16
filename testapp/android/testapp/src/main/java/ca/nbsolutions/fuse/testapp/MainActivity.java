@@ -27,6 +27,7 @@ import ca.nbsolutions.fuse.FuseActivity;
 import ca.nbsolutions.fuse.FuseContext;
 
 import ca.nbsolutions.fuse.plugins.EchoPlugin;
+import ca.nbsolutions.fuse.plugins.permissionplugin.PermissionPlugin;
 
 public class MainActivity extends FuseActivity {
 //    private FuseContext $context;
@@ -48,6 +49,7 @@ public class MainActivity extends FuseActivity {
 //        $context = new FuseContext(this);
         FuseContext fuseContext = getFuseContext();
         fuseContext.registerPlugin(new EchoPlugin(fuseContext));
+        fuseContext.registerPlugin(new PermissionPlugin(fuseContext));
 
 //        setContentView($context.getWebview());
     }

@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@nbsfuse/core": "file:../fuse-js/fuse.tgz",
-    "echo": "file:../plugins/echo/echo-plugin.tgz"
+    "echo": "file:../plugins/echo/echo-plugin.tgz",
+    "permission": "file:../plugins/permission/permission-plugin.tgz"
   },
   "devDependencies": {
     "source-map-loader": "^4.0.1",
