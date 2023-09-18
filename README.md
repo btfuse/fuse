@@ -38,9 +38,13 @@ Otherwise you're probably well adept in native development already, why would yo
 
 The architecture of the Fuse framework consists of primarily two layers: Native and Webview side, glued by a HTTP protocol API with plugin support to extend functionality where needed.
 
-For iOS, the HTTP API is powered by the [WKURLSchemeHandler](https://developer.apple.com/documentation/webkit/wkurlschemehandler?language=objc) which powers the DOM requests for your web assets, and also powers native APIs.
+For iOS, web content is served using the [WKURLSchemeHandler](https://developer.apple.com/documentation/webkit/wkurlschemehandler?language=objc) which powers the DOM requests for your web assets.
 
-For Android, the [WebViewAssetLoader](https://developer.android.com/reference/androidx/webkit/WebViewAssetLoader) powers the DOM requests for your web assets, however due to a lack of a [feature](https://issuetracker.google.com/issues/119844519) in the API, we use an embedded HTTP server<sup>1</sup> to power the HTTP API
+For Android, the [WebViewAssetLoader](https://developer.android.com/reference/androidx/webkit/WebViewAssetLoader) powers the DOM requests for your web assets.
+
+Due to limitations on both platforms, an embedded HTTP server is used to power an HTTP API. The web environment doesn't have a direct communication link to the native environment, and the existing APIs to transfer data in and out of the environment is incredibly slow. The embedded HTTP server serves that socket gap with the capability of sending large amounts of data, including binary data very efficiently. 
+
+Android lacks the [feature](https://issuetracker.google.com/issues/119844519) to intercept and read HTTP content bodies making it unsuitable for an API since data cannot be passed to native. iOS doesn't support sending binary data over non-https protocols, and the scheme must use a custom, non-standard protocol as the scheme, making it unsuitable for the API since it will Base64 encoding of binary data, which is the primarily bottleneck of the typical JS bridge API.
 
 <div style="text-align: center">
     <img src="./docs/res/architecture.jpg" />
