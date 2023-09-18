@@ -27,11 +27,11 @@ limitations under the License.
 - (void) initHandles {
     __weak EchoPlugin* weakSelf = self;
     
-    [self attachHandler:@"/echo" callback:^void(NSData *data, NBSFuseAPIResponse* response) {
-        [weakSelf doEcho:data withResponse:response];
+    [self attachHandler:@"/echo" callback:^void(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+        [weakSelf doEcho: [packet readAsBinary] withResponse:response];
     }];
     
-    [self attachHandler:@"/big" callback:^(NSData *data, NBSFuseAPIResponse *response) {
+    [self attachHandler:@"/big" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse *response) {
         NSString* bundlePath = [[NSBundle mainBundle] resourcePath];
         NSString* assetPath = [bundlePath stringByAppendingPathComponent:@"/assets/largeFile.txt"];
         
@@ -66,8 +66,8 @@ limitations under the License.
         [response didFinish];
     }];
     
-    [self attachHandler:@"/subscribe" callback:^(NSData* data, NBSFuseAPIResponse* response) {
-        NSString* callbackID = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self attachHandler:@"/subscribe" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+        NSString* callbackID = [packet readAsString];
         
         __block int num = 0;
         [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:true block:^(NSTimer * _Nonnull timer) {

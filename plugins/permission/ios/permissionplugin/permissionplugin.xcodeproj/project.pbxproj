@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94B0A6782AB680EA008C291A /* permissionplugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A6772AB680EA008C291A /* permissionplugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94B0A6782AB680EA008C291A /* public.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A6772AB680EA008C291A /* public.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94B0A67F2AB7412E008C291A /* PermissionPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A67E2AB7412D008C291A /* PermissionPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94B0A6812AB741C5008C291A /* PermissionPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6802AB741C5008C291A /* PermissionPlugin.m */; };
+		94B0A6832AB742AF008C291A /* PPPermission.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A6822AB742AF008C291A /* PPPermission.h */; };
+		94B0A68A2AB74D94008C291A /* NBSFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B0A6892AB74D94008C291A /* NBSFuse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		94B0A6742AB680EA008C291A /* permissionplugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = permissionplugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		94B0A6772AB680EA008C291A /* permissionplugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = permissionplugin.h; sourceTree = "<group>"; };
+		94B0A6772AB680EA008C291A /* public.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = public.h; sourceTree = "<group>"; };
+		94B0A67E2AB7412D008C291A /* PermissionPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PermissionPlugin.h; sourceTree = "<group>"; };
+		94B0A6802AB741C5008C291A /* PermissionPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PermissionPlugin.m; sourceTree = "<group>"; };
+		94B0A6822AB742AF008C291A /* PPPermission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPPermission.h; sourceTree = "<group>"; };
+		94B0A6892AB74D94008C291A /* NBSFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NBSFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -20,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94B0A68A2AB74D94008C291A /* NBSFuse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -31,6 +40,7 @@
 			children = (
 				94B0A6762AB680EA008C291A /* permissionplugin */,
 				94B0A6752AB680EA008C291A /* Products */,
+				94B0A6882AB74D94008C291A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -45,9 +55,20 @@
 		94B0A6762AB680EA008C291A /* permissionplugin */ = {
 			isa = PBXGroup;
 			children = (
-				94B0A6772AB680EA008C291A /* permissionplugin.h */,
+				94B0A6772AB680EA008C291A /* public.h */,
+				94B0A67E2AB7412D008C291A /* PermissionPlugin.h */,
+				94B0A6802AB741C5008C291A /* PermissionPlugin.m */,
+				94B0A6822AB742AF008C291A /* PPPermission.h */,
 			);
 			path = permissionplugin;
+			sourceTree = "<group>";
+		};
+		94B0A6882AB74D94008C291A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94B0A6892AB74D94008C291A /* NBSFuse.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -57,7 +78,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94B0A6782AB680EA008C291A /* permissionplugin.h in Headers */,
+				94B0A6832AB742AF008C291A /* PPPermission.h in Headers */,
+				94B0A67F2AB7412E008C291A /* PermissionPlugin.h in Headers */,
+				94B0A6782AB680EA008C291A /* public.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94B0A6812AB741C5008C291A /* PermissionPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +289,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -276,8 +301,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.nbs.permissionplugin;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -295,6 +323,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,8 +335,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.nbs.permissionplugin;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

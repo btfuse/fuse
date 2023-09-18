@@ -15,11 +15,11 @@ limitations under the License.
 */
 
 #import <UIKit/UIKit.h>
-#import <NBSFuse/NBSFuseContext.h>
+#import <NBSFuse/NBSFuseViewController.h>
 
-@interface ViewController : UIViewController
-
-@property (nonatomic, strong) NBSFuseContext* $context;
+@interface ViewController : UIViewController {
+    NBSFuseViewController* $fuseController;
+}
 
 @end
 

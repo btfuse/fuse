@@ -16,55 +16,43 @@ limitations under the License.
 
 #import "ViewController.h"
 #import <EchoPlugin.h>
-
-@interface ViewController ()
-
-@end
+#import <NBSFuse/NBSFuse.h>
 
 @implementation ViewController
 
 - (instancetype) init {
     self = [super init];
-    
-    [self initialize];
-    
-    return self;
-}
-
-- (instancetype) initWithNibName:(NSString*) nibNameOrNil bundle:(NSBundle*) nibBundleOrNil {
-    self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
-    
-    [self initialize];
-    
+    [self $initialize];
     return self;
 }
 
 - (instancetype) initWithCoder:(NSCoder*) coder {
-    self = [super initWithCoder: coder];
-    
-    [self initialize];
-    
+    self = [super initWithCoder:coder];
+    [self $initialize];
     return self;
 }
 
-- (void) initialize {
-    self.$context = [[NBSFuseContext alloc] init];
-    [self.$context registerPlugin:[[EchoPlugin alloc] init: self.$context]];
+- (instancetype) initWithNibName:(NSString*) nibNameOrNil bundle:(NSBundle*) nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    [self $initialize];
+    return self;
+}
+
+- (void) $initialize {
+    $fuseController = [[NBSFuseViewController alloc] init];
+    NBSFuseContext* context = [$fuseController getContext];
+    [context registerPlugin:[[EchoPlugin alloc] init: context]];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self addChildViewController: $fuseController];
+    [self.view addSubview: $fuseController.view];
+    
     if (@available(iOS 16.4, *)) {
-        [self.$context getWebview].inspectable = true;
+        [[$fuseController getContext] getWebview].inspectable = true;
     }
-    
-    // Do any additional setup after loading the view.
-    
-    UIViewController* fuseController = [self.$context getViewController];
-    
-    [self addChildViewController: fuseController];
-    [self.view addSubview: fuseController.view];
 }
 
 
