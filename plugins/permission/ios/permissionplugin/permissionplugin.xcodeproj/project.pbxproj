@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94B0A6782AB680EA008C291A /* public.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A6772AB680EA008C291A /* public.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94B0A67F2AB7412E008C291A /* PermissionPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A67E2AB7412D008C291A /* PermissionPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94B0A6812AB741C5008C291A /* PermissionPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6802AB741C5008C291A /* PermissionPlugin.m */; };
-		94B0A6832AB742AF008C291A /* PPPermission.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A6822AB742AF008C291A /* PPPermission.h */; };
+		94B0A6782AB680EA008C291A /* permissionplugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A6772AB680EA008C291A /* permissionplugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94B0A67F2AB7412E008C291A /* PPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A67E2AB7412D008C291A /* PPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94B0A6812AB741C5008C291A /* PPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6802AB741C5008C291A /* PPlugin.m */; };
+		94B0A6832AB742AF008C291A /* PPPermission.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A6822AB742AF008C291A /* PPPermission.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94B0A68A2AB74D94008C291A /* NBSFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B0A6892AB74D94008C291A /* NBSFuse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		94B0A6742AB680EA008C291A /* permissionplugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = permissionplugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		94B0A6772AB680EA008C291A /* public.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = public.h; sourceTree = "<group>"; };
-		94B0A67E2AB7412D008C291A /* PermissionPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PermissionPlugin.h; sourceTree = "<group>"; };
-		94B0A6802AB741C5008C291A /* PermissionPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PermissionPlugin.m; sourceTree = "<group>"; };
+		94B0A6772AB680EA008C291A /* permissionplugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = permissionplugin.h; sourceTree = "<group>"; };
+		94B0A67E2AB7412D008C291A /* PPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPlugin.h; sourceTree = "<group>"; };
+		94B0A6802AB741C5008C291A /* PPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPlugin.m; sourceTree = "<group>"; };
 		94B0A6822AB742AF008C291A /* PPPermission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPPermission.h; sourceTree = "<group>"; };
 		94B0A6892AB74D94008C291A /* NBSFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NBSFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -55,9 +55,9 @@
 		94B0A6762AB680EA008C291A /* permissionplugin */ = {
 			isa = PBXGroup;
 			children = (
-				94B0A6772AB680EA008C291A /* public.h */,
-				94B0A67E2AB7412D008C291A /* PermissionPlugin.h */,
-				94B0A6802AB741C5008C291A /* PermissionPlugin.m */,
+				94B0A6772AB680EA008C291A /* permissionplugin.h */,
+				94B0A67E2AB7412D008C291A /* PPlugin.h */,
+				94B0A6802AB741C5008C291A /* PPlugin.m */,
 				94B0A6822AB742AF008C291A /* PPPermission.h */,
 			);
 			path = permissionplugin;
@@ -79,8 +79,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				94B0A6832AB742AF008C291A /* PPPermission.h in Headers */,
-				94B0A67F2AB7412E008C291A /* PermissionPlugin.h in Headers */,
-				94B0A6782AB680EA008C291A /* public.h in Headers */,
+				94B0A67F2AB7412E008C291A /* PPlugin.h in Headers */,
+				94B0A6782AB680EA008C291A /* permissionplugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +112,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					94B0A6732AB680EA008C291A = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -152,7 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94B0A6812AB741C5008C291A /* PermissionPlugin.m in Sources */,
+				94B0A6812AB741C5008C291A /* PPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +196,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -257,6 +258,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -278,6 +280,7 @@
 		94B0A67C2AB680EA008C291A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -312,6 +315,7 @@
 		94B0A67D2AB680EA008C291A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

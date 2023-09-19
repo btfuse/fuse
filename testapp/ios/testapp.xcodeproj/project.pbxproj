@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		941862A72A9A751E00CCFEE1 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 941862A62A9A751E00CCFEE1 /* assets */; };
+		945C00362AB9173800E5296A /* permissionplugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945C00352AB9173800E5296A /* permissionplugin.framework */; };
+		945C00372AB9173800E5296A /* permissionplugin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 945C00352AB9173800E5296A /* permissionplugin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9489EBB42AA659820087424D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9489EBB62AA659820087424D /* Localizable.strings */; };
 		94A886972A7146970098530D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886962A7146970098530D /* AppDelegate.m */; };
 		94A8869A2A7146970098530D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886992A7146970098530D /* SceneDelegate.m */; };
@@ -28,6 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				945C00372AB9173800E5296A /* permissionplugin.framework in Embed Frameworks */,
 				94A886B32A714E4A0098530D /* NBSFuse.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -37,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		941862A62A9A751E00CCFEE1 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		945C00352AB9173800E5296A /* permissionplugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = permissionplugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9489EBB52AA659820087424D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94A886922A7146970098530D /* testapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A886952A7146970098530D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +65,7 @@
 			files = (
 				94A886E02A7170460098530D /* libecho.a in Frameworks */,
 				94A886B22A714E4A0098530D /* NBSFuse.framework in Frameworks */,
+				945C00362AB9173800E5296A /* permissionplugin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +120,7 @@
 		94A886B02A714E4A0098530D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				945C00352AB9173800E5296A /* permissionplugin.framework */,
 				94A886DF2A7170460098530D /* libecho.a */,
 				94A886B12A714E4A0098530D /* NBSFuse.framework */,
 			);
@@ -150,7 +156,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					94A886912A7146970098530D = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -290,6 +296,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -348,6 +355,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -17,6 +17,7 @@ limitations under the License.
 #import "ViewController.h"
 #import <EchoPlugin.h>
 #import <NBSFuse/NBSFuse.h>
+#import <permissionplugin/PermissionPlugin.h>
 
 @implementation ViewController
 
@@ -42,6 +43,7 @@ limitations under the License.
     $fuseController = [[NBSFuseViewController alloc] init];
     NBSFuseContext* context = [$fuseController getContext];
     [context registerPlugin:[[EchoPlugin alloc] init: context]];
+    [context registerPlugin:[[PermissionPlugin alloc] init: context]];
 }
 
 - (void)viewDidLoad {

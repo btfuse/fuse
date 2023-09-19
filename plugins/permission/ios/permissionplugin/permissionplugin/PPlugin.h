@@ -20,8 +20,11 @@ limitations under the License.
 
 #import <Foundation/Foundation.h>
 #import <NBSFuse/NBSFusePlugin.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface PermissionPlugin : NBSFusePlugin
+@interface PermissionPlugin : NBSFusePlugin <CLLocationManagerDelegate> {
+    CLLocationManager* $lm;
+}
 
 - (NSString*) getID;
 
