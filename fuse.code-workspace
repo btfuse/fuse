@@ -23,6 +23,9 @@
         },
         {
             "path": "docs"
+        },
+        {
+            "path": "build-tools"
         }
     ],
     "settings": {
