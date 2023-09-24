@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+echo "_buildTestProjects.sh script is deprecated"
+
 # Build the test echo plugin
 cd plugins/echo
 npm install file:../../fuse-js/fuse.tgz
