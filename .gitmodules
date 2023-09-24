@@ -7,3 +7,6 @@
 [submodule "fuse-ios"]
 	path = fuse-ios
 	url = https://github.com/nbsfuse/fuse-ios.git
+[submodule "build-tools"]
+	path = build-tools
+	url = https://github.com/nbsfuse/build-tools.git

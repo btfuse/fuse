@@ -5,5 +5,10 @@
 
     <application>
 <!--        <service android:name="FuseForegroundLocationService" android:foregroundServiceType="location"></service>-->
+<!--        <service-->
+<!--            android:name="MyNavigationService"-->
+<!--            android:foregroundServiceType="location"-->
+<!--        >-->
+<!--        </service>-->
     </application>
 </manifest>

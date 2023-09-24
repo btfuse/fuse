@@ -2,10 +2,6 @@ plugins {
     id 'com.android.library'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = file('../../../../fuse-android/GRADLE_VERSION').text.trim()
-}
-
 android {
     namespace 'ca.nbsolutions.fuse.plugins'
     compileSdk 34
@@ -35,7 +31,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation project(':fuse')
