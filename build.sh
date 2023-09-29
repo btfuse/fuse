@@ -13,11 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+source build-tools/DirectoryTools.sh
+
 if [ "$1" == "" ]; then # build everything
     source compiler/_buildCore.sh
     source compiler/_buildTestProjects.sh
     source compiler/_buildIOS.sh
-    source compiler/_buildAndroid.sh
+    spushd fuse-android
+        ./build.sh
+    spopd
 elif [ "$1" == "core" ]; then
     source compiler/_buildCore.sh
 elif [ "$1" == "tests" ]; then
@@ -25,7 +29,9 @@ elif [ "$1" == "tests" ]; then
 elif [ "$1" == "ios" ]; then
     source compiler/_buildIOS.sh
 elif [ "$1" == "android" ]; then
-    source compiler/_buildAndroid.sh
+    spushd fuse-android
+        ./build.sh
+    spopd
 else
     echo "Unsupported build target: $1"
     exit 1

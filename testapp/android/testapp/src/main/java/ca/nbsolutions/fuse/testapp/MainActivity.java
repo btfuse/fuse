@@ -30,27 +30,12 @@ import ca.nbsolutions.fuse.plugins.EchoPlugin;
 import ca.nbsolutions.fuse.plugins.permissionplugin.PermissionPlugin;
 
 public class MainActivity extends FuseActivity {
-//    private FuseContext $context;
-
-//    public MainActivity() {
-//        super();
-//    }
-
-//    @ContentView
-//    public MainActivity(@LayoutRes int contentLayoutId) {
-//        super(contentLayoutId);
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-
-//        $context = new FuseContext(this);
         FuseContext fuseContext = getFuseContext();
         fuseContext.registerPlugin(new EchoPlugin(fuseContext));
         fuseContext.registerPlugin(new PermissionPlugin(fuseContext));
-
-//        setContentView($context.getWebview());
     }
 }
