@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		941862A72A9A751E00CCFEE1 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 941862A62A9A751E00CCFEE1 /* assets */; };
-		945C00362AB9173800E5296A /* permissionplugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945C00352AB9173800E5296A /* permissionplugin.framework */; };
-		945C00372AB9173800E5296A /* permissionplugin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 945C00352AB9173800E5296A /* permissionplugin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		94552C562ACA125000DAE0F4 /* libecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886DF2A7170460098530D /* libecho.a */; };
 		9489EBB42AA659820087424D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9489EBB62AA659820087424D /* Localizable.strings */; };
 		94A886972A7146970098530D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886962A7146970098530D /* AppDelegate.m */; };
 		94A8869A2A7146970098530D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886992A7146970098530D /* SceneDelegate.m */; };
@@ -20,7 +19,6 @@
 		94A886A82A7146980098530D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886A72A7146980098530D /* main.m */; };
 		94A886B22A714E4A0098530D /* NBSFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886B12A714E4A0098530D /* NBSFuse.framework */; };
 		94A886B32A714E4A0098530D /* NBSFuse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886B12A714E4A0098530D /* NBSFuse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		94A886E02A7170460098530D /* libecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886DF2A7170460098530D /* libecho.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,7 +28,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				945C00372AB9173800E5296A /* permissionplugin.framework in Embed Frameworks */,
 				94A886B32A714E4A0098530D /* NBSFuse.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -40,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		941862A62A9A751E00CCFEE1 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
-		945C00352AB9173800E5296A /* permissionplugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = permissionplugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9489EBB52AA659820087424D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94A886922A7146970098530D /* testapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A886952A7146970098530D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,9 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94A886E02A7170460098530D /* libecho.a in Frameworks */,
+				94552C562ACA125000DAE0F4 /* libecho.a in Frameworks */,
 				94A886B22A714E4A0098530D /* NBSFuse.framework in Frameworks */,
-				945C00362AB9173800E5296A /* permissionplugin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +115,6 @@
 		94A886B02A714E4A0098530D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				945C00352AB9173800E5296A /* permissionplugin.framework */,
 				94A886DF2A7170460098530D /* libecho.a */,
 				94A886B12A714E4A0098530D /* NBSFuse.framework */,
 			);
@@ -311,7 +305,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -364,7 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -397,7 +391,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbsolutions.nbsfuse.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -430,7 +424,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbsolutions.nbsfuse.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -55,20 +55,20 @@ const DESIRED_PERMISSIONS: SupportedPermissions[] = [
     let permissionResult = document.createElement('div');
     permissionResult.id = 'permissionResult';
 
-    try {
-        let grantResults: FusePermissionGrantResult<SupportedPermissions> =  await permPlugin.requestPermission(DESIRED_PERMISSIONS, async () => {
-            return window.confirm('need perm ok?');
-        });
-        let permOut: string = '';
-        for (let i: number = 0; i < DESIRED_PERMISSIONS.length; i++) {
-            let perm: SupportedPermissions = DESIRED_PERMISSIONS[i];
-            permOut += `<div>${perm} : ${grantResults.isGranted(perm)}</div>`
-        }
-        permissionResult.innerHTML = permOut;
-    }
-    catch (ex) {
-        permissionResult.innerHTML = (ex as FuseError).getMessage();
-    }
+    // try {
+    //     let grantResults: FusePermissionGrantResult<SupportedPermissions> =  await permPlugin.requestPermission(DESIRED_PERMISSIONS, async () => {
+    //         return window.confirm('need perm ok?');
+    //     });
+    //     let permOut: string = '';
+    //     for (let i: number = 0; i < DESIRED_PERMISSIONS.length; i++) {
+    //         let perm: SupportedPermissions = DESIRED_PERMISSIONS[i];
+    //         permOut += `<div>${perm} : ${grantResults.isGranted(perm)}</div>`
+    //     }
+    //     permissionResult.innerHTML = permOut;
+    // }
+    // catch (ex) {
+    //     permissionResult.innerHTML = (ex as FuseError).getMessage();
+    // }
 
     document.body.appendChild(permissionResult);
 })();
@@ -77,16 +77,16 @@ document.body.onclick = async () => {
     let resp = await echoPlugin.bigResponse();
     console.log('big resp', resp);
 
-    let permissionResult = document.getElementById('permissionResult');
-    try {
-        await permPlugin.requestPermission(DESIRED_PERMISSIONS, async () => {
-            return window.confirm('need perm ok?');
-        });
-        permissionResult.innerHTML = 'GRANTED';
-    }
-    catch (ex) {
-        permissionResult.innerHTML = (ex as FuseError).getMessage();
-    }
+    // let permissionResult = document.getElementById('permissionResult');
+    // try {
+    //     await permPlugin.requestPermission(DESIRED_PERMISSIONS, async () => {
+    //         return window.confirm('need perm ok?');
+    //     });
+    //     permissionResult.innerHTML = 'GRANTED';
+    // }
+    // catch (ex) {
+    //     permissionResult.innerHTML = (ex as FuseError).getMessage();
+    // }
 };
 
 // echoPlugin.subscribe((data: string) => {

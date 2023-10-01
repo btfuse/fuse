@@ -27,7 +27,7 @@ export class EchoPlugin extends FusePlugin {
     }
 
     public async echo(message: string): Promise<string> {
-        let r: FuseAPIResponse = await this._exec('echo', ContentType.TEXT, message);
+        let r: FuseAPIResponse = await this._exec('/echo', ContentType.TEXT, message);
         return await r.readAsText();
     }
 
@@ -36,13 +36,13 @@ export class EchoPlugin extends FusePlugin {
             cb(payload);
         });
 
-        await this._exec('subscribe', ContentType.TEXT, callbackID);
+        await this._exec('/subscribe', ContentType.TEXT, callbackID);
 
         return callbackID;
     }
 
     public async bigResponse(): Promise<ArrayBuffer> {
-        let r: FuseAPIResponse = await this._exec('big');
+        let r: FuseAPIResponse = await this._exec('/big');
         return await r.readAsArrayBuffer();
     }
 }

@@ -29,7 +29,7 @@ export class PermissionPlugin extends FusePlugin {
     }
 
     public async requestPermission(permissions: SupportedPermissions[], justificationHandler: TFuseJustificationHandler): Promise<FusePermissionGrantResult<SupportedPermissions>> {
-        let request: PermissionRequest<SupportedPermissions> = new PermissionRequest(this._createAPIBridge('requestPermission'), permissions, justificationHandler);
+        let request: PermissionRequest<SupportedPermissions> = new PermissionRequest(this._createAPIBridge('/requestPermission'), permissions, justificationHandler);
         return await request.request();
     }
 }

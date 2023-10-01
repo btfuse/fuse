@@ -31,7 +31,7 @@ limitations under the License.
         [weakSelf doEcho: [packet readAsBinary] withResponse:response];
     }];
     
-    [self attachHandler:@"/big" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse *response) {
+    [self attachHandler:@"/big" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
         NSString* bundlePath = [[NSBundle mainBundle] resourcePath];
         NSString* assetPath = [bundlePath stringByAppendingPathComponent:@"/assets/largeFile.txt"];
         
@@ -78,6 +78,12 @@ limitations under the License.
         
         [response didFinishHeaders];
         [response didFinish];
+    }];
+    
+    [self attachHandler:@"/threadtest" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self doEcho: [packet readAsBinary] withResponse:response];
+        });
     }];
 }
 
