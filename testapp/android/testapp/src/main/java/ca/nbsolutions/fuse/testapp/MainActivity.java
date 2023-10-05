@@ -27,7 +27,6 @@ import ca.nbsolutions.fuse.FuseActivity;
 import ca.nbsolutions.fuse.FuseContext;
 
 import ca.nbsolutions.fuse.plugins.EchoPlugin;
-import ca.nbsolutions.fuse.plugins.permissionplugin.PermissionPlugin;
 
 public class MainActivity extends FuseActivity {
 
@@ -36,6 +35,5 @@ public class MainActivity extends FuseActivity {
         super.onCreate(savedInstanceState);
         FuseContext fuseContext = getFuseContext();
         fuseContext.registerPlugin(new EchoPlugin(fuseContext));
-        fuseContext.registerPlugin(new PermissionPlugin(fuseContext));
     }
 }

@@ -60,24 +60,18 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation project(path: ':fuse')
     implementation project(path: ':EchoPlugin')
-    implementation project(':PermissionPlugin')
 //    testImplementation 'junit:junit:4.13.2'
 //    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
-task prepareCore(type: Exec) {
+tasks.register('prepareJS', Exec) {
     workingDir '../../..'
-    commandLine './build.sh', 'core'
+    commandLine './build.sh', 'android'
 }
 
-task prepareTestJS(type: Exec) {
-    workingDir '../../..'
-    commandLine './build.sh', 'tests'
-}
-
-tasks.whenTaskAdded { task ->
+tasks.configureEach { task ->
     if (task.name == "generateDebugResources" || task.name == "generateReleaseResources") {
-        task.dependsOn prepareCore, prepareTestJS
+        task.dependsOn prepareJS
     }
 }
