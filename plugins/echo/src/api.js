@@ -1,4 +1,4 @@
-
+"use strict";
 /*
 Copyright 2023 Norman Breau
 
@@ -14,20 +14,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
-#ifndef PermissionPlugin_h
-#define PermissionPlugin_h
-
-#import <Foundation/Foundation.h>
-#import <NBSFuse/NBSFusePlugin.h>
-#import <CoreLocation/CoreLocation.h>
-
-@interface PermissionPlugin : NBSFusePlugin <CLLocationManagerDelegate> {
-    CLLocationManager* $lm;
-}
-
-- (NSString*) getID;
-
-@end
-
-#endif
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EchoPlugin = void 0;
+var EchoPlugin_1 = require("./EchoPlugin");
+Object.defineProperty(exports, "EchoPlugin", { enumerable: true, get: function () { return EchoPlugin_1.EchoPlugin; } });
+//# sourceMappingURL=api.js.map

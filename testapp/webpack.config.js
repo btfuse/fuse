@@ -6,6 +6,7 @@ module.exports = {
     // context, whose network requests doesn't pass through the WebViewAssetLoader
     devtool: 'inline-source-map',
     entry: ['./src/App.ts'],
+    stats: 'errors-warnings',
     output: {
         path: Path.join(__dirname, 'build/'),
         publicPath: '/assets/'
@@ -19,6 +20,10 @@ module.exports = {
             '.ts',
             '.js'
         ]
+        // alias: {
+        //     '@nbsfuse/core': Path.resolve(__dirname, '../fuse-js'),
+        //     'echo': Path.resolve(__dirname, '../plugins/echo')
+        // }
     },
     optimization: {
         minimize: false

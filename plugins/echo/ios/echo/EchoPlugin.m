@@ -70,11 +70,13 @@ limitations under the License.
         NSString* callbackID = [packet readAsString];
         
         __block int num = 0;
-        [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:true block:^(NSTimer * _Nonnull timer) {
-            num++;
-            
-            [[self getContext] execCallback:callbackID withData:[[NSString alloc] initWithFormat:@"%d", num]];
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:true block:^(NSTimer * _Nonnull timer) {
+                num++;
+                
+                [[self getContext] execCallback:callbackID withData:[[NSString alloc] initWithFormat:@"%d", num]];
+            }];
+        });
         
         [response didFinishHeaders];
         [response didFinish];

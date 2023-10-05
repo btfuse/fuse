@@ -5,14 +5,13 @@
   "main": "lib/api.js",
   "types": "lib/api.d.ts",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "Apache-2.0",
-  "dependencies": {
-    "@nbsfuse/core": "file:../../fuse-js/fuse.tgz"
-  },
   "devDependencies": {
+    "@nbsfuse/core": "file:../../fuse-js/fuse.tgz",
     "typescript": "^5.2.2"
   }
 }
