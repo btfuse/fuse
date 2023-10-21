@@ -1,12 +1,12 @@
 [submodule "fuse-js"]
 	path = fuse-js
-	url = https://github.com/nbsfuse/fuse-js.git
+	url = https://github.com/btfuse/fuse-js.git
 [submodule "fuse-android"]
 	path = fuse-android
-	url = https://github.com/nbsfuse/fuse-android.git
+	url = https://github.com/btfuse/fuse-android.git
 [submodule "fuse-ios"]
 	path = fuse-ios
-	url = https://github.com/nbsfuse/fuse-ios.git
+	url = https://github.com/btfuse/fuse-ios.git
 [submodule "build-tools"]
 	path = build-tools
-	url = https://github.com/nbsfuse/build-tools.git
+	url = https://github.com/btfuse/build-tools.git
