@@ -1,0 +1,398 @@
+
+# Authoring a new Fuse plugin
+
+This guide shows you some guidelines about how to create a new fuse plugin.
+Throughout the guide, we will go over creating new projects including setting up the JS environment, as well as iOS and android.
+If your plugin is native only or only supports one of the native platforms, feel free to skip sections where necessary.
+
+e.g. if it's a native only plugin, then setting up the JS environment won't be required.
+
+## Assumed knowledge
+
+This guide will assume that you already have a basic understanding of the following:
+- native workflows
+- NPM modules
+- version control systems
+- semver versioning schemes
+- webpack
+- The high level architecture of Fuse framework
+
+As a starting point, I'd assume you have an empty version control repository with no files or directories in it. This directory I'd consider to be `root` (e.g. `/`).
+
+# Setting up the JS module
+
+JS modules are managed by NPM, generally speaking. To create a new NPM module, run `npm init` in the root folder.
+
+Follow the wizard for your package name, version, license, etc. At the end a `package.json` file will be created, which should be added to your version control system. Feel free to modify this file further if required, however make sure you do not leave the file in an unsaved modified state, as commands later will modify this file further.
+
+## Linking with the Fuse framework
+
+In order to develop against the Fuse framework, you'll need to add `dev dependency`:
+
+```
+npm install --save-dev @nbsfuse/core
+```
+
+The install command will create a `package-lock.json` file, which can be added to your source version control system.
+
+Open `package.json` and add a peer dependency block along with `@nbsfuse/core` declaration:
+
+```json
+{
+    ...
+    "peerDependencies": {
+        "@nbsfuse/core": "1.x"
+    }
+}
+```
+
+`@nbsfuse/core` should appear in both `peerDependencies` and `devDependencies` but their versions should be different.
+
+`devDependencies` block will be the version you install, develop, and test against. Generally speaking this will be the latest version of a given major version of the Fuse framework.
+
+`peerDependencies` on the other hand declares the version range that your plugin supports. This version should be a loosely range, such `"1.x"` to allow any version in the 1.x major version range, as an example. If you depend on a feature that was added in say, version `1.1` then your peer dependency declaration should be `">= 1.1 <2"` to declare that you need at least `1.1` but you do not support the major version 2.
+
+It is possible that your plugin may support multiple major versions, in which case feel free to have a higher version cap; e.g.:
+
+- `"1.x || 2.x"`
+- `">= 1.1 <3"`
+
+Fuse will follow semver version schemes, so it would be recommended to cap by restricting up to the next unreleased major. So if the Fuse framework is at version `1.2.3`, as an example, then use `"1.x"` or `">= 1.1 <2`, both of which will prevent your plugin from being used on the next major version, whenever it may be released, until your plugin can be tested and verified it will work properly.
+
+It is *important* to keep your peer dependency as loose as possible to ensure compatiblity with other plugins. Do **NOT** pin a peer dependency to an exact version.
+
+**NOTE**: If you run `npm install --save-dev @nbsfuse/core` and install version that doesn't satisfy your peer dependencies, NPM will update your peer dependency declaration for you, which might use an undesirable version pin.
+
+More details on importing the Fuse framework can be found [here](./ImportingTheFramework.md)
+
+## Installing more Dev Tools
+
+The recommended toolset for authoring JS fuse plugins is to use TypeScript. Fuse itself is written in TypeScript, whose type information will be asserted against your code.
+
+Install `typescript` and `webpack` as a dev dependencies:
+
+```bash
+npm install --save-dev typescript webpack webpack-cli ts-loader source-map-loader copy-webpack-plugin
+```
+
+Initiate the new typescript module:
+
+```bash
+npx tsc --init
+```
+
+Open `tsconfig.json` and make the following modifications:
+
+1. Uncomment `target` and set the value to `"ES2017"`
+2. Uncomment `module` and set the value to `"commonjs"`
+3. Uncomment `moduleResolution` and set the value to `"node"`
+4. Uncomment `declaration` and set the value to `true`
+5. Uncomment `sourceMap` and set the value to `true`
+6. Uncomment `outDir` and set the value to `"./lib"`
+7. Uncomment `sourceRoot` and set the value to `"/"`
+8. Uncomment `inlineSources` and set the value to `true`
+9. Uncomment `esModuleInterop` and set the value to `true`
+10. At the JSON object add:
+
+```json
+{
+    "compilerOptions": {...},
+    "include": [
+        "./src/**/*.ts",
+        "./src/*.ts"
+    ],
+    "exclude": [
+        "./lib"
+    ]
+}
+```
+
+Type Checking can be configured to your preferences, however Fuse disables `strictNullChecks`. Where `null` may be returned is generally documented in the JSDoc.
+
+These commands will modify `package.json`, `package-lock.json`, and create a new file called `tsconfig.json`, all of which can be commited to your source version control system.
+
+Modify your `package.json` to set the `main` field to `./lib/api.js`:
+
+```json
+{
+    ...
+    "main": "./lib/api.js"
+}
+```
+
+Modify `package.json` to include some NPM scripts:
+
+```json
+{
+    ...,
+    "scripts": {
+        ...
+        "build": "tsc",
+        "build:tests:android": "cd testapp && webpack --config ./webpack.android.js --mode development",
+        "build:tests:ios": "cd testapp && webpack --config ./webpack.ios.js --mode development",
+    }
+}
+```
+
+These commands will fail at the moment since we haven't configured your sources nor have we configured webpack but these scripts will do teh following:
+
+- `npm run build` -- Builds your JS module
+- `build:tests:android` -- Builds your testapp for android
+- `build:tests:ios` -- Builds your testapp for iOS.
+
+We will return to Webpack later, when we setup our test project environment.
+
+## Setting up your public API
+
+Make a new `/src/` directory. This directory will hold all your typescript files for your JS side of your plugin.
+
+First let's make a module that declares your public API.
+
+Create a file `./src/api.ts` and write the following contents:
+
+```typescript
+export {MyPlugin} from './MyPlugin';
+```
+
+The purpose of this file is to export any symbol that should be accessible by consumers of your plugin. Feel free to come back to this file and add onto it when necessary.
+
+Now let's create `MyPlugin`, create a new file at `/src/MyPlugin.ts`
+
+```typescript
+import {
+    FusePlugin,
+    ContentType,
+    FuseResponseReader
+} from '@nbsfuse/core';
+
+export class MyPlugin extends FusePlugin {
+    protected override _getID(): string {
+        return 'MyPlugin';
+    }
+
+    public async echo(message: string): Promise<string> {
+        let r: ArrayBuffer = await this._exec('echo', ContentType.TEXT, message);
+        return await FuseResponseReader.readAsText(r);
+    }
+}
+```
+
+Note on an ID, choose a value that will be unique. The value will need to be URL friendly, so no special characters. This value will be used to route requests to a plugin on the native side.
+
+Taking a page out of Apple's naming convention in Obj-C, it's best to choose a 3-letter prefix, which could be an acroynm for your company and/or project name. NBSolutions reserves `NBS` prefix on all namespaces.
+
+For the purpose of the guide, I'll continue to use `MyPlugin` as the ID, which will correlate with identifiers found in native iOS and Android code.
+
+The `echo` method implemented calls on an `echo` plugin API with a request body type of `text/plain` (`ContentType.TEXT`) with `message` string as the request body content.
+
+Fuse API responses are always an `ArrayBuffer`. It's up to you on how to decide how the data should be read.
+
+**WARNING**: The Fuse response is scheduled to be changed, see https://github.com/nbsfuse/fuse/issues/8 for more information. However, the actual response data object will still be represented as an `ArrayBuffer`.
+
+While passing the `ArrayBuffer` to a `Blob` so that the data can be read, there is a static `FuseResponseReader` class that can assist in reading the data to common types, including a string or JSON.
+
+Running `npm run build` should compile successfully, creating a `lib/` directory, which should be added to your `.gitignore` file (keeping generated files out of source version control systems).
+
+This concludes the JS module part of the plugin. If you intend on publishing this module or otherwise packing it, you should add a `.npmignore` with the following contents:
+
+```
+/testapp
+/android
+/ios
+/src
+tsconfig.json
+/spec
+```
+
+While we haven't created all of these directories yet, we will later on in this guide. If you include eslint and other build tools, their config files should also be added.
+
+The `/src` file is added because it's not used by end-consumers, the sourcemaps and type declarations covers the ability to review the source files as authored for debugging purposes.
+
+`/android`, `/ios` will be your native projects, and shouldn't be distributed with your JS package and instead should be distributed through their native distribution channels.
+
+`/spec` is generally where your JS unit test files will live, and `/testapp` will be your test application, which shouldn't be included in your final distributable. We haven't created the testapp yet, which will be covered later in the guide.
+
+# Creating the Fuse Android project
+
+Using Android Studio can generate you a new project quickly but the project will be more or less configured for an Application rather than a Library. While you could add a Library module to the project, I prefer to start and configure the project manually with a folder structure that makes more sense as a Library.
+
+Start off by creating a `/android` directory to hold your android project. This directly is ignored by `.npmignore` if you have followed along with the previous chapter.
+
+Use Android Studio to create a new project inside `/android` directory.
+It would be recommended to choose a `Empty Views Activity` as a starting point, but any template can be chosen. In this guide, I'll be assuming you have selected `Empty Views Activity` and you already have a `MainActivity` class in your project.
+
+Use whatever namespace that makes sense to you. Throughout the guide I'll be using the namespace `com.example.fuse.MyPlugin` as the project namespace. Substitute this namespace with your own namespace whenever they occur, e.g. file paths, Java packages, directory names, etc.
+
+For Language, this guide will be using Java, but if you're comfortable with using Kotlin and able to adapt Java code into Kotlin, feel free to use Kotlin.
+
+For the Minimum SDK, it would be recommended to choose the lowest API level you can support, but refer to the Fuse documentation for their minimum SDK level that the Fuse framework supports. Supporting anything less than what the Fuse framework supports is redundent.
+
+For the `Build Configuration Language`, this guide will be using `Groovy DSL`, however Kotlin DSL is now the recommended option. If you're familiar with Kotlin DSL and able to adapt Groovy DSL to Kotlin DSL, feel free to use Kotlin.
+
+Once Android Studio finishes syncing with Gradle, you should have a simple project with an `app` module containing a `MainActivity`. The `app` module is not used in your final product but it can be used to test your Fuse plugin. For the time being, we will ignore this module.
+
+Create a new `Android Library` module. This module will be your plugin module. By default, Android Studio will recommend the module name something like `:app:mylibrary`, but since this module isn't a submodule of app, it would make more sense to place your module at the root of your project, so use `:MyPlugin` instead. Once again, feel free to name your module appropriately.
+
+In this guide, I'll be using the following:
+
+| Setting | Value |
+| ---- | ---- |
+| Language | Java |
+| Bytecode Level | 8 |
+| Minimum SDK | 24 |
+| Build Configuration Language | Groovy DSL |
+
+THe base structure of the Android project is setup, now we need to futher configure to import the Fuse framework and start implementing a basic plugin.
+
+## Importing the Fuse framework
+
+The android fuse framework is hosted and distributed by [NBSolutions Archiva](https://archiva.nbsolutions.ca/#artifact/nbs/fuse) server. You can add this server by modifying your `/android/settings.gradle`'s `dependencyResolutionManagement` block:
+
+```groovy
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+
+        // Add this
+        maven {
+            url = 'https://archiva.nbsolutions.ca/repository/nbsolutions'
+        }
+    }
+}
+```
+
+Now open your library module's `build.gradle` (`/android/MyPlugin/build.gradle`) and add the `compileOnly` line to your dependencies:
+
+```groovy
+dependencies {
+    ...
+    compileOnly 'nbs:fuse:1.+'
+}
+```
+
+`compileOnly` is similar to peerDependencies except for the fact that this version range is not actually enforced by the consuming applications. It's useful to obtain the native symbols so that you can compile your library without providing those symbols, which is important to avoid duplicate symbols once applications starts consuming multiple plugins.
+
+Running Gradle Sync in Android Studio will sync the IDE and download these new dependencies, which will be required for intellisense to work.
+
+In your library module, create a new class, which in this guide I'll use `MyPlugin.java`. There bare minimum that Fuse plugin implementation needs is the following:
+
+```java
+package com.example.fuse.myplugin;
+
+import ca.nbsolutions.fuse.FuseAPIPacket;
+import ca.nbsolutions.fuse.FuseAPIResponse;
+import ca.nbsolutions.fuse.FuseContext;
+import ca.nbsolutions.fuse.FuseError;
+import ca.nbsolutions.fuse.FusePlugin;
+import java.io.IOException;
+
+public class MyPlugin extends FusePlugin {
+
+    public MyPlugin(FuseContext context) {
+        super(context);
+    }
+
+    @Override
+    public String getID() {
+        return "MyPlugin"; // This must match the TS module ID.
+    }
+
+    @Override
+    protected void _initHandles() {
+        // Here we will add API handlers
+    }
+}
+```
+
+The anatomy of the MyPlugin class is declaring it's plugin ID, and hooking into `_initHandles` which gets called at some point during construction. This is the time where you can start adding in API handlers, that will handle API calls from the JavaScript environment.
+
+Let's add a API handler now:
+
+```java
+@Override
+protected void _initHandles() {
+    this.attachHandler("/now", new APIHandler<MyPlugin>(this) {
+        @Override
+        public void execute(FuseAPIPacket packet, FuseAPIResponse response) throws IOException {
+            // Step 1: Initialize the headers
+            response.setStatus(FuseAPIResponseStatus.OK);
+            response.setContentType(packet.getContentType());
+            response.setContentLength(packet.getContentLength());
+            response.didFinishHeaders();
+
+            // Step 2: Prepare the response body
+            byte[] buffer = new byte[4096];
+            InputStream io = packet.getInputStream();
+            long bytesRead;
+            long totalBytesRead = 0;
+            long expected = packet.getContentLength();
+
+            while (totalBytesRead < expected && (bytesRead = io.read(buffer)) != -1) {
+                totalBytesRead += bytesRead;
+                response.pushData(buffer);
+            }
+
+            // Step 3: Finalize the response
+            response.didFinish();
+        }
+    });
+}
+```
+
+The above code simply reads the request body, and echos it back out as a response.
+While this may appear cumbersome, it shows the low-level API that gives plugins fine control
+on how to respond to request. This level of control is considerably more important when dealing with larger content bodies, such as fetching a file from disk.
+
+The API response requires 3 steps, 1) initialize the response, 2) send content packets, and 3) finalizing the request. These 3 steps provides a memory efficient and fast way to transfer data back to the webview.
+
+At minimum, the required headers are Status Codes (an Integer), the content type, which is a MIME type, and the content length, which is the byte length of the data you will be sending.
+The headers is finalized by calling `didFinishHeaders`.
+
+Headers needs to be sent before the content body is pushed to the socket stream. Like the Fuse JS API, data received and pushed are byte buffers. Data can be pushed by calling `pushData` with a `byte[]` array. `pushData` may be called several times, as many times as necessary to push all your data through.
+
+Once all data is written, finalizing the response can be done by calling `didFinish`, which signals that we are done using the socket and cleans up resources.
+
+Now if you're thinking that this is cumbersome just to echo out a response, then you'll be right! There are utility classes available that helps you respond with common formats, namely by plain strings, or by `JSONObject`. Let's rewrite our `APIHandler`:
+
+```java
+@Override
+protected void _initHandles() {
+    this.attachHandler("/now", new APIHandler<MyPlugin>(this) {
+        @Override
+        public void execute(FuseAPIPacket packet, FuseAPIResponse response) throws IOException {
+            response.send(packet.readAsBinary(), packet.getContentType());
+        }
+    });
+}
+```
+
+Look at that one-liner!
+
+`readAsBinary` will read the entire input stream into memory, which is then send to `response` which handles the flow of responding and writing back to the socket stream. Obviously the caveat here is that the entire payload is stored in memory, but most of the time, plugins deal with smaller datasets so that's okay. If you do need to control memory flow, then the first way using the lower level API might be necessary. It's good to know that both approaches are available.
+
+The `FuseAPIPacket` also has APIs to read the request content via `readAsString` or `readAsJSON`.
+
+Likewise, the `FuseAPIResponse` has several `send` methods, all of which will control the entire response flow:
+
+- `send()` - response back with no content
+- `send(byte[])` - response with untyped content, with `application/octet-stream` content type
+- `send(byte[], String)` - response with untyped content, but with MIME type declared
+- `send(String)` - response with `text/plain` data
+- `send(JSONObject)` - response with `application/json` data
+- `send(FuseError)` - response with an error (serialized as a JSON object)
+
+**NOTE:** The underlying socket implementation is the HTTP protocol, however this should be considered an implementation detail and you should not assume that the communcation bridge will always be based on HTTP.
+
+## Creating the Android Test App
+
+TBD
+
+# Creating the Fuse iOS project
+
+TBD
+
+# Creating the JS testapp
+
+TBD
