@@ -10,3 +10,7 @@
 [submodule "build-tools"]
 	path = build-tools
 	url = https://github.com/btfuse/build-tools.git
+[submodule "fuse-docs"]
+	path = fuse-docs
+	url = git@github.com:btfuse/fuse-docs.git
+	branch = main

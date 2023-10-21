@@ -26,6 +26,9 @@
         },
         {
             "path": "build-tools"
+        },
+        {
+            "path": "fuse-docs"
         }
     ],
     "settings": {
