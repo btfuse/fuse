@@ -15,18 +15,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package ca.nbsolutions.fuse.testapp;
-
-import androidx.annotation.ContentView;
-import androidx.annotation.LayoutRes;
-import androidx.appcompat.app.AppCompatActivity;
+package com.breautek.fuse.testapp;
 
 import android.os.Bundle;
 
-import ca.nbsolutions.fuse.FuseActivity;
-import ca.nbsolutions.fuse.FuseContext;
+import com.breautek.fuse.FuseActivity;
+import com.breautek.fuse.FuseContext;
 
-import ca.nbsolutions.fuse.plugins.EchoPlugin;
+import com.breautek.fuse.plugins.EchoPlugin;
 
 public class MainActivity extends FuseActivity {
 

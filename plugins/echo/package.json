@@ -11,7 +11,9 @@
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@nbsfuse/core": "file:../../fuse-js/fuse.tgz",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@btfuse/core": "file:../../fuse-js/fuse.tgz"
   }
 }

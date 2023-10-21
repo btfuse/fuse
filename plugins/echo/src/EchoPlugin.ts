@@ -19,7 +19,7 @@ import {
     FusePlugin,
     ContentType,
     FuseAPIResponse
-} from '@nbsfuse/core';
+} from '@btfuse/core';
 
 export class EchoPlugin extends FusePlugin {
     protected override _getID(): string {

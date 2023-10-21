@@ -20,7 +20,7 @@ plugins {
 }
 
 android {
-    namespace 'ca.nbsolutions.fuse.testapp'
+    namespace 'com.breautek.fuse.testapp'
     compileSdk 34
 
     aaptOptions {
@@ -28,13 +28,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "ca.nbsolutions.fuse.testapp"
+        applicationId "com.breautek.fuse.testapp"
         minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"
-
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -56,13 +54,10 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation project(path: ':fuse')
     implementation project(path: ':EchoPlugin')
-//    testImplementation 'junit:junit:4.13.2'
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
 tasks.register('prepareJS', Exec) {

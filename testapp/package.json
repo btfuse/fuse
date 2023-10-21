@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nbsfuse/core": "file:../fuse-js/fuse.tgz",
+    "@btfuse/core": "file:../fuse-js/fuse.tgz",
     "echo": "file:../plugins/echo/echo-plugin.tgz",
     "permission": "file:../plugins/permission/permission-plugin.tgz"
   },

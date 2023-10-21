@@ -19,7 +19,7 @@ import {
     FuseContext,
     FuseContextBuilder,
     FuseError
-} from '@nbsfuse/core';
+} from '@btfuse/core';
 import {EchoPlugin} from 'echo';
 
 (async () => {
