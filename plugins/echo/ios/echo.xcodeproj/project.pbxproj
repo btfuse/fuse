@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94552C532ACA11D400DAE0F4 /* NBSFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886D92A71691C0098530D /* NBSFuse.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		94552C572ACA131600DAE0F4 /* EchoPlugin.h in Sources */ = {isa = PBXBuildFile; fileRef = 94A886CF2A7169030098530D /* EchoPlugin.h */; };
 		94552C582ACA131600DAE0F4 /* EchoPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886D02A7169030098530D /* EchoPlugin.m */; };
+		945A05962AE582F90042C88A /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945A05952AE582F90042C88A /* BTFuse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,9 +26,9 @@
 
 /* Begin PBXFileReference section */
 		94552C462ACA0FBD00DAE0F4 /* libecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		945A05952AE582F90042C88A /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A886CF2A7169030098530D /* EchoPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EchoPlugin.h; sourceTree = "<group>"; };
 		94A886D02A7169030098530D /* EchoPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EchoPlugin.m; sourceTree = "<group>"; };
-		94A886D92A71691C0098530D /* NBSFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NBSFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94552C532ACA11D400DAE0F4 /* NBSFuse.framework in Frameworks */,
+				945A05962AE582F90042C88A /* BTFuse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +72,7 @@
 		94A886D82A71691C0098530D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				94A886D92A71691C0098530D /* NBSFuse.framework */,
+				945A05952AE582F90042C88A /* BTFuse.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

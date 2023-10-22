@@ -1,6 +1,6 @@
 
 /*
-Copyright 2023 Norman Breau
+Copyright 2023 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,9 +19,9 @@ limitations under the License.
 #define EchoPlugin_h
 
 #import <Foundation/Foundation.h>
-#import <NBSFuse/NBSFusePlugin.h>
+#import <BTFuse/BTFusePlugin.h>
 
-@interface EchoPlugin : NBSFusePlugin
+@interface EchoPlugin : BTFusePlugin
 
 - (NSString*) getID;
 

@@ -1,6 +1,6 @@
 
 /*
-Copyright 2023 Norman Breau
+Copyright 2023 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@ limitations under the License.
 */
 
 #import "EchoPlugin.h"
-#import <NBSFuse/NBSFuseContext.h>
+#import <BTFuse/BTFuseContext.h>
 
 @implementation EchoPlugin
 
@@ -27,11 +27,11 @@ limitations under the License.
 - (void) initHandles {
     __weak EchoPlugin* weakSelf = self;
     
-    [self attachHandler:@"/echo" callback:^void(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+    [self attachHandler:@"/echo" callback:^void(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
         [weakSelf doEcho: [packet readAsBinary] withResponse:response];
     }];
     
-    [self attachHandler:@"/big" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+    [self attachHandler:@"/big" callback:^(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
         NSString* bundlePath = [[NSBundle mainBundle] resourcePath];
         NSString* assetPath = [bundlePath stringByAppendingPathComponent:@"/assets/largeFile.txt"];
         
@@ -40,7 +40,7 @@ limitations under the License.
 
         NSNumber* fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
         
-        [response setStatus: NBSFuseAPIResponseStatusOk];
+        [response setStatus: BTFuseAPIResponseStatusOk];
         [response setContentType:@"text/plain"];
         [response setContentLength: [fileSizeNumber unsignedIntegerValue]];
         [response didFinishHeaders];
@@ -66,7 +66,7 @@ limitations under the License.
         [response didFinish];
     }];
     
-    [self attachHandler:@"/subscribe" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+    [self attachHandler:@"/subscribe" callback:^(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
         NSString* callbackID = [packet readAsString];
         
         __block int num = 0;
@@ -82,15 +82,15 @@ limitations under the License.
         [response didFinish];
     }];
     
-    [self attachHandler:@"/threadtest" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+    [self attachHandler:@"/threadtest" callback:^(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self doEcho: [packet readAsBinary] withResponse:response];
         });
     }];
 }
 
-- (void) doEcho:(NSData*)data withResponse:(NBSFuseAPIResponse*) response {
-    [response setStatus: NBSFuseAPIResponseStatusOk];
+- (void) doEcho:(NSData*)data withResponse:(BTFuseAPIResponse*) response {
+    [response setStatus: BTFuseAPIResponseStatusOk];
     [response setContentType:@"text/plain"];
     [response setContentLength: [data length]];
     [response didFinishHeaders];

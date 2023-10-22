@@ -22,7 +22,7 @@
             <mxPoint x="440" y="300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-6" value="NBSFuseContext" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-6" value="FuseContext" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="340" y="430" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="4Rs-0Ohqk5ainvw4EO5i-7" value="FuseContext" style="html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
@@ -58,7 +58,7 @@
         <mxCell id="4Rs-0Ohqk5ainvw4EO5i-14" value="FusePlugin" style="html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="340" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-15" value="NBSFusePlugin" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-15" value="FusePlugin" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="340" y="490" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="4Rs-0Ohqk5ainvw4EO5i-16" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="4Rs-0Ohqk5ainvw4EO5i-6" target="4Rs-0Ohqk5ainvw4EO5i-52" edge="1">
@@ -149,7 +149,7 @@
             <mxPoint x="770" y="306" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-33" value="NBSFuseSchemeHandler&lt;br&gt;(WKURLSchemeHandler)" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-33" value="FuseSchemeHandler&lt;br&gt;(WKURLSchemeHandler)" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="690" y="440" width="170" height="100" as="geometry" />
         </mxCell>
         <mxCell id="4Rs-0Ohqk5ainvw4EO5i-34" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="4Rs-0Ohqk5ainvw4EO5i-28" target="4Rs-0Ohqk5ainvw4EO5i-33" edge="1">
@@ -225,7 +225,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-50" value="NBSFuseAPIRouter" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-50" value="FuseAPIRouter" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="530" y="430" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="4Rs-0Ohqk5ainvw4EO5i-51" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="4Rs-0Ohqk5ainvw4EO5i-50" target="4Rs-0Ohqk5ainvw4EO5i-6" edge="1">
@@ -234,7 +234,7 @@
             <mxPoint x="210" y="465" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-52" value="NBSFuseViewController" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="4Rs-0Ohqk5ainvw4EO5i-52" value="FuseViewController" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="30" y="440" width="150" height="50" as="geometry" />
         </mxCell>
         <mxCell id="4Rs-0Ohqk5ainvw4EO5i-53" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="4Rs-0Ohqk5ainvw4EO5i-33" target="4Rs-0Ohqk5ainvw4EO5i-52" edge="1">

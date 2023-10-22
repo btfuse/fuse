@@ -20,10 +20,6 @@ module.exports = {
             '.ts',
             '.js'
         ]
-        // alias: {
-        //     '@nbsfuse/core': Path.resolve(__dirname, '../fuse-js'),
-        //     'echo': Path.resolve(__dirname, '../plugins/echo')
-        // }
     },
     optimization: {
         minimize: false

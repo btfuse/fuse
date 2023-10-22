@@ -30,23 +30,23 @@ Follow the wizard for your package name, version, license, etc. At the end a `pa
 In order to develop against the Fuse framework, you'll need to add `dev dependency`:
 
 ```
-npm install --save-dev @nbsfuse/core
+npm install --save-dev @btfuse/core
 ```
 
 The install command will create a `package-lock.json` file, which can be added to your source version control system.
 
-Open `package.json` and add a peer dependency block along with `@nbsfuse/core` declaration:
+Open `package.json` and add a peer dependency block along with `@btfuse/core` declaration:
 
 ```json
 {
     ...
     "peerDependencies": {
-        "@nbsfuse/core": "1.x"
+        "@btfuse/core": "1.x"
     }
 }
 ```
 
-`@nbsfuse/core` should appear in both `peerDependencies` and `devDependencies` but their versions should be different.
+`@btfuse/core` should appear in both `peerDependencies` and `devDependencies` but their versions should be different.
 
 `devDependencies` block will be the version you install, develop, and test against. Generally speaking this will be the latest version of a given major version of the Fuse framework.
 
@@ -61,7 +61,7 @@ Fuse will follow semver version schemes, so it would be recommended to cap by re
 
 It is *important* to keep your peer dependency as loose as possible to ensure compatiblity with other plugins. Do **NOT** pin a peer dependency to an exact version.
 
-**NOTE**: If you run `npm install --save-dev @nbsfuse/core` and install version that doesn't satisfy your peer dependencies, NPM will update your peer dependency declaration for you, which might use an undesirable version pin.
+**NOTE**: If you run `npm install --save-dev @btfuse/core` and install version that doesn't satisfy your peer dependencies, NPM will update your peer dependency declaration for you, which might use an undesirable version pin.
 
 More details on importing the Fuse framework can be found [here](./ImportingTheFramework.md)
 
@@ -163,7 +163,7 @@ import {
     FusePlugin,
     ContentType,
     FuseResponseReader
-} from '@nbsfuse/core';
+} from '@btfuse/core';
 
 export class MyPlugin extends FusePlugin {
     protected override _getID(): string {
@@ -179,7 +179,7 @@ export class MyPlugin extends FusePlugin {
 
 Note on an ID, choose a value that will be unique. The value will need to be URL friendly, so no special characters. This value will be used to route requests to a plugin on the native side.
 
-Taking a page out of Apple's naming convention in Obj-C, it's best to choose a 3-letter prefix, which could be an acroynm for your company and/or project name. NBSolutions reserves `NBS` prefix on all namespaces.
+Taking a page out of Apple's naming convention in Obj-C, it's best to choose a 3-letter prefix, which could be an acroynm for your company and/or project name. For the fuse project, Breautek reserves the `BTFuse` prefix on all namespaces.
 
 For the purpose of the guide, I'll continue to use `MyPlugin` as the ID, which will correlate with identifiers found in native iOS and Android code.
 
@@ -187,7 +187,7 @@ The `echo` method implemented calls on an `echo` plugin API with a request body 
 
 Fuse API responses are always an `ArrayBuffer`. It's up to you on how to decide how the data should be read.
 
-**WARNING**: The Fuse response is scheduled to be changed, see https://github.com/nbsfuse/fuse/issues/8 for more information. However, the actual response data object will still be represented as an `ArrayBuffer`.
+**WARNING**: The Fuse response is scheduled to be changed, see https://github.com/btfuse/fuse/issues/8 for more information. However, the actual response data object will still be represented as an `ArrayBuffer`.
 
 While passing the `ArrayBuffer` to a `Blob` so that the data can be read, there is a static `FuseResponseReader` class that can assist in reading the data to common types, including a string or JSON.
 
@@ -246,7 +246,7 @@ THe base structure of the Android project is setup, now we need to futher config
 
 ## Importing the Fuse framework
 
-The android fuse framework is hosted and distributed by [NBSolutions Archiva](https://archiva.nbsolutions.ca/#artifact/nbs/fuse) server. You can add this server by modifying your `/android/settings.gradle`'s `dependencyResolutionManagement` block:
+The android fuse framework is hosted and distributed by [Breautek Archiva](https://archiva.breautek.com/) server. You can add this server by modifying your `/android/settings.gradle`'s `dependencyResolutionManagement` block:
 
 ```groovy
 dependencyResolutionManagement {
@@ -257,7 +257,7 @@ dependencyResolutionManagement {
 
         // Add this
         maven {
-            url = 'https://archiva.nbsolutions.ca/repository/nbsolutions'
+            url = 'https://archiva.breautek.com/repository/breautek'
         }
     }
 }
@@ -268,7 +268,7 @@ Now open your library module's `build.gradle` (`/android/MyPlugin/build.gradle`)
 ```groovy
 dependencies {
     ...
-    compileOnly 'nbs:fuse:1.+'
+    compileOnly 'com.breautek.fuse:core:0.7.0'
 }
 ```
 
@@ -281,11 +281,11 @@ In your library module, create a new class, which in this guide I'll use `MyPlug
 ```java
 package com.example.fuse.myplugin;
 
-import ca.nbsolutions.fuse.FuseAPIPacket;
-import ca.nbsolutions.fuse.FuseAPIResponse;
-import ca.nbsolutions.fuse.FuseContext;
-import ca.nbsolutions.fuse.FuseError;
-import ca.nbsolutions.fuse.FusePlugin;
+import com.breautek.fuse.FuseAPIPacket;
+import com.breautek.fuse.FuseAPIResponse;
+import com.breautek.fuse.FuseContext;
+import com.breautek.fuse.FuseError;
+import com.breautek.fuse.FusePlugin;
 import java.io.IOException;
 
 public class MyPlugin extends FusePlugin {

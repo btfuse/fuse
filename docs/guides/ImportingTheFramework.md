@@ -12,10 +12,10 @@ an application or a library.
 
 # Importing the Fuse JS library
 
-Starting with the common package, install [@nbsfuse/core](https://www.npmjs.com/package/@nbsfuse/core) as a dev dependency:
+Starting with the common package, install [@btfuse/core](https://www.npmjs.com/package/@btfuse/core) as a dev dependency:
 
 ```
-npm install @nbsfuse/core --save-dev
+npm install @btfuse/core --save-dev
 ```
 
 It may seem counter-intuitive to install the package as a dev dependendency when it's needed for the runtime of your library or application, however the JS core framework is not built to be directly deployed and ran in the browser.
@@ -24,7 +24,7 @@ For application projects, we assume you'll be using a bundler such as [Webpack](
 Any bundler should work, for as long as the bundler understands CommonJS. However, for webpack, there isn't any special configuration needed
 to include Fuse into your project.
 
-For library projects, you don't need to use any bundler, but you'll want to also add `@nbsfuse/core` as a `peerDependency`. Be sure to use a loosy version range such as `1.x` or `>= 1.1 <2`.
+For library projects, you don't need to use any bundler, but you'll want to also add `@btfuse/core` as a `peerDependency`. Be sure to use a loosy version range such as `1.x` or `>= 1.1 <2`.
 
 <!--
 Too much info, and not import for importing the framework, this should be moved to another guide more tailored to authoring plugins
@@ -38,7 +38,7 @@ Generally speaking, your library should:
 
 For TypeScript users, the Fuse JS framework is written in TypeScript and typings will be automatically available to be consumed when importing the module.
 
-The distributed files are not the authored source files. The source files can be viewed or built from the [fuse-js](https://github.com/nbsfuse/fuse-js) repository.
+The distributed files are not the authored source files. The source files can be viewed or built from the [fuse-js](https://github.com/btfuse/fuse-js) repository.
 
 <!-- TODO: Link to a Getting Started Guide -->
 
@@ -49,7 +49,7 @@ If you're only concerned with one of the platform, feel free to skip on to the a
 
 ## Android Fuse Framework
 
-The Fuse android framework is hosted on an Apache Archiva distrbution server hosted by [NBSolutions](https://archiva.nbsolutions.ca/#artifact/nbs/fuse).
+The Fuse android framework is hosted on an Apache Archiva distrbution server hosted by [Breautek](https://archiva.breautek.com).
 
 You can access the server by adding the following to your Gradle project:
 
@@ -62,7 +62,7 @@ dependencyResolutionManagement {
         ...
 
         maven {
-            url = 'https://archiva.nbsolutions.ca/repository/nbsolutions'
+            url = 'https://archiva.breautek.com/repository/breautek'
         }
     }
 }
@@ -73,43 +73,43 @@ Now inside your application module, add the `implementation` line:
 ```groovy
 dependencies {
     ...
-    implementation 'nbs:fuse:<version>'
+    implementation 'com.breautek.fuse:core:<version>'
 }
 ```
 
-See the [Releases](https://github.com/nbsfuse/fuse-android/releases) page for released versions.
+See the [Releases](https://github.com/btfuse/fuse-android/releases) page for released versions.
 
 If you're authoring a library, then `compileOnly` should be used instead of `implementation`:
 
 ```groovy
 dependencies {
     ...
-    compileOnly 'nbs:fuse:<version>'
+    compileOnly 'com.breautek.fuse:core:<version>'
 }
 ```
 
 This ensures that you can compile and resolve symbols for distribution, without actually embedding the framework itself.
 
-The distributed files do not contain source symbols. The source files can be viewed or built from the [fuse-android](https://github.com/nbsfuse/fuse-android) repository.
+The distributed files do not contain source symbols. The source files can be viewed or built from the [fuse-android](https://github.com/btfuse/fuse-android) repository.
 
 ## iOS Fuse Framework
 
 Unlike the JS framework and the Android framework, the iOS framework doesn't have any managed distribution channels.
-Not for a lack of trying, I've spent a considerable amount of time making CocoaPods & SPM work, so if you'll like to consult on this task, have a look at [Issue #2](https://github.com/nbsfuse/fuse-ios/issues/2), and feel free to reach out.
+Not for a lack of trying, I've spent a considerable amount of time making CocoaPods & SPM work, so if you'll like to consult on this task, have a look at [Issue #2](https://github.com/btfuse/fuse-ios/issues/2), and feel free to reach out.
 
 However, despite lacking a dependency artefact system, it is still easy to import the Fuse Framework into your project.
 
-1. Download the NBSFuse.xcframework.zip file from the [Releases](https://github.com/nbsfuse/fuse-ios/releases) page
+1. Download the BTFuse.xcframework.zip file from the [Releases](https://github.com/btfuse/fuse-ios/releases) page
 2. Extract and store it where it makes sense in your project. (You may want to `.gitignore` the contents and have a ZIP file to pull in a specific version)
-3. Drag and drop `NBSFuse.xcframework` into XCode. By default the framework will be added as `Embed & Sign`
+3. Drag and drop `BTFuse.xcframework` into XCode. By default the framework will be added as `Embed & Sign`
 
-If you're authoring a Fuse library, then mark `NBSFuse.xcframework` as `Do not embed`.
+If you're authoring a Fuse library, then mark `BTFuse.xcframework` as `Do not embed`.
 This can be done by going to:
 1. The project pane
 2. Click your project's target
 3. Click on `General` tab
-4. Under the `Frameworks and Libraries` section, change `NBSFuse.xcframework` to `Do not embed`
+4. Under the `Frameworks and Libraries` section, change `BTFuse.xcframework` to `Do not embed`
 
 Not embedding the framework will avoid conflicts with other plugins or the application importing your library.
 
-The distributed files do not contain source symbols. The source files can be viewed or built from the [fuse-ios](https://github.com/nbsfuse/fuse-ios) repository.
+The distributed files do not contain source symbols. The source files can be viewed or built from the [fuse-ios](https://github.com/btfuse/fuse-ios) repository.

@@ -1,5 +1,5 @@
 
-# NBSFuse
+# BTFuse
 
 A native-first framework for building hybdrid native-web applications.
 
@@ -24,7 +24,7 @@ For Android, we aim to support the minimum API that the [system webview](https:/
 |Module|Status|Notes|
 |---|---|---|
 |JS|Pending||
-|Android|![Android Build](https://github.com/nbsfuse/fuse-android/actions/workflows/android.yml/badge.svg)|Simple build, no unit tests currently.
+|Android|![Android Build](https://github.com/btfuse/fuse-android/actions/workflows/android.yml/badge.svg)|Simple build, no unit tests currently.
 |iOS|Pending||
 
 
@@ -32,7 +32,7 @@ For Android, we aim to support the minimum API that the [system webview](https:/
 
 ## What is it?
 
-NBSFuse (referred to as Fuse, or Fuse framework from here on out) is a framework for hybrid native-web building mobile applications.
+BTFuse (referred to as Fuse, or Fuse framework from here on out) is a framework for hybrid native-web building mobile applications.
 The Fuse framework takes a "native-first" approach. That is, everything first starts with your native project, whether that be an iOS XCode project, or an Android gradle project.
 
 The Fuse framework is simply a framework that you can import into your project via traditional native dependency management systems, such as
@@ -83,5 +83,5 @@ The Fuse framework for the most part is rather unopinionated about your web asse
 
 URL fragment design in general are reserved by the Fuse framework.
 
-Additionally if you want to make use of the Fuse API and use Fuse plugins, you'll need to import `@nbsfuse/core` which is an unbundled JS module.
+Additionally if you want to make use of the Fuse API and use Fuse plugins, you'll need to import `@btfuse/core` which is an unbundled JS module.
 It would be recommended to incorporate a module bundle that can take NPM modules and bundle them (either in a single file, or a chunked fashion). See the test app for a [webpack configuration example](./testapp/webpack.config.js).

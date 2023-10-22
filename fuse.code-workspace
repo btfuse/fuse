@@ -16,9 +16,6 @@
             "path": "fuse-js"
         },
         {
-            "path": "compiler"
-        },
-        {
             "path": "."
         },
         {
