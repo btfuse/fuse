@@ -22,6 +22,14 @@ import {
 } from '@btfuse/core';
 import {EchoPlugin} from 'echo';
 
+var sleep = (ms: number): Promise<void> => {
+    return new Promise<void>((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    });
+}
+
 (async () => {
     let builder: FuseContextBuilder = new FuseContextBuilder();
     let context: FuseContext = await builder.build();
@@ -45,6 +53,8 @@ import {EchoPlugin} from 'echo';
         let response: string = await echoPlugin.echo('Hi from TS');
         // alert(response);
         appendInfo(response);
+
+        context.getLogger().info(`ECHO RESPONSE: ${response}`);
         
         let timeDiv = document.createElement('div');
         document.body.appendChild(timeDiv);

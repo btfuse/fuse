@@ -51,7 +51,6 @@
 		94A886A42A7146980098530D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94A886A62A7146980098530D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94A886A72A7146980098530D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		94A886B12A714E4A0098530D /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A886DF2A7170460098530D /* libecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				945A059B2AE585B50042C88A /* BTFuse.framework */,
-				94A886DF2A7170460098530D /* libecho.a */
+				94A886DF2A7170460098530D /* libecho.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

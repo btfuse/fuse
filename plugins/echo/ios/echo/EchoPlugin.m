@@ -28,7 +28,8 @@ limitations under the License.
     __weak EchoPlugin* weakSelf = self;
     
     [self attachHandler:@"/echo" callback:^void(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
-        [weakSelf doEcho: [packet readAsBinary] withResponse:response];
+        NSData* message = [packet readAsBinary];
+        [weakSelf doEcho: message withResponse:response];
     }];
     
     [self attachHandler:@"/big" callback:^(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
