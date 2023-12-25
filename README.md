@@ -1,7 +1,8 @@
 
 # Fuse
 
-|Android|![Android Build](https://github.com/btfuse/fuse-android/actions/workflows/android.yml/badge.svg)
+|Android|![Fuse Android](https://github.com/btfuse/fuse-android/actions/workflows/instrumented.yml/badge.svg)
+|Android|![Fuse JS](https://github.com/btfuse/fuse-js/actions/workflows/unit-tests.yml/badge.svg)
 
 A native-first framework for building hybdrid native-web applications.
 
@@ -22,22 +23,24 @@ The Fuse project is split up into several repositories
 |Fuse JS|[Link](https://github.com/btfuse/fuse-js)|The webview Fuse library
 |Fuse Docs|[Link](https://github.com/btfuse/fuse-docs)|The User Documentation website.
 
-If you plan to build from source or contribute to Fuse, it will be recommended to clone the Fuse Project Repo rather than the individual components.
+If you plan to build from source or contribute to Fuse, it will be recommended to clone the Fuse Project Repo rather than the individual components as they may cross-reference each other.
 
-The Fuse Project Repo (this repository) contains git submodules to each of the components. Therefore when cloning,
-use the `--recurse-submodules` argument:
+Fuse should be cloned into a directory where all the fuse repos can exists as siblings. This repo contains a `bootstrap.sh` script that will clone each repo.
 
-```bash
-git clone --recurse-submodules 
-```
-
-If you already have a cloned repository, it can be synced by doing:
+NOTE: Currently Fuse build scripts only supports unix/bash environments.
 
 ```bash
-git pull
-git submodule update --recursive
+git clone git@github.com:btfuse/fuse.git
+cd fuse
+./bootstrap.sh
 ```
 
-:warning:<sup>1</sup> The project structure is planned to be changed to better support forks and PRs, rather than using a Main project report.
+The bootstrap script only clones missing repositories. Once cloned, you can add git remotes, or pull them appropriately.
+
+If you have forked each of the repositories, then you can supply your user/organization id as the first parameter to have the script clone from your own fork instead.
+
+```bash
+./bootstrap.sh myaccount
+```
 
 See individual project readmes for further information how to build and test the project from source.
