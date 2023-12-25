@@ -1,5 +1,27 @@
 {
-    "folders": [],
+    "folders": [
+        {
+            "path": "./fuse-android"
+        },
+        {
+            "path": "./fuse-ios"
+        },
+        {
+            "path": "./fuse-test-app"
+        },
+        {
+            "path": "./fuse-echo"
+        },
+        {
+            "path": "./fuse-js"
+        },
+        {
+            "path": "."
+        },
+        {
+            "path": "./fuse-docs"
+        }
+    ],
     "settings": {
         "java.configuration.updateBuildConfiguration": "disabled"
     }
