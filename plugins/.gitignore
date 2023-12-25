@@ -1,9 +1,0 @@
-*.tgz
-xcuserdata
-node_modules
-lib
-gradle
-.gradle
-gradlew
-gradlew.bat
-package-lock.json
