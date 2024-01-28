@@ -5,7 +5,7 @@
 ![Android Build](https://github.com/btfuse/fuse-ios/actions/workflows/instrumented.yml/badge.svg)
 ![JS Runtime Build](https://github.com/btfuse/fuse-js/actions/workflows/unit-tests.yml/badge.svg)
 
-A native-first framework for building hybdrid native-web applications.
+A native-first framework for building hybrid native-web applications.
 
 This framework is entering **alpha** stage, and not intended to be used in production code.
 
