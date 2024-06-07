@@ -20,6 +20,9 @@
         },
         {
             "path": "./fuse-docs"
+        },
+        {
+            "path": "./fuse-wizard"
         }
     ],
     "settings": {

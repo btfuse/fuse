@@ -38,3 +38,8 @@ echo "Checking Fuse Echo Plugin..."
 if [ ! -z "$(readlink -f ./fuse-echo)" ]; then
     git clone git@github.com:$fork/fuse-echo.git --recurse-submodules
 fi
+
+echo "Checking Fuse Wizard..."
+if [ ! -z "$(readlink -f ./fuse-echo)" ]; then
+    git clone git@github.com:$fork/fuse-wizard.git --recurse-submodules
+fi
