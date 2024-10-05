@@ -1,0 +1,15 @@
+/node_modules
+/build
+gradle
+gradlew
+gradlew.bat
+.gradle 
+xcuserdata
+largeFile.txt
+assets/*
+!assets/index.html
+/package-lock.json
+main.js
+*.map
+.DS_Store
+

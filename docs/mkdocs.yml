@@ -1,0 +1,88 @@
+# Copyright 2023 Breautek 
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+site_name: Breautek Fuse
+site_url: https://fuse.breautek.com/
+site_description: Breautek Fuse Framework User Documentation
+site_author: Breautek
+copyright: Copyright &copy; 2023 Breautek
+repo_url: https://github.com/btfuse/fuse-docs/
+edit_uri: blob/main/docs/
+
+theme:
+  name: material
+  logo: res/fuse-logo.svg
+  favicon: res/favicon.svg
+  features:
+    - search.suggest
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+  palette:
+    primary: white
+  custom_dir: theme_overrides
+
+plugins:
+  - tags: []
+  - search: []
+  # - typedoc:
+  #     source: ../fuse-js/src
+  #     tsconfig: ../fuse-js/tsconfig.json
+  #     output_dir: ./docs/ref/test
+  # - typedoc:
+  #     source: './external/fuse-js/'
+  #     tsconfig: './external/fuse-js/tsconfig.json'
+  #     options: './external/fuse-js/typedoc.json'
+    # tsconfig: './external/fuse-js/tsconfig.json'
+  # - typedoc:
+    # tsconfig: './external/fuse-js/tsconfig.json'
+  #   # output_dir: 'FuseJSReference'
+  #   # name: 'Fuse JS Reference'
+  #   # disable_system_check: False
+
+markdown_extensions:
+  - callouts
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.gemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_alt
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+extra_css:
+  - css/tip.css
+  - css/broken-link.css
+
+nav:
+  - Home: index.md
+  - User Guide:
+    - Getting Started: user-guide/getting-started.md
+    - Android Guide: user-guide/android-guide.md
+  - Plugin Development:
+    - Getting Started: plugin-development/getting-started.md
+    - Fuse JS Modules: plugin-development/js-module.md
+    - Android Modules: plugin-development/android-module.md
+    - iOS Modules: plugin-development/ios-module.md
+  - API Reference:
+    - Fuse JS: ref/fuse-js/index.html
+    - Fuse Android: ref/fuse-android/index.html
+
+  # - API Reference:
+  #   - Index: api-ref/index.md
+  #   - Webview:
+  #     - Core: api-ref/js/core.md

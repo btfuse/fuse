@@ -1,0 +1,10 @@
+{
+    "navigationLinks": {
+        "Main Documentation": "/"
+    },
+    "name": "FuseJS",
+    "out": "./docs/ref/fuse-js",
+    "tsconfig": "./external/fuse-js/tsconfig.json",
+    "entryPoints": ["./external/fuse-js/src/api.ts"],
+    "readme": "none"
+}

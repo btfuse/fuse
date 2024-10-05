@@ -1,0 +1,26 @@
+
+.broken-link {
+    color: red;
+    text-decoration: dashed;
+    position: relative;
+}
+
+.broken-link::after {
+    content: "Documentation Pending";
+    padding: 10px;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    text-align: center;
+    color: #495057;
+    background-color: #fef4c5;
+    border: 1px solid #d4b943;
+    border-radius: 2px;
+    z-index: 1;
+    font-size: 0.75em;
+}
+  
+.broken-link:hover::after {
+    display: block;
+}

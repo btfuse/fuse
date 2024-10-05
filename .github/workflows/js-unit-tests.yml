@@ -1,0 +1,28 @@
+
+name: FuseJS
+
+on:
+  push:
+    paths:
+      - 'js/**'
+  pull_request:
+    paths:
+      - 'js/**'
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_versions: [18.x, 20.x, 22.x]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node_version }}
+      - run: npm ci
+        working-directory: js
+      - run: npm run build
+        working-directory: js
+      - run: npm test
+        working-directory: js

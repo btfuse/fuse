@@ -1,0 +1,14 @@
+
+/site
+.DS_Store
+
+#DrawIO Temp files
+*.bkp
+*.dtmp
+
+#Python Virtual Environment
+/venv
+
+/node_modules
+
+/docs/ref

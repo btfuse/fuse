@@ -1,0 +1,6 @@
+
+.admonition.tip {
+    background-color: hsl(125 100% 95% / 1);
+    border-color: hsl(125 83% 91% / 1);
+    color: hsl(125 42% 34% / 1);
+}
