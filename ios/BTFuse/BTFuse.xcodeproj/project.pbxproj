@@ -816,7 +816,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../echo/echo/\"",
+					"\"$(SRCROOT)/../../echo/ios/echo/\"",
 					"$(BUILT_PRODUCTS_DIR)/openssl/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -843,7 +843,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../echo/echo/\"",
+					"\"$(SRCROOT)/../../echo/ios/echo/\"",
 					"$(BUILT_PRODUCTS_DIR)/openssl/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
