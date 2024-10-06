@@ -20,7 +20,6 @@
 		94C3AF2B2B68681A006AD040 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 94C3AF2A2B68681A006AD040 /* LICENSE */; };
 		94D499BB2AC9CFEE009917A7 /* BTFuseTestAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 94D499BA2AC9CFEE009917A7 /* BTFuseTestAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94D499BD2AC9D254009917A7 /* BTFuseTestAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D499BC2AC9D254009917A7 /* BTFuseTestAPIClient.m */; };
-		94F13A1F2CA4EF2C00CCCC89 /* BTFuseTestTools.docc in Sources */ = {isa = PBXBuildFile; fileRef = 94F13A1E2CA4EF2C00CCCC89 /* BTFuseTestTools.docc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		94C3AF2A2B68681A006AD040 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		94D499BA2AC9CFEE009917A7 /* BTFuseTestAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseTestAPIClient.h; sourceTree = "<group>"; };
 		94D499BC2AC9D254009917A7 /* BTFuseTestAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseTestAPIClient.m; sourceTree = "<group>"; };
-		94F13A1E2CA4EF2C00CCCC89 /* BTFuseTestTools.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = BTFuseTestTools.docc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +78,6 @@
 		947FF0FB2AC8A82E003D09BC = {
 			isa = PBXGroup;
 			children = (
-				94F13A1E2CA4EF2C00CCCC89 /* BTFuseTestTools.docc */,
 				94C3AF2A2B68681A006AD040 /* LICENSE */,
 				944112BB2AED44C800309527 /* PrivacyInfo.xcprivacy */,
 				947FF1072AC8A82E003D09BC /* BTFuseTestTools */,
@@ -206,7 +203,6 @@
 				946278462AC8A987008A89FA /* BTFuseTestViewController.m in Sources */,
 				9462784E2AC8B1AF008A89FA /* BTFuseTestAPIResponse.m in Sources */,
 				946278522AC8B3EE008A89FA /* BTFuseTestAPIResponseFactory.m in Sources */,
-				94F13A1F2CA4EF2C00CCCC89 /* BTFuseTestTools.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

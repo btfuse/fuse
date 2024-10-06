@@ -81,9 +81,4 @@ nav:
   - API Reference:
     - Fuse JS: ref/fuse-js/index.html
     - Fuse Android: ref/fuse-android/index.html
-    - Fuse iOS: ref/fuse-ios/documentation/overview/index.html
-
-  # - API Reference:
-  #   - Index: api-ref/index.md
-  #   - Webview:
-  #     - Core: api-ref/js/core.md
+    # - Fuse iOS: ref/fuse-ios/index.html

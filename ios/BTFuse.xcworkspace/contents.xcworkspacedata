@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Overview.docc">
-   </FileRef>
-   <FileRef
       location = "container:../test-app/ios/testapp.xcodeproj">
    </FileRef>
    <FileRef

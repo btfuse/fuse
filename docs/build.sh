@@ -27,22 +27,24 @@ spushd ../android
 spopd
 
 echo "Building Fuse iOS Reference Documentation..."
-spushd ../ios
-    xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -destination 'generic/platform=iOS' docbuild
-    xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Release -destination 'generic/platform=iOS' docbuild
+doxygen ../ios/Doxyfile
+# spushd ../ios
+#     xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -destination 'generic/platform=iOS' docbuild
+#     xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Release -destination 'generic/platform=iOS' docbuild
 
-    iosBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -sdk iphoneos -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
-    simBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -sdk iphonesimulator -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
+#     iosBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -sdk iphoneos -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
+#     simBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -sdk iphonesimulator -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
 
-    rm -rf ../docs/build
-    mkdir -p ../docs/build
+#     rm -rf ../docs/build
+#     mkdir -p ../docs/build
     
-    rm -rf ../docs/docs/ref/fuse-ios
-    mkdir -p ../docs/docs/ref/fuse-ios
+#     rm -rf ../docs/docs/ref/fuse-ios
+#     mkdir -p ../docs/docs/ref/fuse-ios
 
-    xcrun docc convert ./Overview.docc  --fallback-display-name BTFuse --output-dir ../docs/build/Overview.doccarchive
-    xcrun docc merge ../docs/build/Overview.doccarchive $iosBuild/BTFuse.doccarchive $iosBuild/BTFuseTestTools.doccarchive --output-path ../docs/docs/ref/fuse-ios
-spopd
+#     xcrun docc convert ./Overview.docc  --fallback-display-name BTFuse --output-dir ../docs/build/Overview.doccarchive
+#     xcrun docc merge ../docs/build/Overview.doccarchive $iosBuild/BTFuse.doccarchive $iosBuild/BTFuseTestTools.doccarchive --output-path ../docs/build/merged.doccarchive
+#     xcrun docc process-archive transform-for-static-hosting ../docs/build/merged.doccarchive --hosting-base-path ref/fuse-ios --output-path ../docs/docs/ref/fuse-ios/
+# spopd
 
 rm -rf ./docs/ref/fuse-android
 cp -r ../android/fuse/build/docs/javadoc ./docs/ref/fuse-android

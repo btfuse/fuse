@@ -77,7 +77,6 @@
 		94B7A9D02AC89E39003D294D /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886C22A714F6D0098530D /* BTFuse.framework */; platformFilter = ios; };
 		94C3AF282B6867B8006AD040 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 94C3AF272B6867B8006AD040 /* LICENSE */; };
 		94DF9FB72B293C9C00757EA7 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DF9FB62B293C9C00757EA7 /* UniformTypeIdentifiers.framework */; };
-		94F13A1D2CA4EF1800CCCC89 /* BTFuse.docc in Sources */ = {isa = PBXBuildFile; fileRef = 94F13A1C2CA4EF1800CCCC89 /* BTFuse.docc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,7 +164,6 @@
 		94B7A9CE2AC89E39003D294D /* BTFuseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseTests.m; sourceTree = "<group>"; };
 		94C3AF272B6867B8006AD040 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		94DF9FB62B293C9C00757EA7 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
-		94F13A1C2CA4EF1800CCCC89 /* BTFuse.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = BTFuse.docc; sourceTree = "<group>"; };
 		C0D504787CFDCC13C7D8462D /* Pods-BTFuse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTFuse.release.xcconfig"; path = "Target Support Files/Pods-BTFuse/Pods-BTFuse.release.xcconfig"; sourceTree = "<group>"; };
 		D2524D348AB6B72B049BC41D /* Pods-BTFuse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTFuse.debug.xcconfig"; path = "Target Support Files/Pods-BTFuse/Pods-BTFuse.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,7 +242,6 @@
 		94A8864F2A702C6C0098530D = {
 			isa = PBXGroup;
 			children = (
-				94F13A1C2CA4EF1800CCCC89 /* BTFuse.docc */,
 				94C3AF272B6867B8006AD040 /* LICENSE */,
 				944112B92AED442300309527 /* PrivacyInfo.xcprivacy */,
 				94552C592ACB349A00DAE0F4 /* configurations */,
@@ -550,7 +547,6 @@
 				9443F0B12B1AA9550056B054 /* BTFuseNWErrorFactory.m in Sources */,
 				94A928532B13E4C700AAC44A /* BTFuseAPIServerHeaders.m in Sources */,
 				94A886BB2A714F6D0098530D /* BTFuseSchemeHandler.m in Sources */,
-				94F13A1D2CA4EF1800CCCC89 /* BTFuse.docc in Sources */,
 				9418629D2A9956F100CCFEE1 /* BTFuseAPIRouter.m in Sources */,
 				9489EB9A2AA54FED0087424D /* BTFuseRuntime.m in Sources */,
 				94A928572B1A729000AAC44A /* BTFuseIDGenerator.m in Sources */,
