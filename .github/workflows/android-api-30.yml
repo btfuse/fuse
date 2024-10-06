@@ -32,9 +32,12 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      working-directory: android
     - name: Accept Android SDK Licenses
       run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
     - name: Build with Gradle
       run: ./gradlew :fuse:build
+      working-directory: android
     - name: Run Tests
       run: ./gradlew :fuse:api30DebugAndroidTest
+      working-directory: android
