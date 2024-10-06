@@ -13,16 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-source build-tools/DirectoryTools.sh
-source build-tools/assertions.sh
+source ../build-tools/DirectoryTools.sh
+source ../build-tools/assertions.sh
 
-# npx typedoc --options typedoc.fusejs.json
-# spushd external/fuse-android
-#     ./gradlew :fuse:generateJavadoc
-# spopd
+npx typedoc --options typedoc.fusejs.json
+spushd ../android
+    ./gradlew :fuse:generateJavadoc
+spopd
 
-# rm -rf ./docs/ref/fuse-android
-# cp -r ./external/fuse-android/fuse/build/docs/javadoc ./docs/ref/fuse-android
+rm -rf ./docs/ref/fuse-android
+cp -r ../android/fuse/build/docs/javadoc ./docs/ref/fuse-android
 
 # If not GH action, then source virtual env.
 # CI doesn't need virtual environments, it gets scaffolded with the proper

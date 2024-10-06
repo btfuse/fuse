@@ -4,7 +4,7 @@
     },
     "name": "FuseJS",
     "out": "./docs/ref/fuse-js",
-    "tsconfig": "./external/fuse-js/tsconfig.json",
-    "entryPoints": ["./external/fuse-js/src/api.ts"],
+    "tsconfig": "../js/tsconfig.json",
+    "entryPoints": ["../js/src/api.ts"],
     "readme": "none"
 }
