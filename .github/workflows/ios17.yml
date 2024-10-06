@@ -1,0 +1,32 @@
+
+name: iOS 17
+
+on:
+  push:
+    paths:
+      - 'ios/**'
+  pull_request:
+    paths:
+      - 'ios/**'
+
+jobs:
+  build:
+    name: Test iOS 17
+    runs-on: macos-14
+
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 15.4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: True
+      - name: Install CocoaPods
+        run: gem install cocoapods -v 1.15.2
+      - name: Pod Install
+        run: pod install --repo-update
+      - name: Build
+        run: ./build.sh
+      - name: Test iOS 17.5
+        run: ./test.sh "Fuse iOS 17.5" "17.5" "iPhone 15"

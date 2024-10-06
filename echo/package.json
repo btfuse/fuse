@@ -11,9 +11,7 @@
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "typescript": "5.3.3",
-    "@btfuse/core": "file:../js/dist/fuse.tgz"
-  },
-  "peerDependencies": {},
-  "dependencies": {}
+    "@btfuse/core": "file:../js/dist/fuse.tgz",
+    "typescript": "5.3.3"
+  }
 }

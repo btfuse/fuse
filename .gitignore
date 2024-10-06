@@ -1,2 +1,5 @@
 .DS_Store
-/fuse-*
+*.docc-build
+*.profraw
+xcuserdata
+.gradle

@@ -12,4 +12,6 @@ assets/*
 main.js
 *.map
 .DS_Store
-
+/ios/testapp/assets/**/*.js
+/ios/testapp/assets/index.html
+/ios/testapp/assets/largeFile.txt

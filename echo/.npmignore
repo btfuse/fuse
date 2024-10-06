@@ -3,4 +3,6 @@ jest.config.ts
 *.tgz
 spec
 src
+/android
+/ios
 /dist

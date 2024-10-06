@@ -1,0 +1,16 @@
+PODS:
+  - OpenSSL (3.2.0-fuse-2)
+
+DEPENDENCIES:
+  - OpenSSL (= 3.2.0-fuse-2)
+
+SPEC REPOS:
+  https://github.com/breautek/pods.git:
+    - OpenSSL
+
+SPEC CHECKSUMS:
+  OpenSSL: bcb2addba483c1d1bf4c80c69060c345111dd99d
+
+PODFILE CHECKSUM: 56aef115f2e167bf6d8dc0430bc4f4fecf9333d7
+
+COCOAPODS: 1.15.2

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Documentation.docc">
+   </FileRef>
+   <FileRef
+      location = "container:../test-app/ios/testapp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:./BTFuse/BTFuseTestTools/BTFuseTestTools.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "plugins">
+      <FileRef
+         location = "container:../echo/ios/echo.xcodeproj">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:BTFuse/BTFuse.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
