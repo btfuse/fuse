@@ -26,9 +26,9 @@
 #   2.  Run tests, this may take awhile.
 #   3.  Copy files to a dist/ directory.
 
-source build-tools/assertions.sh
-source build-tools/DirectoryTools.sh
-source build-tools/Checksum.sh
+source ../build-tools/assertions.sh
+source ../build-tools/DirectoryTools.sh
+source ../build-tools/Checksum.sh
 
 assertMac "Mac is required to build Fuse iOS"
 

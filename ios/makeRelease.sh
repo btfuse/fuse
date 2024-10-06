@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-source build-tools/assertions.sh
-source build-tools/DirectoryTools.sh
+source ../build-tools/assertions.sh
+source ../build-tools/DirectoryTools.sh
 
 assertMac "Mac is required for publishing"
 assertGitRepo
@@ -41,10 +41,10 @@ git add VERSION BTFuse/configs/version.xcconfig
 git add VERSION
 git commit -m "iOS Release: $VERSION"
 git push
-git tag -a $VERSION -m "iOS Release: $VERSION"
+git tag -a ios/core/$VERSION -m "iOS Release: $VERSION"
 git push --tags
 
-gh release create $VERSION \
+gh release create ios/core/$VERSION \
     ./dist/BTFuse.xcframework.zip \
     ./dist/BTFuse.xcframework.zip.sha1.txt \
     ./dist/BTFuse.framework.dSYM.zip \

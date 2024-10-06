@@ -16,9 +16,9 @@
 
 if [ -z "$1" ]; then
     # Default Tests
-    IOS_15=$(python3 ./build-tools/iossim.py "Fuse iOS 15" "iOS 15.5" "iPhone 13")
-    IOS_16=$(python3 ./build-tools/iossim.py "Fuse iOS 16" "iOS 16.4" "iPhone 14")
-    IOS_17=$(python3 ./build-tools/iossim.py "Fuse iOS 17" "iOS 17.5" "iPhone 15")
+    IOS_15=$(python3 ../build-tools/iossim.py "Fuse iOS 15" "iOS 15.5" "iPhone 13")
+    IOS_16=$(python3 ../build-tools/iossim.py "Fuse iOS 16" "iOS 16.4" "iPhone 14")
+    IOS_17=$(python3 ../build-tools/iossim.py "Fuse iOS 17" "iOS 17.5" "iPhone 15")
 
     xcrun simctl boot $IOS_15 > /dev/null
     xcrun simctl boot $IOS_16 > /dev/null
@@ -65,7 +65,7 @@ else
     SIM_VERSION="iOS $2"
     SIM_MODEL="$3"
 
-    SIM=$(python3 ./build-tools/iossim.py "$SIM_NAME" "$SIM_VERSION" "$SIM_MODEL")
+    SIM=$(python3 ../build-tools/iossim.py "$SIM_NAME" "$SIM_VERSION" "$SIM_MODEL")
     echo "Using Sim: $SIM"
 
     xcrun simctl boot $SIM > /dev/null

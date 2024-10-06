@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-source build-tools/assertions.sh
+source ../build-tools/assertions.sh
 
 target="$1"
 

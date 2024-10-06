@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-source ./build-tools/assertions.sh
+source ../build-tools/assertions.sh
 
 # TODO Remove mac requirement
 assertMac "Mac is required for publishing"
@@ -38,12 +38,12 @@ assertLastCall
 git add VERSION
 git commit -m "Android Release: $VERSION"
 git push
-git tag -a $VERSION -m "Android Release: $VERSION"
+git tag -a fuse-android/core/$VERSION -m "Android Release: $VERSION"
 git push --tags
 
 ./gradlew publishReleasePublicationToMavenRepository
 
-gh release create $VERSION \
+gh release create android/core/$VERSION \
     ./fuse/build/outputs/aar/fuse-debug.aar \
     ./fuse/build/outputs/aar/fuse-release.aar \
     --verify-tag --generate-notes
