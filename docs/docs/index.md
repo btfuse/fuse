@@ -1,9 +1,37 @@
 
 # Fuse
 
-![Android Build](https://github.com/btfuse/fuse-android/actions/workflows/instrumented.yml/badge.svg)
-![Android Build](https://github.com/btfuse/fuse-ios/actions/workflows/instrumented.yml/badge.svg)
-![JS Runtime Build](https://github.com/btfuse/fuse-js/actions/workflows/unit-tests.yml/badge.svg)
+<table>
+    <thead>
+        <td>Platform</td>
+        <td>Status</td>
+    </thead>
+    <tr>
+        <td>Android Runtime</td>
+        <td>
+            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-28.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-28.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-29.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-29.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-30.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-30.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-31.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-31.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-32.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-32.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-33.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-33.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-34.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-34.yml/badge.svg" /></a>
+        </td>
+    </tr>
+    <tr>
+        <td>iOS Runtime</td>
+        <td>
+            <a href="https://github.com/btfuse/fuse-ios/actions/workflows/ios17.yml"><img src="https://github.com/btfuse/fuse-ios/actions/workflows/ios17.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse-ios/actions/workflows/ios18.yml"><img src="https://github.com/btfuse/fuse-ios/actions/workflows/ios18.yml/badge.svg" /></a>
+        </td>
+    </tr>
+    <tr>
+        <td>JS Runtime</td>
+        <td>
+            <a href="https://github.com/btfuse/fuse-js/actions/workflows/unit-tests.yml"><img src="https://github.com/btfuse/fuse-js/actions/workflows/unit-tests.yml/badge.svg" /></a>
+        </td>
+    </tr>
+</table>
 
 A native-first framework for building hybrid native-web applications.
 
