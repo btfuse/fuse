@@ -16,9 +16,32 @@
 source ../build-tools/DirectoryTools.sh
 source ../build-tools/assertions.sh
 
+assertMac "Mac is required to build Fuse Documentation"
+
+echo "Building Fuse JS Reference Documentation..."
 npx typedoc --options typedoc.fusejs.json
+
+echo "Building Fuse Android Reference Documentation..."
 spushd ../android
     ./gradlew :fuse:generateJavadoc
+spopd
+
+echo "Building Fuse iOS Reference Documentation..."
+spushd ../ios
+    xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -destination 'generic/platform=iOS' docbuild
+    xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Release -destination 'generic/platform=iOS' docbuild
+
+    iosBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -sdk iphoneos -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
+    simBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -sdk iphonesimulator -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
+
+    rm -rf ../docs/build
+    mkdir -p ../docs/build
+    
+    rm -rf ../docs/docs/ref/fuse-ios
+    mkdir -p ../docs/docs/ref/fuse-ios
+
+    xcrun docc convert ./Overview.docc  --fallback-display-name BTFuse --output-dir ../docs/build/Overview.doccarchive
+    xcrun docc merge ../docs/build/Overview.doccarchive $iosBuild/BTFuse.doccarchive $iosBuild/BTFuseTestTools.doccarchive --output-path ../docs/docs/ref/fuse-ios
 spopd
 
 rm -rf ./docs/ref/fuse-android

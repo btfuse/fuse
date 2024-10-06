@@ -1,6 +1,7 @@
 
 /site
 .DS_Store
+/build
 
 #DrawIO Temp files
 *.bkp
