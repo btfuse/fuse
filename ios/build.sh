@@ -69,26 +69,10 @@ assertLastCall
 xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Debug -destination "generic/platform=iOS Simulator" build
 assertLastCall
 
-echo "Building Documentation..."
-xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -destination 'generic/platform=iOS' docbuild
-xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Release -destination 'generic/platform=iOS' docbuild
-
 iosBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -sdk iphoneos -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
 simBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -sdk iphonesimulator -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
 iosTestToolsBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Release -sdk iphoneos -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
 simTestToolsBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Debug -sdk iphonesimulator -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
-
-mkdir -p dist/docs/intermediates
-mkdir -p dist/docs/out
-xcrun docc convert ./Overview.docc  --fallback-display-name BTFuse --output-dir dist/docs/intermediates/Overview.doccarchive
-xcrun docc merge ./dist/docs/intermediates/Overview.doccarchive $iosBuild/BTFuse.doccarchive $iosBuild/BTFuseTestTools.doccarchive --output-path dist/docs/out/
-
-# intermediatesDir=$iosBuild/../../Intermediates.noindex/
-# mkdir -p dist/docs/intermediates/
-# cp -r $intermediatesDir/BTFuse.build/Release-iphoneos/BTFuse.build/symbol-graph dist/docs/intermediates
-# cp -r $intermediatesDir/BTFuseTestTools.build/Release-iphoneos/BTFuseTestTools.build/symbol-graph dist/docs/intermediates
-
-# xcrun docc convert --output-dir dist/docs/doc.doccarchive --additional-symbol-graph-dir dist/docs/intermediates/x
 
 if [ "$CI" == "true" ]; then
     echo "Skipping CodeSign (CI Build)"
@@ -128,7 +112,6 @@ spushd dist
     zip -r BTFuse.framework.dSYM.zip BTFuse.framework.dSYM > /dev/null
     zip -r BTFuseTestTools.xcframework.zip BTFuseTestTools.xcframework > /dev/null
     zip -r BTFuseTestTools.framework.dSYM.zip BTFuseTestTools.framework.dSYM > /dev/null
-    # tar -czvf dist/docs.tar.gz -C dist/docs .
     sha1_compute BTFuse.xcframework.zip
     sha1_compute BTFuse.framework.dSYM.zip
     sha1_compute BTFuseTestTools.xcframework.zip
