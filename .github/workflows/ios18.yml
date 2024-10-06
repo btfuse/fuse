@@ -28,7 +28,10 @@ jobs:
         run: gem install cocoapods -v 1.15.2
       - name: Pod Install
         run: pod install --repo-update
+        working-directory: ios
       - name: Build
         run: ./build.sh
+        working-directory: ios
       - name: Test iOS 18.0
         run: ./test.sh "Fuse iOS 18.0" "18.0" "iPhone 15"
+        working-directory: ios
