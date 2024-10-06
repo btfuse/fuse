@@ -5,9 +5,11 @@ on:
   push:
     paths:
       - 'ios/**'
+      - '.github/workflows/ios17.yml'
   pull_request:
     paths:
       - 'ios/**'
+      - '.github/workflows/ios17.yml'
 
 jobs:
   build:

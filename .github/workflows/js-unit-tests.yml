@@ -5,9 +5,11 @@ on:
   push:
     paths:
       - 'js/**'
+      - '.github/workflows/js-unit-tests.yml'
   pull_request:
     paths:
       - 'js/**'
+      - '.github/workflows/js-unit-tests.yml'
 
 jobs:
   unit-test:
