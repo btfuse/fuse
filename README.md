@@ -9,13 +9,12 @@
     <tr>
         <td>Android Runtime</td>
         <td>
-            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-28.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-28.yml/badge.svg" /></a>
-            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-29.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-29.yml/badge.svg" /></a>
-            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-30.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-30.yml/badge.svg" /></a>
-            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-31.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-31.yml/badge.svg" /></a>
-            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-32.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-32.yml/badge.svg" /></a>
-            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-33.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-33.yml/badge.svg" /></a>
-            <a href="https://github.com/btfuse/fuse-android/actions/workflows/api-34.yml"><img src="https://github.com/btfuse/fuse-android/actions/workflows/api-34.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse/actions/workflows/android-api-29.yml"><img src="https://github.com/btfuse/fuse/actions/workflows/android-api-29.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse/actions/workflows/android-api-30.yml"><img src="https://github.com/btfuse/fuse/actions/workflows/android-api-30.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse/actions/workflows/android-api-31.yml"><img src="https://github.com/btfuse/fuse/actions/workflows/android-api-31.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse/actions/workflows/android-api-32.yml"><img src="https://github.com/btfuse/fuse/actions/workflows/android-api-32.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse/actions/workflows/android-api-33.yml"><img src="https://github.com/btfuse/fuse/actions/workflows/android-api-33.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse/actions/workflows/android-api-34.yml"><img src="https://github.com/btfuse/fuse/actions/workflows/android-api-34.yml/badge.svg" /></a>
         </td>
     </tr>
     <tr>
