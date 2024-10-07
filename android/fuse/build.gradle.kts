@@ -24,7 +24,7 @@ plugins {
 android {
     namespace = "com.breautek.fuse"
 
-    compileSdk = 34
+    compileSdk = 35
     buildToolsVersion = "34.0.0"
 
     buildFeatures {

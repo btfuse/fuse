@@ -21,7 +21,7 @@ plugins {
 
 android {
     namespace = "com.breautek.fuse.testapp"
-    compileSdk = 34
+    compileSdk = 35
 
     androidResources {
         noCompress += ""
@@ -30,7 +30,7 @@ android {
     defaultConfig {
         applicationId = "com.breautek.fuse.testapp"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }

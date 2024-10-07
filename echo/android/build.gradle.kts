@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.breautek.fuse.plugins.echo"
-    compileSdk = 34
+    compileSdk = 35
 
     androidResources {
         noCompress += ""
