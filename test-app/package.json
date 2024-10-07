@@ -14,11 +14,11 @@
     "echo": "file:../echo/dist/echo.tgz"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "11.0.0",
-    "source-map-loader": "4.0.1",
+    "copy-webpack-plugin": "12.0.2",
+    "source-map-loader": "5.0.0",
     "ts-loader": "9.5.1",
-    "typescript": "5.3.3",
-    "webpack": "5.89.0",
+    "typescript": "5.5.4",
+    "webpack": "5.95.0",
     "webpack-cli": "5.1.4"
   }
 }

@@ -11,8 +11,8 @@
   "author": "norman@breautek.com",
   "license": "Apache-2.0",
   "devDependencies": {
-    "typedoc": "^0.25.13",
-    "typedoc-plugin-markdown": "^4.0.2",
-    "typescript": "^5.4.5"
+    "typedoc": "^0.26.8",
+    "typedoc-plugin-markdown": "^4.2.9",
+    "typescript": "5.5"
   }
 }
