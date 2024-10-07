@@ -40,17 +40,13 @@ Supported Platforms:
 
 |Platform|Version|
 |---|---|
-|Android|API 26+<sup>2</sup>|
+|Android|API 29+|
 |iOS|15+|
 |JS|ES8/ES2017|
 
 A bundler (e.g: [Webpack](https://webpack.js.org/)) is required.
 
 Supported platforms and requirements are subjected to change without notice.
-
-For Android, we aim to support the minimum API that the [system webview](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/build/config/android/config.gni#70) supports. However, factory webview versions that ships with API 26 devices will not support all JS features required by this framework. These devices needs to be connected to an App Store to receive the latest webview updates for compatibility.
-
-<sup>2</sup> Only API 28+ devices are tested.
 
 ## What is it?
 
