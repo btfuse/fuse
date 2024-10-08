@@ -24,6 +24,7 @@ export declare global {
             getAPISecret(): string;
             log(level: FuseLoggerLevel, message: string): void;
             setLogCallback(callbackID: string): void;
+            onWebviewReady(): void;
         }
     }
 }

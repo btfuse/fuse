@@ -97,9 +97,26 @@ public class ProgressContext implements IProgressContext, IProgressListener {
 
     public void addListener(IProgressContextListener listener) {
         $listeners.add(listener);
+        listener.onProgressUpdate(this);
     }
 
     public void removeListener(IProgressContextListener listener) {
         $listeners.remove(listener);
     }
+
+    public boolean isComplete(String id) {
+        IProgress progress = $pmap.get(id);
+        assert progress != null;
+        return progress.isComplete();
+    }
+
+    public boolean isComplete() {
+        for (Map.Entry<String, IProgress> entry : $pmap.entrySet()) {
+            if (!entry.getValue().isComplete()) {
+                return false;
+            }
+        }
+
+        return true;
+   }
 }

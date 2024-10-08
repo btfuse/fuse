@@ -49,7 +49,7 @@ var sleep = (ms: number): Promise<void> => {
         document.body.appendChild(div);
     }
 
-    (async () => {
+    await (async () => {
         let response: string = await echoPlugin.echo('Hi from TS');
         // alert(response);
         appendInfo(response);
@@ -58,8 +58,13 @@ var sleep = (ms: number): Promise<void> => {
         
         let timeDiv = document.createElement('div');
         document.body.appendChild(timeDiv);
+        let firstTimeFire: boolean = true;
         setInterval(() => {
             timeDiv.innerHTML = new Date().toISOString();
+            if (firstTimeFire) {
+                firstTimeFire = false;
+                context.onWebviewReady();
+            }
         }, 1000);
 
         let debug: boolean = await context.isDebugMode();
@@ -79,4 +84,6 @@ var sleep = (ms: number): Promise<void> => {
     
     context.getLogger().info('test log from webview');
     context.getLogger().error(new FuseError('TestError', 'test fuse error', new Error('Caused error'), 1));
+
+
 })();

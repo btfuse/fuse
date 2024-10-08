@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
@@ -52,8 +53,9 @@ import java.util.HashMap;
 
 import com.breautek.fuse.plugins.FuseRuntime;
 import com.breautek.fuse.utils.IProgressContext;
+import com.breautek.fuse.utils.IProgressContextListener;
 import com.breautek.fuse.utils.ProgressContext;
-import com.breautek.fuse.views.LoaderSplash;
+import com.breautek.fuse.views.SplashLoaderView;
 
 import org.bouncycastle.operator.OperatorCreationException;
 
@@ -62,14 +64,14 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.net.ssl.SSLContext;
 
-public class FuseContext {
+public class FuseContext implements IProgressContextListener  {
     private static final String TAG = "FuseContext";
 
     private final AppCompatActivity $context;
 
     private WebView $webview;
-    private IProgressContext $loadProgress;
-    private LoaderSplash $splash;
+    private final IProgressContext $loadProgress;
+    private SplashLoaderView $splash;
 
     /*package private*/ final ReadWriteLock $pluginMapLock;
     private final Map<String, FusePlugin> $pluginMap;
@@ -81,17 +83,17 @@ public class FuseContext {
 
     private final Handler $mainThread;
 
-    private final FuseAPIServer $apiServer;
+    private FuseAPIServer $apiServer;
 
     private final PermissionRequestHandler $permissionRequestHandler;
 
     private FuseAPIResponseFactory $responseFactory;
 
-    private FuseLogger $logger;
+    private final FuseLogger $logger;
 
     private ViewGroup $container;
 
-    private FuseScreenUtils $screenUtils;
+    private final FuseScreenUtils $screenUtils;
 
     private static final String LOAD_CONTEXT_CORE = "FuseContext_core";
     private static final String LOAD_CONTEXT_API_SERVER = "FuseContext_apiServer";
@@ -112,6 +114,8 @@ public class FuseContext {
         $loadProgress.setMax(LOAD_CONTEXT_CORE_PLUGINS, 1);
         $loadProgress.setMax(LOAD_CONTEXT_WEBVIEW, 1);
 
+        $loadProgress.addListener(this);
+
         $screenUtils = new FuseScreenUtils(context);
         $logger = new FuseLogger(this);
         $responseFactory = new FuseAPIResponseFactory();
@@ -120,23 +124,7 @@ public class FuseContext {
         $pluginMapLock = new ReentrantReadWriteLock();
         $pluginMap = new HashMap<String, FusePlugin>();
         $apiRouter = new FuseAPIRouter(this);
-
         $loadProgress.update(LOAD_CONTEXT_CORE, 1);
-
-        try {
-            $apiServer = new FuseAPIServer(this);
-        } catch (
-            IOException | UnrecoverableKeyException | CertificateException |
-            NoSuchAlgorithmException | KeyStoreException | OperatorCreationException |
-            KeyManagementException
-            e
-        ) {
-            throw new RuntimeException(e);
-        }
-
-        $loadProgress.update(LOAD_CONTEXT_API_SERVER, 1);
-
-        Log.i(TAG, "API Server Port: " + $apiServer.getPort());
 
         registerPlugin(new FuseRuntime(this));
 
@@ -215,7 +203,7 @@ public class FuseContext {
         $container = _createLayout($context);
         $webview = new WebView($context);
 
-        $splash = new LoaderSplash($context);
+        $splash = new SplashLoaderView($context);
         $loadProgress.addListener($splash);
 
         $container.addView($webview);
@@ -252,14 +240,32 @@ public class FuseContext {
             }
         });
 
-        WebSettings settings = $webview.getSettings();
-        settings.setAllowFileAccess(false);
-        settings.setAllowContentAccess(false);
-        settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true);
-        $webview.setWebChromeClient(new WebChromeClient());
-        $webview.addJavascriptInterface(this, "BTFuseNative");
-        $webview.loadUrl("https://localhost/assets/index.html");
+        final FuseContext self = this;
+        new Thread(() -> {
+            try {
+                $apiServer = new FuseAPIServer(self);
+            } catch (
+              IOException | UnrecoverableKeyException | CertificateException |
+              NoSuchAlgorithmException | KeyStoreException | OperatorCreationException |
+              KeyManagementException
+              e
+            ) {
+                throw new RuntimeException(e);
+            }
+            $loadProgress.update(LOAD_CONTEXT_API_SERVER, 1);
+            Log.i(TAG, "API Server Port: " + $apiServer.getPort());
+
+            self.runOnMainThread(() -> {
+                WebSettings settings = $webview.getSettings();
+                settings.setAllowFileAccess(false);
+                settings.setAllowContentAccess(false);
+                settings.setJavaScriptEnabled(true);
+                settings.setDomStorageEnabled(true);
+                $webview.setWebChromeClient(new WebChromeClient());
+                $webview.addJavascriptInterface(this, "BTFuseNative");
+                $webview.loadUrl("https://localhost/assets/index.html");
+            });
+        }).start();
     }
 
     public void onLowMemory() {
@@ -396,6 +402,11 @@ public class FuseContext {
         }
     }
 
+    @JavascriptInterface
+    public void onWebviewReady() {
+        $loadProgress.update(LOAD_CONTEXT_WEBVIEW, 1);
+    }
+
     public void execCallback(String callbackID, String payload) {
         $mainThread.post(() -> {
             $webview.evaluateJavascript(String.format("window.__btfuse_doCallback(\"%s\",\"%s\");", callbackID, payload.replace("\"", "\\\"")), null);
@@ -410,5 +421,14 @@ public class FuseContext {
 
     public void runOnMainThread(Runnable runnable) {
         $mainThread.post(runnable);
+    }
+
+    @Override
+    public void onProgressUpdate(IProgressContext context) {
+        if (context.isComplete()) {
+            $mainThread.postDelayed(() -> {
+                $splash.setVisibility(View.GONE);
+            }, 300);
+        }
     }
 }

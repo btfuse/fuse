@@ -10,6 +10,9 @@ public interface IProgressContext {
     void setMax(String id, int max);
     void setValue(String id, int value);
 
+    boolean isComplete();
+    boolean isComplete(String id);
+
     void reset();
 
     float getNormalizedValue();

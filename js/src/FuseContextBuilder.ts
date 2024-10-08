@@ -19,6 +19,7 @@ import { AbstractFuseAPIFactory } from "./AbstractFuseAPIFactory";
 import { AbstractFuseLoggerFactory } from "./AbstractFuseLoggerFactory";
 import { FuseAPIFactory } from "./FuseAPIFactory";
 import { FuseContext } from "./FuseContext";
+import { FuseContextFactory } from './FuseContextFactory';
 import { FuseLoggerFactory } from "./FuseLoggerFactory";
 import { FuseLoggerLevel } from "./FuseLoggerLevel";
 import { IFuseLogger } from "./IFuseLogger";
@@ -74,7 +75,9 @@ export class FuseContextBuilder {
             loggerFactory = new FuseLoggerFactory(platform);
         }
 
-        const context: FuseContext = new FuseContext(platform, apiFactory, loggerFactory);
+        const contextFactory: FuseContextFactory = new FuseContextFactory();
+        const context: FuseContext = contextFactory.create(platform, apiFactory, loggerFactory.create());
+        // const context: FuseContext = new FuseContext(platform, apiFactory, loggerFactory);
 
         const isDebugMode: boolean = await this._isDebugMode(context);
         const logger: IFuseLogger = context.getLogger();

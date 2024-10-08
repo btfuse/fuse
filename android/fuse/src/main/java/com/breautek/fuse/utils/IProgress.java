@@ -11,6 +11,8 @@ public interface IProgress {
     void setMax(int max);
     void setValue(int value);
 
+    boolean isComplete();
+
     void reset();
 
     float getNormalizedValue();

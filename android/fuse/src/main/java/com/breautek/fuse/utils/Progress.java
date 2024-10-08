@@ -90,9 +90,14 @@ public class Progress implements IProgress {
 
     public void addListener(IProgressListener listener) {
         $listeners.add(listener);
+        listener.onProgressUpdate(this);
     }
 
     public void removeListener(IProgressListener listener) {
         $listeners.remove(listener);
+    }
+
+    public boolean isComplete() {
+        return getValue() == getMax();
     }
 }

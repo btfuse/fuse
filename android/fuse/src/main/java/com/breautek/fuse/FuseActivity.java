@@ -17,6 +17,7 @@ limitations under the License.
 
 package com.breautek.fuse;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.ContentView;
@@ -24,9 +25,12 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
+import android.view.View;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
+
+import android.view.Window;
+import android.view.WindowInsetsController;
 
 import com.breautek.fuse.plugins.IFusePluginRegistrar;
 
@@ -82,8 +86,15 @@ public class FuseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Window window = getWindow();
+        WindowCompat.setDecorFitsSystemWindows(window, false);
         $fuseContext.onCreate(savedInstanceState);
-        setContentView($fuseContext.getLayout());
+        View contentView = $fuseContext.getLayout();
+        setContentView(contentView);
+
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, contentView);
+        controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_DEFAULT);
     }
 
     @Override

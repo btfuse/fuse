@@ -1,6 +1,6 @@
 
 /*
-Copyright 2023 Breautek 
+Copyright 2024 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,21 +15,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package com.breautek.fuse.testapp;
+import { AbstractFuseAPIFactory } from '../AbstractFuseAPIFactory';
+import { FuseContext } from '../FuseContext';
+import { IFuseLogger } from '../IFuseLogger';
+import { Platform } from '../Platform';
 
-import android.os.Bundle;
+export class AndroidFuseContext extends FuseContext {
+    public constructor(apiFactory: AbstractFuseAPIFactory, logger: IFuseLogger,) {
+        super(Platform.ANDROID, apiFactory, logger);
+    }
 
-import com.breautek.fuse.FuseActivity;
-import com.breautek.fuse.FuseContext;
-
-import com.breautek.fuse.plugins.echo.EchoPlugin;
-
-public class MainActivity extends FuseActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        FuseContext fuseContext = getFuseContext();
-        fuseContext.registerPlugin(new EchoPlugin(fuseContext));
+    public override async onWebviewReady(): Promise<void> {
+        window.BTFuseNative.onWebviewReady();
     }
 }

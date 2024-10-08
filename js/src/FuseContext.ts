@@ -30,22 +30,21 @@ import { AbstractFuseLoggerFactory } from './AbstractFuseLoggerFactory';
 /**
  * A context class that holds Fuse Framework state
  */
-export class FuseContext {
+export abstract class FuseContext {
     private $platform: Platform;
     private $runtime: FuseRuntime;
     private $runtimeVersion: Version;
     private $runtimeInfo: IRuntimeInfo;
     private $defaultAPIFactory: AbstractFuseAPIFactory;
-    // private $defaultLogger: IFuseLogger;
     private $logger: IFuseLogger;
 
     public constructor(
         platform: Platform,
         apiFactory: AbstractFuseAPIFactory,
-        loggerFactory: AbstractFuseLoggerFactory
+        logger: IFuseLogger
     ) {
         this.$platform = platform;
-        this.$logger = loggerFactory.create();
+        this.$logger = logger;
         
         this.$runtimeVersion = null;
         this.$defaultAPIFactory = apiFactory;
@@ -101,4 +100,6 @@ export class FuseContext {
     public async unregisterResumeHandler(callbackID: string): Promise<void> {
         return await this.$runtime.unregisterResumeHandler(callbackID);
     }
+
+    public abstract onWebviewReady(): Promise<void>;
 }

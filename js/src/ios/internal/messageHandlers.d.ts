@@ -28,10 +28,13 @@ export declare global {
                     postMessage: (unused: "") => Promise<string>;
                 },
                 log: {
-                    postMessage: (args: [FuseLoggerLevel: FuseLoggerLevel, string: message]) => void;
+                    postMessage: (args: [FuseLoggerLevel: FuseLoggerLevel, string: message]) => Promise<void>;
                 }
                 setLogCallback: {
-                    postMessage: (callbackID: string) => void;
+                    postMessage: (callbackID: string) => Promise<void>;
+                }
+                onWebviewReady: {
+                    postMessage: (unused: "") => Promise<void>;
                 }
             }
         }
