@@ -19,6 +19,7 @@ import { ContentType } from '../ContentType';
 import { FuseContext } from '../FuseContext';
 import {FusePlugin} from '../FusePlugin';
 import {FuseAPIResponse} from '../FuseAPIResponse';
+import { TInsetCallback } from '../TInsetCallback';
 
 export type TPauseCallbackHandler = () => void;
 export type TResumeCallbackHandler = () => void;
@@ -73,5 +74,19 @@ export class FuseRuntime extends FusePlugin {
 
     public async unregisterResumeHandler(callbackID: string): Promise<void> {
         await this._exec('/unregisterResumeHandler', ContentType.TEXT, callbackID);
+    }
+
+    public async registerInsetHandler(cb: TInsetCallback): Promise<string> {
+        const cbID: string = this._createCallback((payload: string) => {
+            cb(JSON.parse(payload));
+        });
+
+        await this._exec('/register/callback/insets', ContentType.TEXT, cbID);
+
+        return cbID;
+    }
+
+    public async unregisterInsetHandler(callbackID: string): Promise<void> {
+        await this._exec('/unregister/callback/insets', ContentType.TEXT, callbackID);
     }
 }

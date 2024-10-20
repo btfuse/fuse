@@ -17,6 +17,7 @@ limitations under the License.
 
 import { AbstractFuseAPIFactory } from "./AbstractFuseAPIFactory";
 import { AbstractFuseLoggerFactory } from "./AbstractFuseLoggerFactory";
+import { AndroidFuseContext } from './android/AndroidFuseContext';
 import { FuseAPIFactory } from "./FuseAPIFactory";
 import { FuseContext } from "./FuseContext";
 import { FuseContextFactory } from './FuseContextFactory';
@@ -77,7 +78,6 @@ export class FuseContextBuilder {
 
         const contextFactory: FuseContextFactory = new FuseContextFactory();
         const context: FuseContext = contextFactory.create(platform, apiFactory, loggerFactory.create());
-        // const context: FuseContext = new FuseContext(platform, apiFactory, loggerFactory);
 
         const isDebugMode: boolean = await this._isDebugMode(context);
         const logger: IFuseLogger = context.getLogger();

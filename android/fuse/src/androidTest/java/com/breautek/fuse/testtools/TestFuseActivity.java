@@ -23,10 +23,21 @@ import com.breautek.fuse.FuseContext;
 import com.breautek.fuse.plugins.echo.EchoPlugin;
 
 public class TestFuseActivity extends FuseTestActivity {
+    private FuseContext.IReadyCallback $callback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FuseContext fuseContext = getFuseContext();
         fuseContext.registerPlugin(new EchoPlugin(fuseContext));
+    }
+
+    public void setOnReadyCallback(FuseContext.IReadyCallback callback) {
+        $callback = callback;
+    }
+
+    @Override
+    protected void _onContextReady() {
+        $callback.onReady();
     }
 }

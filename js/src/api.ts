@@ -43,6 +43,7 @@ export {HTTPFuseAPI} from './HTTPFuseAPI';
 export {FuseError} from './FuseError';
 
 // Utilities
+export {IInset} from './IInset';
 export {ISerializable} from './ISerializable';
 export {TSerializable, TFuseSerializable} from './TSerializable';
 export {FuseSerializer} from './FuseSerializer';

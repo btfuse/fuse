@@ -18,11 +18,20 @@ limitations under the License.
 import { AbstractFuseAPIFactory } from '../AbstractFuseAPIFactory';
 import { FuseContext } from '../FuseContext';
 import { IFuseLogger } from '../IFuseLogger';
+import { IInset } from '../IInset';
 import { Platform } from '../Platform';
 
 export class AndroidFuseContext extends FuseContext {
     public constructor(apiFactory: AbstractFuseAPIFactory, logger: IFuseLogger,) {
         super(Platform.ANDROID, apiFactory, logger);
+
+        this._getRuntime().registerInsetHandler((inset: IInset) => {
+            const r: HTMLHtmlElement = document.querySelector(':root');
+            r.style.setProperty('--fuse-inset-top', `${inset.top}px`);
+            r.style.setProperty('--fuse-inset-bottom', `${inset.bottom}px`);
+            r.style.setProperty('--fuse-inset-left', `${inset.left}px`);
+            r.style.setProperty('--fuse-inset-right', `${inset.right}px`);
+        });
     }
 
     public override async onWebviewReady(): Promise<void> {

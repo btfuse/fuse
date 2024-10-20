@@ -40,6 +40,9 @@ import android.webkit.WebView;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.webkit.WebViewAssetLoader;
 import androidx.webkit.WebViewClientCompat;
 import java.io.IOException;
@@ -94,14 +97,21 @@ public class FuseContext implements IProgressContextListener  {
     private ViewGroup $container;
 
     private final FuseScreenUtils $screenUtils;
+    private final FuseRuntime $runtime;
+    private final IReadyCallback $readyCallback;
 
     private static final String LOAD_CONTEXT_CORE = "FuseContext_core";
     private static final String LOAD_CONTEXT_API_SERVER = "FuseContext_apiServer";
     private static final String LOAD_CONTEXT_CORE_PLUGINS = "FuseContext_corePlugins";
     private static final String LOAD_CONTEXT_WEBVIEW = "FuseContext_webview";
 
-    public FuseContext(AppCompatActivity context) {
+    public static interface IReadyCallback {
+        void onReady();
+    }
+
+    public FuseContext(AppCompatActivity context, IReadyCallback callback) {
         $context = context;
+        $readyCallback = callback;
         $loadProgress = new ProgressContext();
 
         $loadProgress.createProgress(LOAD_CONTEXT_CORE);
@@ -126,7 +136,8 @@ public class FuseContext implements IProgressContextListener  {
         $apiRouter = new FuseAPIRouter(this);
         $loadProgress.update(LOAD_CONTEXT_CORE, 1);
 
-        registerPlugin(new FuseRuntime(this));
+        $runtime = new FuseRuntime(this);
+        registerPlugin($runtime);
 
         $loadProgress.update(LOAD_CONTEXT_CORE_PLUGINS, 1);
     }
@@ -209,6 +220,11 @@ public class FuseContext implements IProgressContextListener  {
         $container.addView($webview);
         $container.addView($splash);
 
+        ViewCompat.setOnApplyWindowInsetsListener($container, (v, insets) -> {
+            $runtime.onInsetChange(insets);
+            return insets;
+        });
+
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler($context))
                 .setHttpAllowed(false)
@@ -254,6 +270,8 @@ public class FuseContext implements IProgressContextListener  {
             }
             $loadProgress.update(LOAD_CONTEXT_API_SERVER, 1);
             Log.i(TAG, "API Server Port: " + $apiServer.getPort());
+
+            $readyCallback.onReady();
 
             self.runOnMainThread(() -> {
                 WebSettings settings = $webview.getSettings();

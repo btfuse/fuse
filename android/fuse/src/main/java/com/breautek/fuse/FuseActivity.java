@@ -17,7 +17,6 @@ limitations under the License.
 
 package com.breautek.fuse;
 
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.ContentView;
@@ -30,7 +29,6 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.view.Window;
-import android.view.WindowInsetsController;
 
 import com.breautek.fuse.plugins.IFusePluginRegistrar;
 
@@ -66,18 +64,20 @@ public class FuseActivity extends AppCompatActivity {
     }
 
     private void $init() {
-        $fuseContext = new FuseContext(this);
+        $fuseContext = new FuseContext(this, this::_onContextReady);
         $fuseContext.$pluginMapLock.writeLock().lock();
         _registerFusePlugins(plugin -> $fuseContext.$registerPlugin(plugin));
         $fuseContext.$pluginMapLock.writeLock().unlock();
     }
+
+    protected void _onContextReady() {}
 
     /**
      * Can be overwritten by subclasses to register plugins
      *
      * @param registrar
      */
-    protected void _registerFusePlugins(IFusePluginRegistrar registrar) {};
+    protected void _registerFusePlugins(IFusePluginRegistrar registrar) {}
 
     public FuseContext getFuseContext() {
         return $fuseContext;

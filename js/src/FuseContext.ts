@@ -63,6 +63,10 @@ export abstract class FuseContext {
         return this.$platform;
     }
 
+    protected _getRuntime(): FuseRuntime {
+        return this.$runtime;
+    }
+
     private async $getRuntimeInfo(): Promise<IRuntimeInfo> {
         if (!this.$runtimeInfo) {
             this.$runtimeInfo = await this.$runtime.getInfo();

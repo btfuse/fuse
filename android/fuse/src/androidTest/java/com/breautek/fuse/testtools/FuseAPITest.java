@@ -30,6 +30,7 @@ import static org.junit.Assert.*;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.CountDownLatch;
 
 @RunWith(AndroidJUnit4.class)
 public class FuseAPITest {
@@ -44,74 +45,92 @@ public class FuseAPITest {
     public static void tearDown() {}
 
     @Test
-    public void shouldHaveAPort() {
+    public void shouldHaveAPort() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            int port = activity.getFuseContext().getAPIPort();
-            assertTrue(port >= 1024 && port <= 65535);
+            activity.setOnReadyCallback(() -> {
+                int port = activity.getFuseContext().getAPIPort();
+                assertTrue(port >= 1024 && port <= 65535);
+                latch.countDown();
+            });
         });
+        latch.await();
     }
 
     @Test
-    public void shouldHaveASecret() {
+    public void shouldHaveASecret() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            String secret = activity.getFuseContext().getAPISecret();
-            assertNotNull(secret);
+            activity.setOnReadyCallback(() -> {
+                String secret = activity.getFuseContext().getAPISecret();
+                assertNotNull(secret);
+                latch.countDown();
+            });
         });
+        latch.await();
     }
 
     @Test
-    public void canDoSimpleEchoRequest() {
+    public void canDoSimpleEchoRequest() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            int port = activity.getFuseContext().getAPIPort();
-            String secret = activity.getFuseContext().getAPISecret();
+            activity.setOnReadyCallback(() -> {
+                int port = activity.getFuseContext().getAPIPort();
+                String secret = activity.getFuseContext().getAPISecret();
 
-            FuseTestAPIClient client;
-            try {
-                client = new FuseTestAPIClient.Builder()
-                    .setFuseContext(activity.getFuseContext())
-                    .setAPIPort(port)
-                    .setAPISecret(secret)
-                    .setPluginID("echo")
-                    .setType("text/plain")
-                    .setEndpoint("/echo")
-                    .setContent("Hello Test!")
-                    .build();
-            }
-            catch (NoSuchAlgorithmException | KeyManagementException e) {
-                throw new RuntimeException(e);
-            }
+                FuseTestAPIClient client;
+                try {
+                    client = new FuseTestAPIClient.Builder()
+                             .setFuseContext(activity.getFuseContext())
+                             .setAPIPort(port)
+                             .setAPISecret(secret)
+                             .setPluginID("echo")
+                             .setType("text/plain")
+                             .setEndpoint("/echo")
+                             .setContent("Hello Test!")
+                             .build();
+                } catch (NoSuchAlgorithmException | KeyManagementException e) {
+                    throw new RuntimeException(e);
+                }
 
-            FuseTestAPIClient.FuseAPITestResponse response = client.execute();
-            assertEquals(200, response.getStatus());
-            assertTrue(response.readAsString().contains("Hello Test!"));
+                FuseTestAPIClient.FuseAPITestResponse response = client.execute();
+                assertEquals(200, response.getStatus());
+                assertTrue(response.readAsString().contains("Hello Test!"));
+                latch.countDown();
+            });
         });
+        latch.await();
     }
 
     @Test
-    public void canUseAnAPIThatSwitchesToMainThread() {
+    public void canUseAnAPIThatSwitchesToMainThread() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            int port = activity.getFuseContext().getAPIPort();
-            String secret = activity.getFuseContext().getAPISecret();
+            activity.setOnReadyCallback(() -> {
+                int port = activity.getFuseContext().getAPIPort();
+                String secret = activity.getFuseContext().getAPISecret();
 
-            FuseTestAPIClient client;
-            try {
-                client = new FuseTestAPIClient.Builder()
-                        .setFuseContext(activity.getFuseContext())
-                        .setAPIPort(port)
-                        .setAPISecret(secret)
-                        .setPluginID("echo")
-                        .setType("text/plain")
-                        .setEndpoint("/threadtest")
-                        .setContent("Hello Test!")
-                        .build();
-            }
-            catch (NoSuchAlgorithmException | KeyManagementException e) {
-                throw new RuntimeException(e);
-            }
+                FuseTestAPIClient client;
+                try {
+                    client = new FuseTestAPIClient.Builder()
+                             .setFuseContext(activity.getFuseContext())
+                             .setAPIPort(port)
+                             .setAPISecret(secret)
+                             .setPluginID("echo")
+                             .setType("text/plain")
+                             .setEndpoint("/threadtest")
+                             .setContent("Hello Test!")
+                             .build();
+                } catch (NoSuchAlgorithmException | KeyManagementException e) {
+                    throw new RuntimeException(e);
+                }
 
-            FuseTestAPIClient.FuseAPITestResponse response = client.execute();
-            assertEquals(200, response.getStatus());
-            assertTrue(response.readAsString().contains("Hello Test!"));
+                FuseTestAPIClient.FuseAPITestResponse response = client.execute();
+                assertEquals(200, response.getStatus());
+                assertTrue(response.readAsString().contains("Hello Test!"));
+                latch.countDown();
+            });
         });
+        latch.await();
     }
 }
