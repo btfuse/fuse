@@ -18,18 +18,25 @@ limitations under the License.
 package com.breautek.fuse.testapp;
 
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.splashscreen.SplashScreen;
 
-import com.breautek.fuse.FuseActivity;
 import com.breautek.fuse.FuseContext;
-
+import com.breautek.fuse.FuseFragment;
 import com.breautek.fuse.plugins.echo.EchoPlugin;
 
-public class MainActivity extends FuseActivity {
+public class MainActivity extends AppCompatActivity {
+    private FuseFragment $fuse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
-        FuseContext fuseContext = getFuseContext();
-        fuseContext.registerPlugin(new EchoPlugin(fuseContext));
+        setContentView(R.layout.activity_main);
+        $fuse = FuseFragment.newInstance(() -> {
+            FuseContext fuseContext = $fuse.getFuseContext();
+            fuseContext.registerPlugin(new EchoPlugin(fuseContext));
+        });
+        getSupportFragmentManager().beginTransaction().add(R.id.fuse_fragment_container, $fuse).commit();
     }
 }

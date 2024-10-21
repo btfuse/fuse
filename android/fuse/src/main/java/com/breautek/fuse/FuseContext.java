@@ -38,11 +38,8 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentActivity;
 import androidx.webkit.WebViewAssetLoader;
 import androidx.webkit.WebViewClientCompat;
 import java.io.IOException;
@@ -70,11 +67,11 @@ import javax.net.ssl.SSLContext;
 public class FuseContext implements IProgressContextListener  {
     private static final String TAG = "FuseContext";
 
-    private final AppCompatActivity $context;
+    private final FragmentActivity $context;
 
-    private WebView $webview;
+//    private WebView $webview;
     private final IProgressContext $loadProgress;
-    private SplashLoaderView $splash;
+//    private SplashLoaderView $splash;
 
     /*package private*/ final ReadWriteLock $pluginMapLock;
     private final Map<String, FusePlugin> $pluginMap;
@@ -93,12 +90,10 @@ public class FuseContext implements IProgressContextListener  {
     private FuseAPIResponseFactory $responseFactory;
 
     private final FuseLogger $logger;
-
-    private ViewGroup $container;
-
     private final FuseScreenUtils $screenUtils;
     private final FuseRuntime $runtime;
     private final IReadyCallback $readyCallback;
+    private final FuseFragment $view;
 
     private static final String LOAD_CONTEXT_CORE = "FuseContext_core";
     private static final String LOAD_CONTEXT_API_SERVER = "FuseContext_apiServer";
@@ -109,8 +104,9 @@ public class FuseContext implements IProgressContextListener  {
         void onReady();
     }
 
-    public FuseContext(AppCompatActivity context, IReadyCallback callback) {
+    public FuseContext(FuseFragment view, FragmentActivity context, IReadyCallback callback) {
         $context = context;
+        $view = view;
         $readyCallback = callback;
         $loadProgress = new ProgressContext();
 
@@ -142,6 +138,10 @@ public class FuseContext implements IProgressContextListener  {
         $loadProgress.update(LOAD_CONTEXT_CORE_PLUGINS, 1);
     }
 
+    public FuseRuntime getRuntime() {
+        return $runtime;
+    }
+
     public FuseScreenUtils getScreenUtils() {
         return $screenUtils;
     }
@@ -150,7 +150,7 @@ public class FuseContext implements IProgressContextListener  {
         return HOST;
     }
 
-    protected ViewGroup _createLayout(AppCompatActivity context) {
+    protected ViewGroup _createLayout(Context context) {
         FrameLayout layout = new FrameLayout(context);
         layout.setLayoutParams(
                 new FrameLayout.LayoutParams(
@@ -159,10 +159,6 @@ public class FuseContext implements IProgressContextListener  {
                 )
         );
         return layout;
-    }
-
-    public ViewGroup getLayout() {
-        return $container;
     }
 
     public SSLContext getSSLContext() {
@@ -201,6 +197,25 @@ public class FuseContext implements IProgressContextListener  {
         }
     }
 
+    public IProgressContext getProgressContext() {
+        return $loadProgress;
+    }
+
+    public void onReceivedSslError(WebView webview, SslErrorHandler handler, SslError error) {
+        if (error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
+            // Test the certificate for our own generated certificate and if so, let it pass,
+            if ($apiServer.verifyCertificate(error.getCertificate())) {
+                handler.proceed();
+            }
+            else {
+                handler.cancel();
+            }
+        }
+        else {
+            handler.cancel();
+        }
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     public void onCreate(Bundle bundle) {
         if (isDebug()) {
@@ -210,51 +225,6 @@ public class FuseContext implements IProgressContextListener  {
         }
 
         $logger.info(TAG, "Fuse Version: " + BuildConfig.FUSE_VERSION);
-
-        $container = _createLayout($context);
-        $webview = new WebView($context);
-
-        $splash = new SplashLoaderView($context);
-        $loadProgress.addListener($splash);
-
-        $container.addView($webview);
-        $container.addView($splash);
-
-        ViewCompat.setOnApplyWindowInsetsListener($container, (v, insets) -> {
-            $runtime.onInsetChange(insets);
-            return insets;
-        });
-
-        final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
-                .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler($context))
-                .setHttpAllowed(false)
-                .setDomain(getHost())
-                .build();
-
-        $webview.setWebViewClient(new WebViewClientCompat() {
-            @Override
-            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-                $logger.info(TAG, "DOM Request: " + request.getUrl());
-                return assetLoader.shouldInterceptRequest(request.getUrl());
-            }
-
-            @SuppressLint("WebViewClientOnReceivedSslError")
-            @Override
-            public void onReceivedSslError(WebView webview, SslErrorHandler handler, SslError error) {
-                if (error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
-                    // Test the certificate for our own generated certificate and if so, let it pass,
-                    if ($apiServer.verifyCertificate(error.getCertificate())) {
-                        handler.proceed();
-                    }
-                    else {
-                        handler.cancel();
-                    }
-                }
-                else {
-                    handler.cancel();
-                }
-            }
-        });
 
         final FuseContext self = this;
         new Thread(() -> {
@@ -271,18 +241,7 @@ public class FuseContext implements IProgressContextListener  {
             $loadProgress.update(LOAD_CONTEXT_API_SERVER, 1);
             Log.i(TAG, "API Server Port: " + $apiServer.getPort());
 
-            $readyCallback.onReady();
-
-            self.runOnMainThread(() -> {
-                WebSettings settings = $webview.getSettings();
-                settings.setAllowFileAccess(false);
-                settings.setAllowContentAccess(false);
-                settings.setJavaScriptEnabled(true);
-                settings.setDomStorageEnabled(true);
-                $webview.setWebChromeClient(new WebChromeClient());
-                $webview.addJavascriptInterface(this, "BTFuseNative");
-                $webview.loadUrl("https://localhost/assets/index.html");
-            });
+            self.runOnMainThread($readyCallback::onReady);
         }).start();
     }
 
@@ -355,10 +314,10 @@ public class FuseContext implements IProgressContextListener  {
     }
 
     public WebView getWebview() {
-        return $webview;
+        return $view.getWebview();
     }
 
-    public AppCompatActivity getActivityContext() {
+    public FragmentActivity getActivityContext() {
         return $context;
     }
 
@@ -368,7 +327,7 @@ public class FuseContext implements IProgressContextListener  {
         $pluginMapLock.writeLock().unlock();
     }
 
-    /*package private*/ void $registerPlugin(FusePlugin plugin) {
+    void $registerPlugin(FusePlugin plugin) {
         if ($pluginMap.containsKey(plugin.getID())) {
             $logger.warn(TAG, "Plugin \"" + plugin.getID() + "\" is already registered.");
             return;
@@ -427,13 +386,13 @@ public class FuseContext implements IProgressContextListener  {
 
     public void execCallback(String callbackID, String payload) {
         $mainThread.post(() -> {
-            $webview.evaluateJavascript(String.format("window.__btfuse_doCallback(\"%s\",\"%s\");", callbackID, payload.replace("\"", "\\\"")), null);
+            $view.getWebview().evaluateJavascript(String.format("window.__btfuse_doCallback(\"%s\",\"%s\");", callbackID, payload.replace("\"", "\\\"")), null);
         });
     }
 
     public void execCallback(String callbackID) {
         $mainThread.post(() -> {
-            $webview.evaluateJavascript(String.format("window.__btfuse_doCallback(\"%s\");", callbackID), null);
+            $view.getWebview().evaluateJavascript(String.format("window.__btfuse_doCallback(\"%s\");", callbackID), null);
         });
     }
 
@@ -444,9 +403,7 @@ public class FuseContext implements IProgressContextListener  {
     @Override
     public void onProgressUpdate(IProgressContext context) {
         if (context.isComplete()) {
-            $mainThread.postDelayed(() -> {
-                $splash.setVisibility(View.GONE);
-            }, 300);
+            $mainThread.postDelayed($view::onFuseLoad, 300);
         }
     }
 }

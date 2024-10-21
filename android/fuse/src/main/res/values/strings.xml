@@ -2,4 +2,6 @@
 <resources>
     <string name="attribution">Built with Fuse</string>
     <string name="splash_loader_icon_desc">Application Icon</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

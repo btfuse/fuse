@@ -18,13 +18,12 @@ limitations under the License.
 package com.breautek.fuse;
 
 import android.util.DisplayMetrics;
-
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 public class FuseScreenUtils {
-    private final AppCompatActivity $context;
+    private final FragmentActivity $context;
 
-    public FuseScreenUtils(AppCompatActivity context) {
+    public FuseScreenUtils(FragmentActivity context) {
         $context = context;
     }
 
