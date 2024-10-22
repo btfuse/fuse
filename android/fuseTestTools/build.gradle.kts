@@ -39,7 +39,8 @@ android {
 
 dependencies {
     implementation("org.bouncycastle:bcpkix-jdk18on:1.77")
-    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.googlecode.junit-toolbox:junit-toolbox:2.4")

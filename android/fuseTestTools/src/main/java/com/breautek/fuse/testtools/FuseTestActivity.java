@@ -18,14 +18,47 @@ limitations under the License.
 package com.breautek.fuse.testtools;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
 
-import com.breautek.fuse.FuseActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.splashscreen.SplashScreen;
+import com.breautek.fuse.FuseContext;
+import com.breautek.fuse.FuseFragment;
 
-public class FuseTestActivity extends FuseActivity {
+public class FuseTestActivity extends AppCompatActivity {
+    private FuseFragment $fuse;
+    private FuseContext.IReadyCallback $callback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
-        this.getFuseContext().setResponseFactory(new FuseTestAPIResponseFactory());
+
+        FrameLayout layout = new FrameLayout(this);
+        layout.setId(View.generateViewId());
+        layout.setLayoutParams(new FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.MATCH_PARENT,
+            FrameLayout.LayoutParams.MATCH_PARENT
+        ));
+
+        setContentView(layout);
+
+        $fuse = FuseFragment.newInstance(() -> {
+            FuseContext fuseContext = $fuse.getFuseContext();
+            _registerPlugins(fuseContext);
+            $callback.onReady();
+        });
+        getSupportFragmentManager().beginTransaction().add(layout.getId(), $fuse).commit();
+    }
+
+    public void setOnReadyCallback(FuseContext.IReadyCallback callback) {
+        $callback = callback;
+    }
+
+    protected void _registerPlugins(FuseContext context) {}
+
+    public FuseContext getFuseContext() {
+        return $fuse.getFuseContext();
     }
 }
