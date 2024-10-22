@@ -35,7 +35,7 @@ jobs:
 
     - name: Create gradle.properties
       run: |
-        echo "breautek.fuse.MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}" >> $GITHUB_WORKSPACE/android/local.properties
+        echo "breautek.fuse.MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}" >> $GITHUB_WORKSPACE/android/gradle.properties
 
     - name: Accept Android SDK Licenses
       run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
