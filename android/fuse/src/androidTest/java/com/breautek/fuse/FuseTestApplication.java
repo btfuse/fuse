@@ -15,15 +15,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package com.breautek.fuse.testtools;
+package com.breautek.fuse;
 
-import com.breautek.fuse.FuseContext;
-import com.breautek.fuse.plugins.echo.EchoPlugin;
+import android.app.Application;
 
-public class TestFuseActivity extends FuseTestActivity {
-
+public class FuseTestApplication extends Application {
     @Override
-    protected void _registerPlugins(FuseContext context) {
-        context.registerPlugin(new EchoPlugin(context));
+    public void onCreate() {
+        super.onCreate();
     }
 }

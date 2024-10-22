@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package com.breautek.fuse.testtools;
+package com.breautek.fuse;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -27,6 +27,8 @@ import org.junit.runner.RunWith;
 import org.junit.Rule;
 
 import static org.junit.Assert.*;
+
+import com.breautek.fuse.testtools.FuseTestAPIClient;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;

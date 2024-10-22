@@ -5,7 +5,7 @@
         android:theme="@style/Theme.Fuse"
     >
         <activity
-            android:name="com.breautek.fuse.testtools.TestFuseActivity"
+            android:name="com.breautek.fuse.TestFuseActivity"
             android:label="@string/app_name"
             android:exported="true"
         >
