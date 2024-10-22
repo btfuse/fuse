@@ -3,3 +3,4 @@
 *.profraw
 xcuserdata
 .gradle
+node_modules

@@ -1,0 +1,6 @@
+/android/testapp/src/main/assets
+/ios/GoogleMap Test App/GoogleMap Test App/assets
+/ios/Pods
+/lib
+.DS_Store
+/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist

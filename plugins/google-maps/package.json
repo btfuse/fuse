@@ -1,0 +1,47 @@
+{
+  "name": "@btfuse/google-maps",
+  "version": "0.0.0",
+  "description": "Google Maps plugin for the Fuse framework",
+  "main": "lib/api.js",
+  "scripts": {
+    "build": "tsc",
+    "build:tests:android": "cd testapp && webpack --config ./webpack.android.js --mode development",
+    "build:tests:ios": "cd testapp && webpack --config ./webpack.ios.js --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btfuse/fuse-google-maps.git"
+  },
+  "keywords": [
+    "Fuse",
+    "Breautek",
+    "Google",
+    "maps"
+  ],
+  "author": "norman@breautek.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/btfuse/fuse-google-maps/issues"
+  },
+  "homepage": "https://github.com/btfuse/fuse-google-maps#readme",
+  "devDependencies": {
+    "@btfuse/core": "0.8.0",
+    "@btfuse/native-view": "../native-view",
+    "@types/geojson": "^7946.0.14",
+    "copy-webpack-plugin": "^12.0.2",
+    "source-map-loader": "^5.0.0",
+    "ts-loader": "9.5.1",
+    "typescript": "5.3.3",
+    "webpack": "^5.90.2",
+    "webpack-cli": "5.1.4"
+  },
+  "peerDependencies": {
+    "@btfuse/core": "^0.8.0",
+    "@btfuse/native-view": "../native-view"
+  },
+  "dependencies": {
+    "path": "^0.12.7",
+    "tslib": "2.6.2"
+  }
+}

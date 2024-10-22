@@ -43,3 +43,8 @@ include(":plugins:native-view")
 project(":plugins:native-view").projectDir = File("../plugins/native-view/android/nativeview")
 include(":plugins:native-view:testapp")
 project(":plugins:native-view:testapp").projectDir = File("../plugins/native-view/android/testapp")
+
+include(":plugins:google-maps")
+project(":plugins:google-maps").projectDir = File("../plugins/google-maps/android/googlemaps")
+include(":plugins:google-maps:testapp")
+project(":plugins:google-maps:testapp").projectDir = File("../plugins/google-maps/android/testapp")

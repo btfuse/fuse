@@ -1,0 +1,24 @@
+
+platform :ios, '15.0'
+
+workspace 'BTFuseGoogleMap.xcworkspace'
+
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/breautek/pods.git'
+
+target 'BTFuseGoogleMap' do
+    use_frameworks!
+    project 'BTFuseGoogleMap/BTFuseGoogleMap.xcodeproj'
+    
+    pod 'BTFuse', '0.8.8'
+    pod 'GoogleMaps', '8.4.0'
+    pod 'BTFuseNativeView', '0.1.3'
+end
+
+target 'GoogleMap Test App' do
+    use_frameworks!
+    project 'GoogleMap Test App/GoogleMap Test App.xcodeproj'
+    
+    pod 'BTFuse', '0.8.8'
+    pod 'BTFuseNativeView', '0.1.3'
+end
