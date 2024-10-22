@@ -31,11 +31,13 @@ export class FuseContextBuilder {
     private $platformResolver: PlatformResolver;
     private $loggerFactory: AbstractFuseLoggerFactory | null;
     private $apiFactory: AbstractFuseAPIFactory | null;
+    private $contextFactory: FuseContextFactory | null;
 
     public constructor() {
         this.$loggerFactory = null;
         this.$apiFactory = null;
         this.$platformResolver = new PlatformResolver();
+        this.$contextFactory = null;
     }
 
     public setPlatformResolver(resolver: PlatformResolver): FuseContextBuilder {
@@ -50,6 +52,11 @@ export class FuseContextBuilder {
 
     public setLoggerFactory(factory: AbstractFuseLoggerFactory): FuseContextBuilder {
         this.$loggerFactory = factory;
+        return this;
+    }
+
+    public setContextFactory(factory: FuseContextFactory): FuseContextBuilder {
+        this.$contextFactory = factory;
         return this;
     }
 
@@ -76,7 +83,11 @@ export class FuseContextBuilder {
             loggerFactory = new FuseLoggerFactory(platform);
         }
 
-        const contextFactory: FuseContextFactory = new FuseContextFactory();
+        let contextFactory: FuseContextFactory = this.$contextFactory;
+        if (contextFactory === null) {
+            contextFactory = new FuseContextFactory();
+        }
+
         const context: FuseContext = contextFactory.create(platform, apiFactory, loggerFactory.create());
 
         const isDebugMode: boolean = await this._isDebugMode(context);

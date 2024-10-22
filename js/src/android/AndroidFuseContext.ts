@@ -22,7 +22,7 @@ import { IInset } from '../IInset';
 import { Platform } from '../Platform';
 
 export class AndroidFuseContext extends FuseContext {
-    public constructor(apiFactory: AbstractFuseAPIFactory, logger: IFuseLogger,) {
+    public constructor(apiFactory: AbstractFuseAPIFactory, logger: IFuseLogger) {
         super(Platform.ANDROID, apiFactory, logger);
 
         this._getRuntime().registerInsetHandler((inset: IInset) => {

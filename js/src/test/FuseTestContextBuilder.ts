@@ -18,13 +18,15 @@ limitations under the License.
 import { FuseContext } from "../FuseContext";
 import { FuseContextBuilder } from "../FuseContextBuilder";
 import { FuseTestAPIFactory } from "./FuseTestAPIFactory";
+import { FuseTestContextFactory } from './FuseTestContextFactory';
 import { FuseTestPlataformResolver } from "./FuseTestPlatformResolver";
 
 export class FuseTestContextBuilder extends FuseContextBuilder {
     public constructor() {
         super();
         this.setPlatformResolver(new FuseTestPlataformResolver())
-            .setAPIFactory(new FuseTestAPIFactory());
+            .setAPIFactory(new FuseTestAPIFactory())
+            .setContextFactory(new FuseTestContextFactory());
     }
     
     protected override async _isDebugMode(context: FuseContext): Promise<boolean> {
