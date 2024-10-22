@@ -29,11 +29,14 @@ import com.breautek.fuse.FuseFragment;
 public class FuseTestActivity extends AppCompatActivity {
     private FuseFragment $fuse;
     private FuseContext.IReadyCallback $callback;
+    private boolean $ready;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
+
+        $ready = false;
 
         FrameLayout layout = new FrameLayout(this);
         layout.setId(View.generateViewId());
@@ -45,15 +48,23 @@ public class FuseTestActivity extends AppCompatActivity {
         setContentView(layout);
 
         $fuse = FuseFragment.newInstance(() -> {
+            $ready = true;
+
             FuseContext fuseContext = $fuse.getFuseContext();
             _registerPlugins(fuseContext);
-            $callback.onReady();
+            if ($callback != null) {
+                $callback.onReady();
+            }
         });
         getSupportFragmentManager().beginTransaction().add(layout.getId(), $fuse).commit();
     }
 
     public void setOnReadyCallback(FuseContext.IReadyCallback callback) {
         $callback = callback;
+
+        if ($ready) {
+            $callback.onReady();
+        }
     }
 
     protected void _registerPlugins(FuseContext context) {}
