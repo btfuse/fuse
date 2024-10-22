@@ -186,4 +186,8 @@ public class FuseFragment extends Fragment {
         wb.setVisibility(View.VISIBLE);
         loaderView.setVisibility(View.GONE);
     }
+
+    public ViewGroup getLayout() {
+        return getView().findViewById(R.id.layout_container);
+    }
 }

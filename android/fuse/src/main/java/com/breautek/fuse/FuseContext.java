@@ -28,20 +28,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.webkit.WebViewAssetLoader;
-import androidx.webkit.WebViewClientCompat;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -55,7 +45,6 @@ import com.breautek.fuse.plugins.FuseRuntime;
 import com.breautek.fuse.utils.IProgressContext;
 import com.breautek.fuse.utils.IProgressContextListener;
 import com.breautek.fuse.utils.ProgressContext;
-import com.breautek.fuse.views.SplashLoaderView;
 
 import org.bouncycastle.operator.OperatorCreationException;
 
@@ -69,9 +58,7 @@ public class FuseContext implements IProgressContextListener  {
 
     private final FragmentActivity $context;
 
-//    private WebView $webview;
     private final IProgressContext $loadProgress;
-//    private SplashLoaderView $splash;
 
     /*package private*/ final ReadWriteLock $pluginMapLock;
     private final Map<String, FusePlugin> $pluginMap;
@@ -138,6 +125,10 @@ public class FuseContext implements IProgressContextListener  {
         $loadProgress.update(LOAD_CONTEXT_CORE_PLUGINS, 1);
     }
 
+    public FuseFragment getView() {
+        return $view;
+    }
+
     public FuseRuntime getRuntime() {
         return $runtime;
     }
@@ -148,17 +139,6 @@ public class FuseContext implements IProgressContextListener  {
 
     public String getHost() {
         return HOST;
-    }
-
-    protected ViewGroup _createLayout(Context context) {
-        FrameLayout layout = new FrameLayout(context);
-        layout.setLayoutParams(
-                new FrameLayout.LayoutParams(
-                        FrameLayout.LayoutParams.MATCH_PARENT,
-                        FrameLayout.LayoutParams.MATCH_PARENT
-                )
-        );
-        return layout;
     }
 
     public SSLContext getSSLContext() {

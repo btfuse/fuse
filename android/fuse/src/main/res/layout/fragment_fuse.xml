@@ -4,14 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FuseFragment">
-    <WebView
-        android:id="@+id/webview"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible" />
-    <com.breautek.fuse.views.SplashLoaderView
-        android:id="@+id/splash_loader"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent">
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+        <com.breautek.fuse.views.SplashLoaderView
+            android:id="@+id/splash_loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

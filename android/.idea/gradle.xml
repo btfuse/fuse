@@ -12,7 +12,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/fuse" />
             <option value="$PROJECT_DIR$/fuseTestTools" />
+            <option value="$PROJECT_DIR$/plugins" />
             <option value="$PROJECT_DIR$/../echo/android" />
+            <option value="$PROJECT_DIR$/../plugins/native-view/android/nativeview" />
+            <option value="$PROJECT_DIR$/../plugins/native-view/android/testapp" />
             <option value="$PROJECT_DIR$/../test-app/android" />
           </set>
         </option>
