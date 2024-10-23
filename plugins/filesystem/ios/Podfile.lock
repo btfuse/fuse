@@ -1,0 +1,20 @@
+PODS:
+  - BTFuse (0.8.12)
+  - BTFuseTestTools (0.8.12)
+
+DEPENDENCIES:
+  - BTFuse (= 0.8.12)
+  - BTFuseTestTools (= 0.8.12)
+
+SPEC REPOS:
+  https://github.com/breautek/pods.git:
+    - BTFuse
+    - BTFuseTestTools
+
+SPEC CHECKSUMS:
+  BTFuse: 6bef3e29126774877ff1815511c85f40fba9d5c8
+  BTFuseTestTools: b762c0c1955e8982851bf56cfcfa53e0cb90b8b9
+
+PODFILE CHECKSUM: b3b540f33bba2d8d6e6ee7aba19a066f1c70a63a
+
+COCOAPODS: 1.15.2

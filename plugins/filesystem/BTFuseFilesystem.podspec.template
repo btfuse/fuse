@@ -1,0 +1,21 @@
+
+Pod::Spec.new do |s|
+    s.name          = '$MODULE_NAME$'
+    s.version       = '$VERSION$'
+    s.summary       = '$MODULE_DESCRIPTION'
+    s.homepage      = 'https://fuse.breautek.com'
+    s.author        = { '$MODULE_NAME$' => 'norman@breautek.com' }
+    s.license       = {
+        :type => 'Apache-2.0',
+        :file => '$MODULE_NAME$.xcframework/LICENSE'
+    }
+
+    s.ios.deployment_target = '15.0'
+    
+    s.source        = {
+        :http => 'https://github.com/btfuse/$MODULE_REPO_NAME$/releases/download/ios/$VERSION$/$MODULE_NAME$.xcframework.zip',
+        :sha1 => '$CHECKSUM$'
+    }
+
+    s.vendored_frameworks = '$MODULE_NAME$.xcframework'
+end

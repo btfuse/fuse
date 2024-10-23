@@ -48,3 +48,8 @@ include(":plugins:google-maps")
 project(":plugins:google-maps").projectDir = File("../plugins/google-maps/android/googlemaps")
 include(":plugins:google-maps:testapp")
 project(":plugins:google-maps:testapp").projectDir = File("../plugins/google-maps/android/testapp")
+
+include(":plugins:filesystem")
+project(":plugins:filesystem").projectDir = File("../plugins/filesystem/android/filesystem")
+include(":plugins:filesystem:testapp")
+project(":plugins:filesystem:testapp").projectDir = File("../plugins/filesystem/android/testapp")

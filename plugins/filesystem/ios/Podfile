@@ -1,0 +1,21 @@
+
+platform :ios, '15.0'
+
+workspace 'BTFuseFilesystem.xcworkspace'
+
+source 'https://github.com/breautek/pods.git'
+
+target 'BTFuseFilesystem' do
+    use_frameworks!
+    project 'BTFuseFilesystem/BTFuseFilesystem.xcodeproj'
+    
+    pod 'BTFuse', '0.8.12'
+end
+
+target 'BTFuseFilesystemTests' do
+    use_frameworks!
+    project 'BTFuseFilesystem/BTFuseFilesystem.xcodeproj'
+    
+    pod 'BTFuse', '0.8.12'
+    pod 'BTFuseTestTools', '0.8.12'
+end

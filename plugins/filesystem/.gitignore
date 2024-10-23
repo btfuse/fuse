@@ -1,0 +1,8 @@
+node_modules
+xcuserdata
+/deps
+.DS_Store
+/dist
+/BTFuseFilesystem.podspec
+/ios/Pods
+
