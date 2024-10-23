@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
       - name: Set up Android environment
         uses: ./.github/actions/fuse-android-setup
 
@@ -29,6 +32,9 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
       - name: Set up Android environment
         uses: ./.github/actions/fuse-android-setup
 
@@ -40,6 +46,10 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
+
       - name: Set up Android environment
         uses: ./.github/actions/fuse-android-setup
 
@@ -51,6 +61,10 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
+
       - name: Set up Android environment
         uses: ./.github/actions/fuse-android-setup
 
@@ -62,6 +76,10 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
+
       - name: Set up Android environment
         uses: ./.github/actions/fuse-android-setup
 
@@ -75,6 +93,13 @@ jobs:
       matrix:
         api-level: [29, 30, 31, 32, 33, 34]
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
+
+      - name: Set up Android environment
+        uses: ./.github/actions/fuse-android-setup
+
       - name: Run Tests on API ${{ matrix.api-level }}
         run: ./gradlew :fuse:api${{ matrix.api-level }}DebugAndroidTest
         working-directory: android
@@ -85,6 +110,13 @@ jobs:
       matrix:
         api-level: [29, 30, 31, 32, 33, 34]
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
+
+      - name: Set up Android environment
+        uses: ./.github/actions/fuse-android-setup
+
       - name: Run Tests on API ${{ matrix.api-level }}
         run: ./gradlew :plugins:filesystem:api${{ matrix.api-level }}DebugAndroidTest
         working-directory: android
