@@ -7,11 +7,13 @@ on:
       - 'android/**'
       - 'plugins/**/android/**'
       - '.github/workflows/Android.yml'
+      - '.github/actions/fuse-android-setup/action.yml'
   pull_request:
     paths:
       - 'android/**'
       - 'plugins/**/android/**'
       - '.github/workflows/Android.yml'
+      - '.github/actions/fuse-android-setup/action.yml'
 
 jobs:
   build-fuse:
