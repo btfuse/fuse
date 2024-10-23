@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Set up Android environment
-        uses: ./.github/actions/android-setup
+        uses: ./.github/actions/fuse-android-setup
 
       - name: Build with Gradle
         run: ./gradlew :fuse:assembleDebug
@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Set up Android environment
-        uses: ./.github/actions/android-setup
+        uses: ./.github/actions/fuse-android-setup
 
       - name: Build with Gradle
         run: ./gradlew :fuseTestTools:assembleDebug
@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Set up Android environment
-        uses: ./.github/actions/android-setup
+        uses: ./.github/actions/fuse-android-setup
 
       - name: Build with Gradle
         run: ./gradlew :plugins:native-view:assembleDebug
@@ -52,7 +52,7 @@ jobs:
 
     steps:
       - name: Set up Android environment
-        uses: ./.github/actions/android-setup
+        uses: ./.github/actions/fuse-android-setup
 
       - name: Build with Gradle
         run: ./gradlew :plugins:google-maps:assembleDebug
@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - name: Set up Android environment
-        uses: ./.github/actions/android-setup
+        uses: ./.github/actions/fuse-android-setup
 
       - name: Build with Gradle
         run: ./gradlew :plugins:filesystem:assembleDebug
