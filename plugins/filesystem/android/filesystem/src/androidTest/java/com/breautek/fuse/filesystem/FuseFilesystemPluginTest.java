@@ -527,61 +527,63 @@ public class FuseFilesystemPluginTest {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
             activity.setOnReadyCallback(() -> {
-
-                int port = activity.getFuseContext().getAPIPort();
-                String secret = activity.getFuseContext().getAPISecret();
-
-                String testFile = "file:///data/data/com.breautek.fuse.filesystem.test/files/truncateTest1";
-
-                byte[] newContent = "new content".getBytes();
-
-                FuseTestAPIClient client;
                 try {
-                    byte[] content = createParamsBuffer(testFile, newContent);
-                    client = new FuseTestAPIClient.Builder()
-                             .setFuseContext(activity.getFuseContext())
-                             .setAPIPort(port)
-                             .setAPISecret(secret)
-                             .setPluginID("FuseFilesystem")
-                             .setType("application/octet-stream")
-                             .setEndpoint("/file/truncate")
-                             .setContent(content)
-                             .build();
-                } catch (Exception e) {
-                    latch.countDown();
-                    throw new RuntimeException(e);
-                }
+                    int port = activity.getFuseContext().getAPIPort();
+                    String secret = activity.getFuseContext().getAPISecret();
 
-                FuseTestAPIClient.FuseAPITestResponse response = client.execute();
-                assertEquals(200, response.getStatus());
+                    String testFile = "file:///data/data/com.breautek.fuse.filesystem.test/files/truncateTest1";
 
-                File file = new File(Uri.parse(testFile).getPath());
+                    byte[] newContent = "new content".getBytes();
 
-                assertEquals(newContent.length, file.length());
-
-                String newContentStr = null;
-                FileReader reader = null;
-                try {
-                    reader = new FileReader(file);
-                    char[] readerBuffer = new char[newContent.length];
-                    reader.read(readerBuffer);
-                    newContentStr = new String(readerBuffer);
-                    reader.close();
-                } catch (Exception e) {
-                    if (reader != null) {
-                        try {
-                            reader.close();
-                        } catch (IOException ex) {
-                            latch.countDown();
-                            throw new RuntimeException(ex);
-                        }
+                    FuseTestAPIClient client;
+                    try {
+                        byte[] content = createParamsBuffer(testFile, newContent);
+                        client = new FuseTestAPIClient.Builder()
+                                 .setFuseContext(activity.getFuseContext())
+                                 .setAPIPort(port)
+                                 .setAPISecret(secret)
+                                 .setPluginID("FuseFilesystem")
+                                 .setType("application/octet-stream")
+                                 .setEndpoint("/file/truncate")
+                                 .setContent(content)
+                                 .build();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
+
+                    FuseTestAPIClient.FuseAPITestResponse response = client.execute();
+                    assertEquals(200, response.getStatus());
+
+                    File file = new File(Uri.parse(testFile).getPath());
+
+                    assertEquals(newContent.length, file.length());
+
+                    String newContentStr = null;
+                    FileReader reader = null;
+                    try {
+                        reader = new FileReader(file);
+                        char[] readerBuffer = new char[newContent.length];
+                        reader.read(readerBuffer);
+                        newContentStr = new String(readerBuffer);
+                        reader.close();
+                    } catch (Exception e) {
+                        if (reader != null) {
+                            try {
+                                reader.close();
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        }
+                        throw new RuntimeException(e);
+                    }
+
+                    assertEquals("new content", newContentStr);
+                    latch.countDown();
+                }
+                catch (Exception e) {
                     latch.countDown();
                     throw new RuntimeException(e);
                 }
-
-                assertEquals("new content", newContentStr);
-                latch.countDown();
             });
         });
         latch.await();
@@ -720,6 +722,7 @@ public class FuseFilesystemPluginTest {
                     }
 
                     assertEquals("Rewrite State!", newContentStr);
+                    latch.countDown();
                 }
                 catch (Exception e) {
                     latch.countDown();
