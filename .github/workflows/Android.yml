@@ -1,0 +1,90 @@
+
+name: Android CI
+
+on:
+  push:
+    paths:
+      - 'android/**'
+      - 'plugins/**/android/**'
+      - '.github/workflows/Android.yml'
+  pull_request:
+    paths:
+      - 'android/**'
+      - 'plugins/**/android/**'
+      - '.github/workflows/Android.yml'
+
+jobs:
+  build-fuse:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Set up Android environment
+        uses: ./.github/actions/android-setup
+
+      - name: Build with Gradle
+        run: ./gradlew :fuse:assembleDebug
+        working-directory: android
+
+  build-fuse-test-tools:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Set up Android environment
+        uses: ./.github/actions/android-setup
+
+      - name: Build with Gradle
+        run: ./gradlew :fuseTestTools:assembleDebug
+        working-directory: android
+
+  build-native-view:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Set up Android environment
+        uses: ./.github/actions/android-setup
+
+      - name: Build with Gradle
+        run: ./gradlew :plugins:native-view:assembleDebug
+        working-directory: android
+
+  build-google-maps:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Set up Android environment
+        uses: ./.github/actions/android-setup
+
+      - name: Build with Gradle
+        run: ./gradlew :plugins:google-maps:assembleDebug
+        working-directory: android
+
+  build-filesystem:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Set up Android environment
+        uses: ./.github/actions/android-setup
+
+      - name: Build with Gradle
+        run: ./gradlew :plugins:filesystem:assembleDebug
+        working-directory: android
+  
+  fuse-test:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        api-level: [29, 30, 31, 32, 33, 34]
+    steps:
+      - name: Run Tests on API ${{ matrix.api-level }}
+        run: ./gradlew :fuse:api${{ matrix.api-level }}DebugAndroidTest
+        working-directory: android
+
+  filesystem-test:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        api-level: [29, 30, 31, 32, 33, 34]
+    steps:
+      - name: Run Tests on API ${{ matrix.api-level }}
+        run: ./gradlew :plugins:filesystem:api${{ matrix.api-level }}DebugAndroidTest
+        working-directory: android
