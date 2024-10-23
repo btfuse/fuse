@@ -3,6 +3,9 @@
 
 This guide assumes you've already read and followed the [Getting Started](./getting-started.md) guide. If not, we strongly recommend beginning there first before proceeding.
 
+WARNING: This guide is out-dated and the setup process
+have been changed since Fuse Android 0.9.0.
+
 ## Prerequisites
 
 The following software is required:
