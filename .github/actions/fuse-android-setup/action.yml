@@ -35,5 +35,5 @@ runs:
         echo "sdk.dir=$ANDROID_HOME" > $GITHUB_WORKSPACE/android/local.properties
       shell: bash
     - name: Accept Android SDK Licenses
-      run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses -q || true
+      run: yes | tail -n +1 | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses -q || true
       shell: bash
