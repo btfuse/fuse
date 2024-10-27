@@ -1,0 +1,9 @@
+{
+    "extends": "../../tsconfig.json",
+    "files": [
+        "./FuseNativeViewOverlay.ts",
+        "./ios/IOSFuseNativeViewOverlay.ts",
+        "./ios/BTFuseNativeOverlay.d.ts",
+        "./ios/entry.ts"
+    ]
+}

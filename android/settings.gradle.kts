@@ -31,13 +31,13 @@ dependencyResolutionManagement {
 
 rootProject.name = "Fuse"
 include(":fuse")
+include(":fuseTestTools")
 
 include(":EchoPlugin")
 project(":EchoPlugin").projectDir = File("../echo/android")
 
 include(":testapp")
 project(":testapp").projectDir = File("../test-app/android")
-include(":fuseTestTools")
 
 include(":plugins:native-view")
 project(":plugins:native-view").projectDir = File("../plugins/native-view/android/nativeview")

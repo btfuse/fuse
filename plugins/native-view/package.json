@@ -5,6 +5,7 @@
   "main": "lib/api.js",
   "scripts": {
     "build": "tsc",
+    "build:tests:ios": "cd testapp && npm run build:ios",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +22,6 @@
   },
   "homepage": "https://github.com/btfuse/fuse-native-dom#readme",
   "devDependencies": {
-    "@btfuse/core": "file:../../js",
-    "typescript": "^5.3.3"
+    "@btfuse/core": "file:../../js"
   }
 }

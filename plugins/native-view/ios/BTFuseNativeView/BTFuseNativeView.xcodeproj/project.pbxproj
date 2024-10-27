@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		941F225C2B87D2AA005DCE20 /* BTFuseNativeViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 941F225B2B87D2AA005DCE20 /* BTFuseNativeViewTests.m */; };
+		941F225D2B87D2AA005DCE20 /* BTFuseNativeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 941F22512B87D2AA005DCE20 /* BTFuseNativeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		941F226D2B87D4CA005DCE20 /* BTFuseNativeViewPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 941F226C2B87D4CA005DCE20 /* BTFuseNativeViewPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		941F226F2B87D511005DCE20 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 941F226E2B87D511005DCE20 /* PrivacyInfo.xcprivacy */; };
+		941F22712B87D5D5005DCE20 /* BTFuseNativeViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 941F22702B87D5D5005DCE20 /* BTFuseNativeViewPlugin.m */; };
+		941F22732B87DADC005DCE20 /* BTFuseNativeViewContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 941F22722B87DADC005DCE20 /* BTFuseNativeViewContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		941F22752B87DDA4005DCE20 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F22742B87DDA4005DCE20 /* UIKit.framework */; };
+		941F22772B87DE14005DCE20 /* BTFuseNativeViewRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 941F22762B87DE14005DCE20 /* BTFuseNativeViewRect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		941F22792B87DFB6005DCE20 /* BTFuseNativeViewRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 941F22782B87DFB6005DCE20 /* BTFuseNativeViewRect.m */; };
+		944DAF282BF59D0300FEDAC4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 944DAF272BF59D0300FEDAC4 /* LICENSE */; };
+		946395572BB89EEF00FCCF77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946395562BB89EEF00FCCF77 /* CoreGraphics.framework */; };
+		946395592BB8A06C00FCCF77 /* BTFuseNativeViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 946395582BB8A06C00FCCF77 /* BTFuseNativeViewContainer.m */; };
+		9471FB162BDB446F00E92F50 /* BTFuseNativeViewOverlayBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9471FB152BDB446F00E92F50 /* BTFuseNativeViewOverlayBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9471FB182BDB44D400E92F50 /* BTFuseNativeViewOverlayBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471FB172BDB44D400E92F50 /* BTFuseNativeViewOverlayBuilder.m */; };
+		9471FB1A2BDB492600E92F50 /* BTFuseNativeViewWebviewOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 9471FB192BDB492600E92F50 /* BTFuseNativeViewWebviewOverlay.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9471FB1C2BDB4A1400E92F50 /* BTFuseNativeViewWebviewOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471FB1B2BDB4A1400E92F50 /* BTFuseNativeViewWebviewOverlay.m */; };
+		9471FB1E2BDB4AB800E92F50 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9471FB1D2BDB4AB800E92F50 /* WebKit.framework */; };
+		9471FB212BDDBB1300E92F50 /* BTFuseNativeViewRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471FB202BDDBB1300E92F50 /* BTFuseNativeViewRoot.m */; };
+		9471FB222BDDBB3400E92F50 /* BTFuseNativeViewRoot.h in Headers */ = {isa = PBXBuildFile; fileRef = 9471FB1F2BDDBACC00E92F50 /* BTFuseNativeViewRoot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9471FB262BDDC15F00E92F50 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9471FB252BDDC15F00E92F50 /* assets */; };
+		9471FB282BE997B400E92F50 /* BTFuseNativeViewWebviewOverlayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9471FB272BE997B400E92F50 /* BTFuseNativeViewWebviewOverlayController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9471FB2A2BE9980A00E92F50 /* BTFuseNativeViewWebviewOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471FB292BE9980A00E92F50 /* BTFuseNativeViewWebviewOverlayController.m */; };
+		94B3ABD32CCE8A3200BD34E2 /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABD22CCE8A3200BD34E2 /* BTFuse.framework */; };
+		94B3ABD72CCE8A4F00BD34E2 /* BTFuseTestTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABD62CCE8A4F00BD34E2 /* BTFuseTestTools.framework */; };
+		94B3ABD82CCE8A4F00BD34E2 /* BTFuseTestTools.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABD62CCE8A4F00BD34E2 /* BTFuseTestTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		94B3ABDA2CCE8A5A00BD34E2 /* BTFuseNativeView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F224E2B87D2AA005DCE20 /* BTFuseNativeView.framework */; };
+		94B3ABDB2CCE8A5A00BD34E2 /* BTFuseNativeView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 941F224E2B87D2AA005DCE20 /* BTFuseNativeView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		941F22582B87D2AA005DCE20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 941F22452B87D2AA005DCE20 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 941F224D2B87D2AA005DCE20;
+			remoteInfo = BTFuseNativeView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		94B3ABD92CCE8A4F00BD34E2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				94B3ABD82CCE8A4F00BD34E2 /* BTFuseTestTools.framework in Embed Frameworks */,
+				94B3ABDB2CCE8A5A00BD34E2 /* BTFuseNativeView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		206223B8984508E34997CA46 /* Pods_BTFuseNativeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTFuseNativeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		941F224E2B87D2AA005DCE20 /* BTFuseNativeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BTFuseNativeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		941F22512B87D2AA005DCE20 /* BTFuseNativeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNativeView.h; sourceTree = "<group>"; };
+		941F22562B87D2AA005DCE20 /* BTFuseNativeViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTFuseNativeViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		941F225B2B87D2AA005DCE20 /* BTFuseNativeViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNativeViewTests.m; sourceTree = "<group>"; };
+		941F22662B87D46E005DCE20 /* BTFuse.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BTFuse.xcframework; path = ../Pods/BTFuse/BTFuse.xcframework; sourceTree = "<group>"; };
+		941F226C2B87D4CA005DCE20 /* BTFuseNativeViewPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNativeViewPlugin.h; sourceTree = "<group>"; };
+		941F226E2B87D511005DCE20 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		941F22702B87D5D5005DCE20 /* BTFuseNativeViewPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNativeViewPlugin.m; sourceTree = "<group>"; };
+		941F22722B87DADC005DCE20 /* BTFuseNativeViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNativeViewContainer.h; sourceTree = "<group>"; };
+		941F22742B87DDA4005DCE20 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		941F22762B87DE14005DCE20 /* BTFuseNativeViewRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNativeViewRect.h; sourceTree = "<group>"; };
+		941F22782B87DFB6005DCE20 /* BTFuseNativeViewRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNativeViewRect.m; sourceTree = "<group>"; };
+		944DAF252BF59CD600FEDAC4 /* VERSION.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = VERSION.xcconfig; sourceTree = "<group>"; };
+		944DAF272BF59D0300FEDAC4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		944DAF292BF59D3E00FEDAC4 /* BTFuseNativeView.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BTFuseNativeView.debug.xcconfig; sourceTree = "<group>"; };
+		944DAF2A2BF59E0C00FEDAC4 /* BTFuseNativeView.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BTFuseNativeView.release.xcconfig; sourceTree = "<group>"; };
+		946395562BB89EEF00FCCF77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		946395582BB8A06C00FCCF77 /* BTFuseNativeViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNativeViewContainer.m; sourceTree = "<group>"; };
+		9471FB152BDB446F00E92F50 /* BTFuseNativeViewOverlayBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNativeViewOverlayBuilder.h; sourceTree = "<group>"; };
+		9471FB172BDB44D400E92F50 /* BTFuseNativeViewOverlayBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNativeViewOverlayBuilder.m; sourceTree = "<group>"; };
+		9471FB192BDB492600E92F50 /* BTFuseNativeViewWebviewOverlay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNativeViewWebviewOverlay.h; sourceTree = "<group>"; };
+		9471FB1B2BDB4A1400E92F50 /* BTFuseNativeViewWebviewOverlay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNativeViewWebviewOverlay.m; sourceTree = "<group>"; };
+		9471FB1D2BDB4AB800E92F50 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		9471FB1F2BDDBACC00E92F50 /* BTFuseNativeViewRoot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNativeViewRoot.h; sourceTree = "<group>"; };
+		9471FB202BDDBB1300E92F50 /* BTFuseNativeViewRoot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNativeViewRoot.m; sourceTree = "<group>"; };
+		9471FB252BDDC15F00E92F50 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		9471FB272BE997B400E92F50 /* BTFuseNativeViewWebviewOverlayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNativeViewWebviewOverlayController.h; sourceTree = "<group>"; };
+		9471FB292BE9980A00E92F50 /* BTFuseNativeViewWebviewOverlayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNativeViewWebviewOverlayController.m; sourceTree = "<group>"; };
+		94B3ABD22CCE8A3200BD34E2 /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B3ABD62CCE8A4F00BD34E2 /* BTFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		941F224B2B87D2AA005DCE20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9471FB1E2BDB4AB800E92F50 /* WebKit.framework in Frameworks */,
+				946395572BB89EEF00FCCF77 /* CoreGraphics.framework in Frameworks */,
+				94B3ABD32CCE8A3200BD34E2 /* BTFuse.framework in Frameworks */,
+				941F22752B87DDA4005DCE20 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		941F22532B87D2AA005DCE20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B3ABD72CCE8A4F00BD34E2 /* BTFuseTestTools.framework in Frameworks */,
+				94B3ABDA2CCE8A5A00BD34E2 /* BTFuseNativeView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		941F22442B87D2AA005DCE20 = {
+			isa = PBXGroup;
+			children = (
+				944DAF2A2BF59E0C00FEDAC4 /* BTFuseNativeView.release.xcconfig */,
+				944DAF292BF59D3E00FEDAC4 /* BTFuseNativeView.debug.xcconfig */,
+				944DAF272BF59D0300FEDAC4 /* LICENSE */,
+				944DAF252BF59CD600FEDAC4 /* VERSION.xcconfig */,
+				9471FB252BDDC15F00E92F50 /* assets */,
+				941F226E2B87D511005DCE20 /* PrivacyInfo.xcprivacy */,
+				941F22502B87D2AA005DCE20 /* BTFuseNativeView */,
+				941F225A2B87D2AA005DCE20 /* BTFuseNativeViewTests */,
+				941F224F2B87D2AA005DCE20 /* Products */,
+				94540C036690349DAD208FDF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		941F224F2B87D2AA005DCE20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				941F224E2B87D2AA005DCE20 /* BTFuseNativeView.framework */,
+				941F22562B87D2AA005DCE20 /* BTFuseNativeViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		941F22502B87D2AA005DCE20 /* BTFuseNativeView */ = {
+			isa = PBXGroup;
+			children = (
+				941F226B2B87D4AE005DCE20 /* src */,
+				941F226A2B87D4A2005DCE20 /* include */,
+				941F22512B87D2AA005DCE20 /* BTFuseNativeView.h */,
+			);
+			path = BTFuseNativeView;
+			sourceTree = "<group>";
+		};
+		941F225A2B87D2AA005DCE20 /* BTFuseNativeViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				941F225B2B87D2AA005DCE20 /* BTFuseNativeViewTests.m */,
+			);
+			path = BTFuseNativeViewTests;
+			sourceTree = "<group>";
+		};
+		941F226A2B87D4A2005DCE20 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				941F226C2B87D4CA005DCE20 /* BTFuseNativeViewPlugin.h */,
+				941F22722B87DADC005DCE20 /* BTFuseNativeViewContainer.h */,
+				941F22762B87DE14005DCE20 /* BTFuseNativeViewRect.h */,
+				9471FB152BDB446F00E92F50 /* BTFuseNativeViewOverlayBuilder.h */,
+				9471FB192BDB492600E92F50 /* BTFuseNativeViewWebviewOverlay.h */,
+				9471FB1F2BDDBACC00E92F50 /* BTFuseNativeViewRoot.h */,
+				9471FB272BE997B400E92F50 /* BTFuseNativeViewWebviewOverlayController.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		941F226B2B87D4AE005DCE20 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				941F22702B87D5D5005DCE20 /* BTFuseNativeViewPlugin.m */,
+				941F22782B87DFB6005DCE20 /* BTFuseNativeViewRect.m */,
+				946395582BB8A06C00FCCF77 /* BTFuseNativeViewContainer.m */,
+				9471FB172BDB44D400E92F50 /* BTFuseNativeViewOverlayBuilder.m */,
+				9471FB1B2BDB4A1400E92F50 /* BTFuseNativeViewWebviewOverlay.m */,
+				9471FB202BDDBB1300E92F50 /* BTFuseNativeViewRoot.m */,
+				9471FB292BE9980A00E92F50 /* BTFuseNativeViewWebviewOverlayController.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		94540C036690349DAD208FDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94B3ABD62CCE8A4F00BD34E2 /* BTFuseTestTools.framework */,
+				94B3ABD22CCE8A3200BD34E2 /* BTFuse.framework */,
+				9471FB1D2BDB4AB800E92F50 /* WebKit.framework */,
+				946395562BB89EEF00FCCF77 /* CoreGraphics.framework */,
+				941F22742B87DDA4005DCE20 /* UIKit.framework */,
+				941F22662B87D46E005DCE20 /* BTFuse.xcframework */,
+				206223B8984508E34997CA46 /* Pods_BTFuseNativeView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		941F22492B87D2AA005DCE20 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				941F226D2B87D4CA005DCE20 /* BTFuseNativeViewPlugin.h in Headers */,
+				941F22772B87DE14005DCE20 /* BTFuseNativeViewRect.h in Headers */,
+				9471FB282BE997B400E92F50 /* BTFuseNativeViewWebviewOverlayController.h in Headers */,
+				941F22732B87DADC005DCE20 /* BTFuseNativeViewContainer.h in Headers */,
+				9471FB162BDB446F00E92F50 /* BTFuseNativeViewOverlayBuilder.h in Headers */,
+				9471FB1A2BDB492600E92F50 /* BTFuseNativeViewWebviewOverlay.h in Headers */,
+				9471FB222BDDBB3400E92F50 /* BTFuseNativeViewRoot.h in Headers */,
+				941F225D2B87D2AA005DCE20 /* BTFuseNativeView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		941F224D2B87D2AA005DCE20 /* BTFuseNativeView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 941F22602B87D2AA005DCE20 /* Build configuration list for PBXNativeTarget "BTFuseNativeView" */;
+			buildPhases = (
+				941AE2BE2BF2E17200C187EB /* Compile Overlay JS */,
+				941F22492B87D2AA005DCE20 /* Headers */,
+				941F224A2B87D2AA005DCE20 /* Sources */,
+				941F224B2B87D2AA005DCE20 /* Frameworks */,
+				941F224C2B87D2AA005DCE20 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BTFuseNativeView;
+			productName = BTFuseNativeView;
+			productReference = 941F224E2B87D2AA005DCE20 /* BTFuseNativeView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		941F22552B87D2AA005DCE20 /* BTFuseNativeViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 941F22632B87D2AA005DCE20 /* Build configuration list for PBXNativeTarget "BTFuseNativeViewTests" */;
+			buildPhases = (
+				941F22522B87D2AA005DCE20 /* Sources */,
+				941F22532B87D2AA005DCE20 /* Frameworks */,
+				941F22542B87D2AA005DCE20 /* Resources */,
+				94B3ABD92CCE8A4F00BD34E2 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				941F22592B87D2AA005DCE20 /* PBXTargetDependency */,
+			);
+			name = BTFuseNativeViewTests;
+			productName = BTFuseNativeViewTests;
+			productReference = 941F22562B87D2AA005DCE20 /* BTFuseNativeViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		941F22452B87D2AA005DCE20 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					941F224D2B87D2AA005DCE20 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					941F22552B87D2AA005DCE20 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 941F22482B87D2AA005DCE20 /* Build configuration list for PBXProject "BTFuseNativeView" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 941F22442B87D2AA005DCE20;
+			productRefGroup = 941F224F2B87D2AA005DCE20 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				941F224D2B87D2AA005DCE20 /* BTFuseNativeView */,
+				941F22552B87D2AA005DCE20 /* BTFuseNativeViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		941F224C2B87D2AA005DCE20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				941F226F2B87D511005DCE20 /* PrivacyInfo.xcprivacy in Resources */,
+				944DAF282BF59D0300FEDAC4 /* LICENSE in Resources */,
+				9471FB262BDDC15F00E92F50 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		941F22542B87D2AA005DCE20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		941AE2BE2BF2E17200C187EB /* Compile Overlay JS */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Overlay JS";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\ncd ../..\n\nnpm install\nnpx webpack --config webpack.ios.js --mode none\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		941F224A2B87D2AA005DCE20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9471FB212BDDBB1300E92F50 /* BTFuseNativeViewRoot.m in Sources */,
+				941F22712B87D5D5005DCE20 /* BTFuseNativeViewPlugin.m in Sources */,
+				946395592BB8A06C00FCCF77 /* BTFuseNativeViewContainer.m in Sources */,
+				9471FB1C2BDB4A1400E92F50 /* BTFuseNativeViewWebviewOverlay.m in Sources */,
+				9471FB2A2BE9980A00E92F50 /* BTFuseNativeViewWebviewOverlayController.m in Sources */,
+				9471FB182BDB44D400E92F50 /* BTFuseNativeViewOverlayBuilder.m in Sources */,
+				941F22792B87DFB6005DCE20 /* BTFuseNativeViewRect.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		941F22522B87D2AA005DCE20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				941F225C2B87D2AA005DCE20 /* BTFuseNativeViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		941F22592B87D2AA005DCE20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 941F224D2B87D2AA005DCE20 /* BTFuseNativeView */;
+			targetProxy = 941F22582B87D2AA005DCE20 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		941F225E2B87D2AA005DCE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		941F225F2B87D2AA005DCE20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		941F22612B87D2AA005DCE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 944DAF292BF59D3E00FEDAC4 /* BTFuseNativeView.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.breautek.fuse.BTFuseNativeView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		941F22622B87D2AA005DCE20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 944DAF2A2BF59E0C00FEDAC4 /* BTFuseNativeView.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.breautek.fuse.BTFuseNativeView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		941F22642B87D2AA005DCE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.breautek.fuse.BTFuseNativeViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		941F22652B87D2AA005DCE20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.breautek.fuse.BTFuseNativeViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		941F22482B87D2AA005DCE20 /* Build configuration list for PBXProject "BTFuseNativeView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				941F225E2B87D2AA005DCE20 /* Debug */,
+				941F225F2B87D2AA005DCE20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		941F22602B87D2AA005DCE20 /* Build configuration list for PBXNativeTarget "BTFuseNativeView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				941F22612B87D2AA005DCE20 /* Debug */,
+				941F22622B87D2AA005DCE20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		941F22632B87D2AA005DCE20 /* Build configuration list for PBXNativeTarget "BTFuseNativeViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				941F22642B87D2AA005DCE20 /* Debug */,
+				941F22652B87D2AA005DCE20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 941F22452B87D2AA005DCE20 /* Project object */;
+}

@@ -1,0 +1,9 @@
+{
+    "extends": "../../tsconfig.json",
+    "files": [
+        "./FuseNativeViewOverlay.ts",
+        "./android/AndroidFuseNativeViewOverlay.ts",
+        "./android/BTFuseNativeOverlay.d.ts",
+        "./android/entry.ts"
+    ]
+}

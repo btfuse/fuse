@@ -1,0 +1,17 @@
+{
+  "name": "native-view-test-app",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "main": "webpack.android.js",
+  "scripts": {
+    "build:ios": "webpack --config ./webpack.ios.js --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "norman@breautek.com",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@btfuse/core": "file:../../../js",
+    "@btfuse/native-view": "file:.."
+  }
+}

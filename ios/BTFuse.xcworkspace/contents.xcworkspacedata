@@ -25,6 +25,16 @@
       name = "Plugins">
       <Group
          location = "container:"
+         name = "Native View">
+         <FileRef
+            location = "container:../plugins/native-view/ios/TestApp/BTFuseNativeViewTestApp.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "container:../plugins/native-view/ios/BTFuseNativeView/BTFuseNativeView.xcodeproj">
+         </FileRef>
+      </Group>
+      <Group
+         location = "container:"
          name = "Filesystem">
          <FileRef
             location = "container:../plugins/filesystem/ios/BTFuseFilesystem/BTFuseFilesystem.xcodeproj">

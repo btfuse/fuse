@@ -1,2 +1,17 @@
 /android
 /tsconfig.json
+/testapp
+/webpack*
+/make*
+/ios
+/android
+/dist
+/build-tools
+/buildAndroid.sh
+/buildIOS.sh
+/compiler
+*.tgz
+*.podspec
+*.template
+/.gitmodules
+/.vscode
