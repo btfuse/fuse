@@ -128,7 +128,7 @@ NSString* BTFUSE_FILESYSTEM_TAG = @"FuseFilesystem";
 
 - (void) handleFileMkdirRequest:(BTFuseAPIPacket*) packet response:(BTFuseAPIResponse*) response {
     NSError* error = nil;
-    NSDictionary* params = [packet readAsJSONObject: error];
+    NSDictionary* params = [packet readAsJSONObject: &error];
     
     if (error != nil) {
         [response sendError:[[BTFuseError alloc] init:@"FuseFilesystem" withCode:0 withError:error]];
@@ -160,7 +160,7 @@ NSString* BTFUSE_FILESYSTEM_TAG = @"FuseFilesystem";
 
 - (void) handleFileReadRequest:(BTFuseAPIPacket*) packet response:(BTFuseAPIResponse*) response {
     NSError* error = nil;
-    NSDictionary* params = [packet readAsJSONObject: error];
+    NSDictionary* params = [packet readAsJSONObject: &error];
     
     if (error != nil) {
         [response sendError:[[BTFuseError alloc] init: BTFUSE_FILESYSTEM_TAG withCode:0 withError:error]];
@@ -549,7 +549,7 @@ NSString* BTFUSE_FILESYSTEM_TAG = @"FuseFilesystem";
 - (void) handleFileRemoveRequest:(BTFuseAPIPacket*) packet response:(BTFuseAPIResponse*) response {
     NSError* error = nil;
     
-    NSDictionary* opts = [packet readAsJSONObject: error];
+    NSDictionary* opts = [packet readAsJSONObject: &error];
     
     if (error != nil) {
         [response sendError:[[BTFuseError alloc] init:BTFUSE_FILESYSTEM_TAG withCode: 0 withError: error]];
