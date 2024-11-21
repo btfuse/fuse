@@ -4,3 +4,5 @@
 /BTFuse.podspec
 /BTFuseTestTools.podspec
 /Pods
+/third_party
+!/third_party/README

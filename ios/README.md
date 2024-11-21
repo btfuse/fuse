@@ -8,7 +8,7 @@ This is the iOS Fuse module, providing the platform implementation for the Fuse 
 This module uses git submodules, clone via:
 
 ```
-git clone https://github.com/btfuse/fuse-ios.git --recurse-submodules
+git clone https://github.com/btfuse/fuse.git --recurse-submodules
 ```
 
 ## Building

@@ -17,6 +17,8 @@
 		941F22A42B8AD237005DCE20 /* BTFuseNativeView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F22A32B8AD237005DCE20 /* BTFuseNativeView.framework */; };
 		941F22A52B8AD237005DCE20 /* BTFuseNativeView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 941F22A32B8AD237005DCE20 /* BTFuseNativeView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		941F22A82B8AD2C7005DCE20 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 941F22A72B8AD2C7005DCE20 /* assets */; };
+		94B3ABF72CCECCB000BD34E2 /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABF62CCECCB000BD34E2 /* BTFuse.framework */; };
+		94B3ABF82CCECCB000BD34E2 /* BTFuse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABF62CCECCB000BD34E2 /* BTFuse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				941F22A52B8AD237005DCE20 /* BTFuseNativeView.framework in Embed Frameworks */,
+				94B3ABF82CCECCB000BD34E2 /* BTFuse.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,7 +52,7 @@
 		941F229F2B8AD230005DCE20 /* BTFuse.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BTFuse.xcframework; path = "/Users/norman/development/breautek/fuse-native-view/ios/BTFuseNativeView/../Pods/BTFuse/BTFuse.xcframework"; sourceTree = "<absolute>"; };
 		941F22A32B8AD237005DCE20 /* BTFuseNativeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuseNativeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941F22A72B8AD2C7005DCE20 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = TestApp/assets; sourceTree = "<group>"; };
-		BE8182E3E51FEFB4EEDE6DCE /* Pods_TestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B3ABF62CCECCB000BD34E2 /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				941F22A42B8AD237005DCE20 /* BTFuseNativeView.framework in Frameworks */,
+				94B3ABF72CCECCB000BD34E2 /* BTFuse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,9 +71,9 @@
 		525AAE6DEF6B898814EFB4A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94B3ABF62CCECCB000BD34E2 /* BTFuse.framework */,
 				941F22A32B8AD237005DCE20 /* BTFuseNativeView.framework */,
 				941F229F2B8AD230005DCE20 /* BTFuse.xcframework */,
-				BE8182E3E51FEFB4EEDE6DCE /* Pods_TestApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

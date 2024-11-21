@@ -208,7 +208,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\npwd\n./scripts/build.sh ./testapp/assets\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n./scripts/build.sh ./testapp/assets\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

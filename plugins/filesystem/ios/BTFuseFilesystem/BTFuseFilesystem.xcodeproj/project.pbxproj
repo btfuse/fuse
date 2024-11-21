@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94B3ABCC2CCE819500BD34E2 /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABCB2CCE819500BD34E2 /* BTFuse.framework */; };
-		94B3ABCD2CCE819500BD34E2 /* BTFuse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABCB2CCE819500BD34E2 /* BTFuse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		94B3ABD02CCE81A900BD34E2 /* BTFuseTestTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABCF2CCE81A900BD34E2 /* BTFuseTestTools.framework */; };
-		94B3ABD12CCE81A900BD34E2 /* BTFuseTestTools.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3ABCF2CCE81A900BD34E2 /* BTFuseTestTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		94B3AC012CCECD4300BD34E2 /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3AC002CCECD4300BD34E2 /* BTFuse.framework */; };
+		94B3AC042CCECD5C00BD34E2 /* BTFuseTestTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3AC032CCECD5C00BD34E2 /* BTFuseTestTools.framework */; };
+		94B3AC052CCECD5C00BD34E2 /* BTFuseTestTools.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3AC032CCECD5C00BD34E2 /* BTFuseTestTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		94DF4C302B39DB2C00322BEC /* BTFuseFilesystemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF4C2F2B39DB2C00322BEC /* BTFuseFilesystemTests.m */; };
 		94DF4C312B39DB2C00322BEC /* BTFuseFilesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF4C232B39DB2C00322BEC /* BTFuseFilesystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94DF4C422B39E4B500322BEC /* BTFuseFilesystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DF4C202B39DB2C00322BEC /* BTFuseFilesystem.framework */; };
@@ -37,17 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		94B3ABCE2CCE819500BD34E2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				94B3ABCD2CCE819500BD34E2 /* BTFuse.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		94DF4C412B39E4B300322BEC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,7 +43,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				94DF4C432B39E4B500322BEC /* BTFuseFilesystem.framework in Embed Frameworks */,
-				94B3ABD12CCE81A900BD34E2 /* BTFuseTestTools.framework in Embed Frameworks */,
+				94B3AC052CCECD5C00BD34E2 /* BTFuseTestTools.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,10 +51,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2D0B7B3C190DCCE629619A70 /* Pods_BTFuseFilesystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTFuseFilesystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		632C4589F2507B00AB78F641 /* Pods_BTFuseFilesystemTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTFuseFilesystemTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		94B3ABCB2CCE819500BD34E2 /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		94B3ABCF2CCE81A900BD34E2 /* BTFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B3AC002CCECD4300BD34E2 /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B3AC032CCECD5C00BD34E2 /* BTFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DF4C202B39DB2C00322BEC /* BTFuseFilesystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BTFuseFilesystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DF4C232B39DB2C00322BEC /* BTFuseFilesystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseFilesystem.h; sourceTree = "<group>"; };
 		94DF4C2A2B39DB2C00322BEC /* BTFuseFilesystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTFuseFilesystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,8 +68,6 @@
 		94DF4C582B41F0DA00322BEC /* BTFuseFilesystemUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseFilesystemUtils.m; sourceTree = "<group>"; };
 		94FA40782C07E452000AF380 /* BTFuseFilesystem.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BTFuseFilesystem.debug.xcconfig; sourceTree = "<group>"; };
 		94FA40792C07E475000AF380 /* BTFuseFilesystem.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BTFuseFilesystem.release.xcconfig; sourceTree = "<group>"; };
-		94FA407A2C07E543000AF380 /* BTFuse.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BTFuse.xcframework; path = ../Pods/BTFuse/BTFuse.xcframework; sourceTree = "<group>"; };
-		94FA40802C07E663000AF380 /* BTFuseTestTools.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BTFuseTestTools.xcframework; path = ../Pods/BTFuseTestTools/BTFuseTestTools.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94B3ABCC2CCE819500BD34E2 /* BTFuse.framework in Frameworks */,
+				94B3AC012CCECD4300BD34E2 /* BTFuse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94DF4C422B39E4B500322BEC /* BTFuseFilesystem.framework in Frameworks */,
-				94B3ABD02CCE81A900BD34E2 /* BTFuseTestTools.framework in Frameworks */,
+				94B3AC042CCECD5C00BD34E2 /* BTFuseTestTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,12 +133,8 @@
 		94DF4C3A2B39E47A00322BEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				94B3ABCF2CCE81A900BD34E2 /* BTFuseTestTools.framework */,
-				94B3ABCB2CCE819500BD34E2 /* BTFuse.framework */,
-				94FA40802C07E663000AF380 /* BTFuseTestTools.xcframework */,
-				94FA407A2C07E543000AF380 /* BTFuse.xcframework */,
-				2D0B7B3C190DCCE629619A70 /* Pods_BTFuseFilesystem.framework */,
-				632C4589F2507B00AB78F641 /* Pods_BTFuseFilesystemTests.framework */,
+				94B3AC032CCECD5C00BD34E2 /* BTFuseTestTools.framework */,
+				94B3AC002CCECD4300BD34E2 /* BTFuse.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,7 +205,6 @@
 				94DF4C1C2B39DB2C00322BEC /* Sources */,
 				94DF4C1D2B39DB2C00322BEC /* Frameworks */,
 				94DF4C1E2B39DB2C00322BEC /* Resources */,
-				94B3ABCE2CCE819500BD34E2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

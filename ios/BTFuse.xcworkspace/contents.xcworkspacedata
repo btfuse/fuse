@@ -14,15 +14,22 @@
          location = "container:BTFuse/BTFuse.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Pods/Pods.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "container:../echo/ios/echo.xcodeproj">
       </FileRef>
    </Group>
    <Group
       location = "container:"
       name = "Plugins">
+      <Group
+         location = "container:"
+         name = "Google Maps">
+         <FileRef
+            location = "container:../plugins/google-maps/ios/BTFuseGoogleMap/BTFuseGoogleMap.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "container:../plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App.xcodeproj">
+         </FileRef>
+      </Group>
       <Group
          location = "container:"
          name = "Native View">
@@ -40,5 +47,15 @@
             location = "container:../plugins/filesystem/ios/BTFuseFilesystem/BTFuseFilesystem.xcodeproj">
          </FileRef>
       </Group>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Third Party">
+      <FileRef
+         location = "group:third_party/com.breautek.btfuse.third_party/Third Party.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:third_party/README">
+      </FileRef>
    </Group>
 </Workspace>

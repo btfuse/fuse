@@ -50,7 +50,7 @@ limitations under the License.
         BTFuseGoogleMapPlugin* strongSelf = weakSelf;
         
         NSError* error = nil;
-        NSDictionary* params = [packet readAsJSONObject: error];
+        NSDictionary* params = [packet readAsJSONObject: &error];
         if (error != nil) {
             [response sendError:[
                 [BTFuseError alloc]
