@@ -16,13 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_versions: [18.x, 20.x, 22.x]
+        node_versions: [20.x, 22.x]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node_version }}
-      - run: npm ci
+      - run: npm ci # For general tooling
+      - run: npm ci # For lib dependencies
         working-directory: js
       - run: npm run build
         working-directory: js
