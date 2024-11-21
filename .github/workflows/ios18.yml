@@ -1,23 +1,22 @@
 
-name: iOS 17
+name: iOS 18
 
 on:
   push:
     paths:
       - 'ios/**'
-      - '.github/workflows/ios17.yml'
+      - '.github/workflows/ios18.yml'
   pull_request:
     paths:
       - 'ios/**'
-      - '.github/workflows/ios17.yml'
+      - '.github/workflows/ios18.yml'
 
 jobs:
   build:
-    name: Test iOS 17
+    name: Test iOS 18
     runs-on: macos-14
 
     steps:
-      
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -26,6 +25,6 @@ jobs:
         uses: ./.github/actions/fuse-ios-setup
         with:
           google_maps_api_key: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-      - name: Test iOS 17.5
-        run: ./test.sh "Fuse iOS 17.5" "17.5" "iPhone 15"
+      - name: Test iOS 18.0
+        run: ./test.sh "Fuse iOS 18.0" "18.0" "iPhone 15"
         working-directory: ios

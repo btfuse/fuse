@@ -11,8 +11,8 @@ runs:
   using: "composite"
   steps:
     - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: 16.1
+      with:
+        xcode-version: 16.1
     - name: Fetch Dependencies
       run: ./fetch_deps.sh
       working-directory: ios
