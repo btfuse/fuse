@@ -17,21 +17,15 @@ jobs:
     runs-on: macos-14
 
     steps:
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: 15.4
+      
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: True
-      - name: Install CocoaPods
-        run: gem install cocoapods -v 1.15.2
-      - name: Pod Install
-        run: pod install --repo-update
-        working-directory: ios
-      - name: Build
-        run: ./build.sh
-        working-directory: ios
+      - name: Set up iOS environment
+        uses: ./.github/actions/fuse-ios-setup
+        with:
+          google_maps_api_key: ${{ secrets.GOOGLE_MAPS_API_KEY }}
       - name: Test iOS 17.5
         run: ./test.sh "Fuse iOS 17.5" "17.5" "iPhone 15"
         working-directory: ios

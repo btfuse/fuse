@@ -1,0 +1,31 @@
+
+name: Fuse iOS Setup
+description: Set up the iOS environment
+
+inputs:
+  google_maps_api_key:
+    description: 'Google Maps API Key'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 16.1
+    - name: Fetch Dependencies
+      run: ./fetch_deps.sh
+      working-directory: ios
+    - name: Create Google API key
+      run: |
+        echo '<?xml version="1.0" encoding="UTF-8"?>' > "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '<plist version="1.0">' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '<dict>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '	<key>GOOGLE_MAP_API_KEY</key>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '	<string>${{ inputs.google_maps_api_key }}</string>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '</dict>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '</plist' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+    - name: Build
+        run: ./build.sh
+        working-directory: ios
