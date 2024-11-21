@@ -238,7 +238,6 @@
 		94A8864F2A702C6C0098530D = {
 			isa = PBXGroup;
 			children = (
-				94B3ABCA2CCE7F2B00BD34E2 /* New Group */,
 				94C3AF272B6867B8006AD040 /* LICENSE */,
 				944112B92AED442300309527 /* PrivacyInfo.xcprivacy */,
 				94552C592ACB349A00DAE0F4 /* configurations */,
@@ -342,13 +341,6 @@
 				94668BF12B202F7400976FC1 /* BTFuseWebviewNavigationDelegate.m */,
 			);
 			name = internal;
-			sourceTree = "<group>";
-		};
-		94B3ABCA2CCE7F2B00BD34E2 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		94B7A9CD2AC89E39003D294D /* BTFuseTests */ = {

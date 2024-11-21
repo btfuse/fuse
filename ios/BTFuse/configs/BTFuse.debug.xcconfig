@@ -13,5 +13,4 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "../Pods/Target Support Files/Pods-BTFuse/Pods-BTFuse.debug.xcconfig"
 #include "version.xcconfig"
