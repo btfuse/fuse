@@ -19,14 +19,14 @@ runs:
       shell: bash
     - name: Create Google API key
       run: |
-        echo '<?xml version="1.0" encoding="UTF-8"?>' > "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
-        echo '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
-        echo '<plist version="1.0">' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
-        echo '<dict>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
-        echo '	<key>GOOGLE_MAP_API_KEY</key>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
-        echo '	<string>${{ inputs.google_maps_api_key }}</string>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
-        echo '</dict>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
-        echo '</plist' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '<?xml version="1.0" encoding="UTF-8"?>' > "plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' >> "plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '<plist version="1.0">' >> "plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '<dict>' >> "plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '	<key>GOOGLE_MAP_API_KEY</key>' >> "plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '	<string>${{ inputs.google_maps_api_key }}</string>' >> "plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '</dict>' >> "plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+        echo '</plist' >> "plugins/google-maps/ios/GoogleMap Test App/GoogleMap Test App/secrets.plist"
       shell: bash
     - name: Build
       run: ./build.sh
