@@ -16,6 +16,7 @@ runs:
     - name: Fetch Dependencies
       run: ./fetch_deps.sh
       working-directory: ios
+      shell: bash
     - name: Create Google API key
       run: |
         echo '<?xml version="1.0" encoding="UTF-8"?>' > "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
@@ -26,6 +27,8 @@ runs:
         echo '	<string>${{ inputs.google_maps_api_key }}</string>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
         echo '</dict>' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
         echo '</plist' >> "plugins/google-maps/GoogleMap Test App/GoogleMap Test App/secrets.plist"
+      shell: bash
     - name: Build
-        run: ./build.sh
-        working-directory: ios
+      run: ./build.sh
+      working-directory: ios
+      shell: bash

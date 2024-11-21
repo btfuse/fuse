@@ -6,10 +6,12 @@ on:
     paths:
       - 'ios/**'
       - '.github/workflows/ios18.yml'
+      - '.github/actions/fuse-ios-setup/action.yml'
   pull_request:
     paths:
       - 'ios/**'
       - '.github/workflows/ios18.yml'
+      - '.github/actions/fuse-ios-setup/action.yml'
 
 jobs:
   build:
