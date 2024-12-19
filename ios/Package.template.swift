@@ -28,12 +28,12 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "BTFuse",
-            url: "https://github.com/btfuse/fuse/releases/tag/ios/core/$VERSION$/BTFuse.xcframework.zip",
+            url: "https://github.com/btfuse/fuse/releases/download/ios%2Fcore%2F$VERSION$/BTFuse.xcframework.zip",
             checksum: "$CORE_CHECKSUM$"
         ),
         .binaryTarget(
             name: "BTFuseTestTools",
-            url: "https://github.com/btfuse/fuse/releases/tag/ios/core/$VERSION$/BTFuseTestTools.xcframework.zip",
+            url: "https://github.com/btfuse/fuse/releases/download/ios%2Fcore%2F$VERSION$/BTFuseTestTools.xcframework.zip",
             checksum: "$TESTTOOLS_CHECKSUM$"
         )
     ]
