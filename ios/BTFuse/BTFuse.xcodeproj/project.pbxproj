@@ -455,7 +455,7 @@
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					94A886B52A714F6D0098530D = {
-						LastSwiftMigration = 1600;
+						LastSwiftMigration = 1620;
 					};
 					94B7A9CB2AC89E39003D294D = {
 						CreatedOnToolsVersion = 15.0;

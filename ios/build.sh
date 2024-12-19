@@ -39,10 +39,12 @@ if [ "$CI" != "true" ]; then
     fi
 fi
 
+DIST_DIR="dist/ios/core"
+
 echo "Building Fuse iOS Framework $(cat ./VERSION)..."
 
-rm -rf dist
-mkdir -p dist
+rm -rf $DIST_DIR
+mkdir -p $DIST_DIR
 
 echo "Cleaning the workspace..."
 # Clean the build
@@ -90,24 +92,24 @@ else
     assertLastCall
 fi
 
-cp -r $iosBuild/BTFuse.framework.dSYM ./dist/
-cp -r $iosTestToolsBuild/BTFuseTestTools.framework.dSYM ./dist
+cp -r $iosBuild/BTFuse.framework.dSYM $DIST_DIR
+cp -r $iosTestToolsBuild/BTFuseTestTools.framework.dSYM $DIST_DIR
 
 echo "Packing XCFramework..."
 xcodebuild -create-xcframework \
     -framework $iosBuild/BTFuse.framework \
     -debug-symbols $iosBuild/BTFuse.framework.dSYM \
     -framework $simBuild/BTFuse.framework \
-    -output dist/BTFuse.xcframework
+    -output $DIST_DIR/BTFuse.xcframework
 assertLastCall
 xcodebuild -create-xcframework \
     -framework $iosTestToolsBuild/BTFuseTestTools.framework \
     -debug-symbols $iosTestToolsBuild/BTFuseTestTools.framework.dSYM \
     -framework $simTestToolsBuild/BTFuseTestTools.framework \
-    -output dist/BTFuseTestTools.xcframework
+    -output $DIST_DIR/BTFuseTestTools.xcframework
 assertLastCall
 
-spushd dist
+spushd $DIST_DIR
     zip -r BTFuse.xcframework.zip BTFuse.xcframework > /dev/null
     zip -r BTFuse.framework.dSYM.zip BTFuse.framework.dSYM > /dev/null
     zip -r BTFuseTestTools.xcframework.zip BTFuseTestTools.xcframework > /dev/null
@@ -119,17 +121,18 @@ spushd dist
 spopd
 
 VERSION=$(cat ./VERSION)
-FUSE_CHECKSUM=$(cat ./dist/BTFuse.xcframework.zip.sha1.txt)
-TESTTOOLS_CHECKSUM=$(cat ./dist/BTFuseTestTools.xcframework.zip.sha1.txt)
+FUSE_CHECKSUM=$(cat $DIST_DIR/BTFuse.xcframework.zip.sha1.txt)
+TESTTOOLS_CHECKSUM=$(cat $DIST_DIR/BTFuseTestTools.xcframework.zip.sha1.txt)
 
-btfusePodSpecTemplate=$(<BTFuse.podspec.template)
-btfuseTestToolsPodSpecTemplate=$(<BTFuseTestTools.podspec.template)
+btfuseSPMTemplate=$(<Package.template.swift)
+# btfuseTestToolsPodSpecTemplate=$(<BTFuseTestTools.podspec.template)
 
-btfusePodSpecTemplate=${btfusePodSpecTemplate//\$VERSION\$/$VERSION}
-btfusePodSpecTemplate=${btfusePodSpecTemplate//\$CHECKSUM\$/$FUSE_CHECKSUM}
-btfuseTestToolsPodSpecTemplate=${btfuseTestToolsPodSpecTemplate//\$VERSION\$/$VERSION}
-btfuseTestToolsPodSpecTemplate=${btfuseTestToolsPodSpecTemplate//\$CHECKSUM\$/$TESTTOOLS_CHECKSUM}
+btfuseSPMTemplate=${btfuseSPMTemplate//\$VERSION\$/$VERSION}
+btfuseSPMTemplate=${btfuseSPMTemplate//\$CORE_CHECKSUM\$/$FUSE_CHECKSUM}
+btfuseSPMTemplate=${btfuseSPMTemplate//\$TESTTOOLS_CHECKSUM\$/$TESTTOOLS_CHECKSUM}
+# btfuseTestToolsPodSpecTemplate=${btfuseTestToolsPodSpecTemplate//\$VERSION\$/$VERSION}
+# btfuseTestToolsPodSpecTemplate=${btfuseTestToolsPodSpecTemplate//\$CHECKSUM\$/$TESTTOOLS_CHECKSUM}
 
 # Write the final result to BTFuse.podspec
-echo "$btfusePodSpecTemplate" > BTFuse.podspec
-echo "$btfuseTestToolsPodSpecTemplate" > BTFuseTestTools.podspec
+echo "$btfuseSPMTemplate" > $DIST_DIR/Package.swift
+# echo "$btfuseTestToolsPodSpecTemplate" > BTFuseTestTools.podspec

@@ -6,3 +6,4 @@
 /Pods
 /third_party
 !/third_party/README
+Package.swift
