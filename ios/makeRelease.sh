@@ -24,7 +24,7 @@ assertCleanRepo
 VERSION="$1"
 
 assertVersion $VERSION
-assetGitTagAvailable $VERSION
+assertGitTagAvailable $VERSION
 
 echo $VERSION > VERSION
 
