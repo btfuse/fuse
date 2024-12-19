@@ -118,21 +118,21 @@ spushd $DIST_DIR
     sha1_compute BTFuse.framework.dSYM.zip
     sha1_compute BTFuseTestTools.xcframework.zip
     sha1_compute BTFuseTestTools.framework.dSYM.zip
+    sha256_compute BTFuse.xcframework.zip
+    sha256_compute BTFuse.framework.dSYM.zip
+    sha256_compute BTFuseTestTools.xcframework.zip
+    sha256_compute BTFuseTestTools.framework.dSYM.zip
 spopd
 
 VERSION=$(cat ./VERSION)
-FUSE_CHECKSUM=$(cat $DIST_DIR/BTFuse.xcframework.zip.sha1.txt)
-TESTTOOLS_CHECKSUM=$(cat $DIST_DIR/BTFuseTestTools.xcframework.zip.sha1.txt)
+FUSE_CHECKSUM=$(cat $DIST_DIR/BTFuse.xcframework.zip.sha256.txt)
+TESTTOOLS_CHECKSUM=$(cat $DIST_DIR/BTFuseTestTools.xcframework.zip.sha256.txt)
 
 btfuseSPMTemplate=$(<Package.template.swift)
-# btfuseTestToolsPodSpecTemplate=$(<BTFuseTestTools.podspec.template)
 
 btfuseSPMTemplate=${btfuseSPMTemplate//\$VERSION\$/$VERSION}
 btfuseSPMTemplate=${btfuseSPMTemplate//\$CORE_CHECKSUM\$/$FUSE_CHECKSUM}
 btfuseSPMTemplate=${btfuseSPMTemplate//\$TESTTOOLS_CHECKSUM\$/$TESTTOOLS_CHECKSUM}
-# btfuseTestToolsPodSpecTemplate=${btfuseTestToolsPodSpecTemplate//\$VERSION\$/$VERSION}
-# btfuseTestToolsPodSpecTemplate=${btfuseTestToolsPodSpecTemplate//\$CHECKSUM\$/$TESTTOOLS_CHECKSUM}
 
 # Write the final result to BTFuse.podspec
 echo "$btfuseSPMTemplate" > $DIST_DIR/Package.swift
-# echo "$btfuseTestToolsPodSpecTemplate" > BTFuseTestTools.podspec

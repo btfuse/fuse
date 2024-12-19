@@ -49,12 +49,16 @@ DIST_DIR="dist/ios/core"
 gh release create ios/core/$VERSION \
     $DIST_DIR/BTFuse.xcframework.zip \
     $DIST_DIR/BTFuse.xcframework.zip.sha1.txt \
+    $DIST_DIR/BTFuse.xcframework.zip.sha256.txt \
     $DIST_DIR/BTFuse.framework.dSYM.zip \
     $DIST_DIR/BTFuse.framework.dSYM.zip.sha1.txt \
+    $DIST_DIR/BTFuse.framework.dSYM.zip.sha256.txt \
     $DIST_DIR/BTFuseTestTools.xcframework.zip \
     $DIST_DIR/BTFuseTestTools.xcframework.zip.sha1.txt \
+    $DIST_DIR/BTFuseTestTools.xcframework.zip.sha256.txt \
     $DIST_DIR/BTFuseTestTools.framework.dSYM.zip \
     $DIST_DIR/BTFuseTestTools.framework.dSYM.zip.sha1.txt \
+    $DIST_DIR/BTFuseTestTools.framework.dSYM.zip.sha256.txt \
     --verify-tag --generate-notes
 
 assertLastCall
