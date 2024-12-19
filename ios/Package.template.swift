@@ -35,10 +35,6 @@ let package = Package(
             name: "BTFuseTestTools",
             url: "https://github.com/btfuse/fuse/releases/tag/ios/core/$VERSION$/BTFuseTestTools.xcframework.zip",
             checksum: "$TESTTOOLS_CHECKSUM$"
-        ),
-        .target(
-            name: "BTFuseTestTools",
-            dependencies: ["BTFuse"]
         )
     ]
 )
