@@ -67,7 +67,7 @@ spushd ../../ios
     codesign -dvvvv "$iosBuild/BTFuseNativeView.framework"
     assertLastCall
 
-    cp -r $iosBuild/BTFuseNativeView.framework.dSYM ../dist/ios/
+    cp -r $iosBuild/BTFuseNativeView.framework.dSYM $DIST_DIR
 
     xcodebuild -create-xcframework \
         -framework $iosBuild/BTFuseNativeView.framework \
@@ -77,17 +77,19 @@ spushd ../../ios
     assertLastCall
 spopd
 
-spushd dist/ios
+spushd $DIST_DIR
     zip -r BTFuseNativeView.xcframework.zip BTFuseNativeView.xcframework > /dev/null
     zip -r BTFuseNativeView.framework.dSYM.zip BTFuseNativeView.framework.dSYM > /dev/null
     sha1_compute BTFuseNativeView.xcframework.zip
     sha1_compute BTFuseNativeView.framework.dSYM.zip
+    sha256_compute BTFuseNativeView.xcframework.zip
+    sha256_compute BTFuseNativeView.framework.dSYM.zip
 spopd
 
-CHECKSUM=$(cat ./dist/ios/BTFuseNativeView.xcframework.zip.sha1.txt)
+CHECKSUM=$(cat $DIST_DIR/BTFuseNativeView.xcframework.zip.sha256.txt)
 
-podspec=$(<BTFuseNativeView.podspec.template)
-podspec=${podspec//\$VERSION\$/$VERSION}
-podspec=${podspec//\$CHECKSUM\$/$CHECKSUM}
+spm=$(<./ios/Package.template.swift)
+spm=${spm//\$VERSION\$/$VERSION}
+spm=${spm//\$CHECKSUM\$/$CHECKSUM}
 
-echo "$podspec" > BTFuseNativeView.podspec
+echo "$spm" > $DIST_DIR/Package.swift
