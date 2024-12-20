@@ -36,23 +36,47 @@ BUILD_NO=$(< "./ios/BUILD")
 BUILD_NO=$((BUILD_NO + 1))
 echo $BUILD_NO > ./ios/BUILD
 
+DIST_DIR="./dist/ios"
+
 ./buildIOS.sh
 ./test.sh
 
 git add ios/VERSION ios/BUILD
-git commit -m "iOS Release: $VERSION"
+git commit -m "iOS Native View Release: $VERSION"
 git push
-git tag -a ios/$VERSION -m "iOS Release: $VERSION"
+git tag -a ios/native-view/$VERSION -m "iOS Native View Release: $VERSION"
 git push --tags
 
-gh release create ios/$VERSION \
-    ./dist/ios/BTFuseNativeView.xcframework.zip \
-    ./dist/ios/BTFuseNativeView.xcframework.zip.sha1.txt \
-    ./dist/ios/BTFuseNativeView.framework.dSYM.zip \
-    ./dist/ios/BTFuseNativeView.framework.dSYM.zip.sha1.txt \
+gh release create ios/native-view/$VERSION \
+    $DIST_DIR/BTFuseNativeView.xcframework.zip \
+    $DIST_DIR/BTFuseNativeView.xcframework.zip.sha1.txt \
+    $DIST_DIR/BTFuseNativeView.xcframework.zip.sha256.txt \
+    $DIST_DIR/BTFuseNativeView.framework.dSYM.zip \
+    $DIST_DIR/BTFuseNativeView.framework.dSYM.zip.sha1.txt \
+    $DIST_DIR/BTFuseNativeView.framework.dSYM.zip.sha256.txt \
     --verify-tag --generate-notes
 
-pod spec lint BTFuseNativeView.podspec
-assertLastCall
+spushd $DIST_DIR
+    rm -rf btfuse-native-view-spm
+    
+    git clone --depth 1 git@github.com:btfuse/btfuse-native-view-spm.git
+    assertLastCall
 
-pod repo push breautek BTFuseNativeView.podspec
+    cp ./Package.swift btfuse-native-view-spm/Package.swift
+    assertLastCall
+
+    spushd btfuse-native-view-spm
+        git add Package.swift
+        git commit -m "Release: $VERSION"
+        assertLastCall
+
+        git tag -a $VERSION -m "Release: $VERSION"
+        assertLastCall
+
+        git push
+        assertLastCall
+
+        git push --tags
+        assertLastCall
+    spopd
+spopd
