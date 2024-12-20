@@ -29,7 +29,7 @@ let package = Package(
             url: "https://github.com/btfuse/btfuse-core-spm.git",
             branch: "main" // TODO: Pin via "from: <version>"
         )
-    ]
+    ],
     targets: [
         .binaryTarget(
             name: "BTFuseNativeView",
