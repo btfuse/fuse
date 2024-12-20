@@ -41,7 +41,7 @@ DIST_DIR="./dist/ios"
 ./buildIOS.sh
 ./test.sh
 
-git add ios/VERSION ios/BUILD
+git add ios/VERSION ios/BUILD ios/BTFuseNativeView/VERSION.xcconfig
 git commit -m "iOS Native View Release: $VERSION"
 git push
 git tag -a ios/native-view/$VERSION -m "iOS Native View Release: $VERSION"
