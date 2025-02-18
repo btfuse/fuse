@@ -1,0 +1,26 @@
+{
+  "name": "fuse-cordova",
+  "private": true,
+  "version": "0.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "norman@breautek.com",
+  "license": "Apache-2.0",
+  "description": "",
+  "dependencies": {
+    "elementtree": "^0.1.7"
+  },
+  "devDependencies": {
+    "@types/elementtree": "^0.1.5",
+    "cordova": "^12.0.0",
+    "source-map-loader": "^5.0.0",
+    "ts-loader": "^9.5.2",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
+  }
+}

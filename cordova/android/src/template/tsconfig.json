@@ -1,0 +1,11 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "declaration": false
+    },
+    "include": [
+        "./**/*.ts"
+    ],
+    "exclude": ["./lib", "./spec"]
+}

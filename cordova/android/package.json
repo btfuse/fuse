@@ -1,0 +1,26 @@
+{
+  "name": "@btfuse/cordova-android",
+  "version": "0.0.0",
+  "description": "Fuse Android platform for the Cordova Runtime",
+  "main": "lib/api.js",
+  "scripts": {
+    "build": "tsc && webpack --config webpack.config.js --mode development",
+    "build:release": "tsc && webpack --config webpack.config.js --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "norman@breautek.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/ejs": "3.1.5",
+    "@types/elementtree": "0.1.5",
+    "@types/node": "22.10.7",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.3"
+  },
+  "dependencies": {
+    "@btfuse/core": "0.8.0",
+    "ejs": "3.1.10",
+    "elementtree": "0.1.7",
+    "extract-zip": "2.0.1"
+  }
+}
