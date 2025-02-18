@@ -40,5 +40,19 @@ FOUNDATION_EXPORT const unsigned char BTFuseVersionString[];
 #import <BTFuse/BTFuseContextDelegate.h>
 #import <BTFuse/BTFuseStreamReader.h>
 
+// Utilities
+#import <BTFuse/BTFuseProgressProtocol.h>
+#import <BTFuse/BTFuseProgressContextProtocol.h>
+#import <BTFuse/BTFuseProgressListenerProtocol.h>
+#import <BTFuse/BTFuseProgressContextListenerProtocol.h>
+#import <BTFuse/BTFuseProgressResolutionStrategyProtocol.h>
+#import <BTFuse/BTFuseProgress.h>
+#import <BTFuse/BTFuseProgressContext.h>
+#import <BTFuse/BTFuseWeightedResolutionStrategy.h>
+#import <BTFuse/BTFuseNormalizedResolutionStrategy.h>
+
 // Core Plugins
 #import <BTFuse/BTFuseRuntime.h>
+
+// Views
+#import <BTFuse/BTFuseSplashLoaderView.h>

@@ -1,6 +1,6 @@
 
 /*
-Copyright 2023 Breautek
+Copyright 2025 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,22 +14,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
- 
-#ifndef BTFuseContextDelegate_h
-#define BTFuseContextDelegate_h
 
-#import <UIKit/UIKit.h>
-#import <WebKit/WebKit.h>
+#import <Foundation/Foundation.h>
 
-@protocol BTFuseContextDelegate
+#import <BTFuse/BTFuseNormalizedResolutionStrategy.h>
 
-- (void) dispatchToWebview:(nonnull NSString*) callbackID withData:(nonnull NSString*) data;
-- (void) dispatchToWebview:(nonnull NSString*) callbackID;
-- (nonnull WKWebView*) getWebview;
-- (nonnull UIView*) getLayout;
-- (void) onFuseLoad;
+@implementation BTFuseNormalizedResolutionStrategy
+
+- (float) execute:(NSArray<id<BTFuseProgressProtocol>>* _Nonnull) progresses {
+
+    float value = 0.0f;
+    float max = (float) [progresses count];
+    
+    for (id<BTFuseProgressProtocol> progress in progresses) {
+        value += (float) [progress getValue] / (float) [progress getMax];
+    }
+        
+    return value / max;
+}
 
 @end
-
-
-#endif

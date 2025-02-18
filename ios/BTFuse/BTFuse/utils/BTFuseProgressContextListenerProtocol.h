@@ -1,6 +1,6 @@
 
 /*
-Copyright 2023 Breautek
+Copyright 2025 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,22 +14,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
- 
-#ifndef BTFuseContextDelegate_h
-#define BTFuseContextDelegate_h
 
-#import <UIKit/UIKit.h>
-#import <WebKit/WebKit.h>
+#ifndef BTFuseProgressContextListenerProtocol_h
+#define BTFuseProgressContextListenerProtocol_h
 
-@protocol BTFuseContextDelegate
+@protocol BTFuseProgressContextProtocol;
+@protocol BTFuseProgressContextListenerProtocol <NSObject>
 
-- (void) dispatchToWebview:(nonnull NSString*) callbackID withData:(nonnull NSString*) data;
-- (void) dispatchToWebview:(nonnull NSString*) callbackID;
-- (nonnull WKWebView*) getWebview;
-- (nonnull UIView*) getLayout;
-- (void) onFuseLoad;
+- (void) onProgressContextUpdate:(_Nonnull id<BTFuseProgressContextProtocol>) progress;
 
 @end
-
 
 #endif

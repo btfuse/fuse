@@ -24,6 +24,7 @@ limitations under the License.
 #import "BTFuseAPIServer.h"
 #import <BTFuse/BTFuseLogger.h>
 #import <BTFuse/BTFuseLoggerLevel.h>
+#import <BTFuse/BTFuseSplashLoaderView.h>
 
 @implementation BTFuseViewController {
     BTFuseContext* $context;
@@ -31,6 +32,7 @@ limitations under the License.
     BTFuseWebviewUIDelegation* $webviewUIDelegation;
     BTFuseWebviewNavigationDelegate* $webviewNavigationDelegation;
     id<BTFuseViewControllerDelegate> $delegate;
+    BTFuseSplashLoaderView* $splashLoaderView;
 }
 
 - (instancetype) init:(id<BTFuseViewControllerDelegate>) delegate {
@@ -63,8 +65,16 @@ limitations under the License.
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+    $splashLoaderView = [[BTFuseSplashLoaderView alloc] initWithFrame: self.view.frame];
+    [self.view addSubview: $splashLoaderView];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         self->$context = [[BTFuseContext alloc] init: self];
+        
+        BTFuseProgressContext* progress = [self->$context getProgressContext];
+        [progress addListener: self->$splashLoaderView];
+        
+        [self->$context initAPIServer];
         
         [self->$delegate onContextReady];
         
@@ -77,6 +87,7 @@ limitations under the License.
             [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPISecret"];
             [configuration.userContentController addScriptMessageHandler: self name:@"log"];
             [configuration.userContentController addScriptMessageHandler: self name:@"setLogCallback"];
+            [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld:WKContentWorld.pageWorld name:@"onWebviewReady"];
 
             NSString* fuseBuildTag = @"Release";
             #ifdef DEBUG
@@ -108,7 +119,7 @@ limitations under the License.
             [self->$delegate onWebviewReady];
             
             // Add the WKWebView as a subview
-            [self.view addSubview: self->$webview];
+            [self.view insertSubview: self->$webview atIndex:0];
             
             [self->$delegate onBeforeWebviewLoad];
             NSURL* url = [NSURL URLWithString: [NSString stringWithFormat: @"btfuse://%@/assets/index.html", [self->$context getHost]]];
@@ -177,8 +188,21 @@ limitations under the License.
         replyHandler(secret, nil);
         return;
     }
+    else if ([message.name isEqualToString:@"onWebviewReady"]) {
+        [self->$context onWebviewReady];
+        replyHandler(nil, nil);
+        return;
+    }
     
     replyHandler(nil, @"Unhandled Script");
+}
+
+- (void) onFuseLoad {
+    [UIView animateWithDuration:0.3 animations:^{
+        self->$splashLoaderView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        self->$splashLoaderView.hidden = YES;  // Hide the view after fade-out
+    }];
 }
 
 @end

@@ -23,13 +23,15 @@ limitations under the License.
 #import <WebKit/WebKit.h>
 #import <BTFuse/BTFuseAPIResponseFactory.h>
 #import <BTFuse/BTFuseContextDelegate.h>
+#import <BTFuse/BTFuseProgressContextListenerProtocol.h>
+#import <BTFuse/BTFuseProgressContext.h>
 
 @class BTFuseViewController;
 @class BTFusePlugin;
 @class BTFuseAPIRouter;
 @class BTFuseLogger;
 
-@interface BTFuseContext: NSObject
+@interface BTFuseContext: NSObject <BTFuseProgressContextListenerProtocol>
 
 - (nonnull instancetype) init NS_UNAVAILABLE;
 //- (nonnull instancetype) init NS_DESIGNATED_INITIALIZER;
@@ -51,6 +53,10 @@ limitations under the License.
 - (nonnull BTFuseLogger*) getLogger;
 - (nonnull id<WKNavigationDelegate>) createWebviewNavigationDelegate;
 - (nonnull NSString*) getHost;
+- (nonnull BTFuseProgressContext*) getProgressContext;
+
+- (void) initAPIServer;
+- (void) onWebviewReady;
 
 @end
 

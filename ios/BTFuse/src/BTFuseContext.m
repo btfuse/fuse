@@ -28,6 +28,11 @@ limitations under the License.
 #import <BTFuse/BTFuse.h>
 #import "BTFuseWebviewNavigationDelegate.h"
 
+NSString* BTFUSECONTEXT_LOAD_CORE = @"FuseContext_Core";
+NSString* BTFUSECONTEXT_LOAD_API_SERVER = @"FuseContext_API_Server";
+NSString* BTFUSECONTEXT_LOAD_CORE_PLUGINS = @"FuseContext_Core_Plugins";
+NSString* BTFUSECONTEXT_LOAD_WEBVIEW = @"FuseContext_Webview";
+
 /**
     BTFuseContext is the main context file representing the runtime environment.
  */
@@ -38,10 +43,25 @@ limitations under the License.
     BTFuseLogger* $logger;
     BTFuseAPIServer* $apiServer;
     id<BTFuseContextDelegate> $contextDelegate;
+    BTFuseProgressContext* $loadProgress;
 }
 
 - (instancetype) init:(id<BTFuseContextDelegate>) delegate {
     self = [super init];
+    
+    $loadProgress = [[BTFuseProgressContext alloc] init];
+    
+    [$loadProgress createProgress: BTFUSECONTEXT_LOAD_CORE];
+    [$loadProgress createProgress: BTFUSECONTEXT_LOAD_API_SERVER];
+    [$loadProgress createProgress: BTFUSECONTEXT_LOAD_CORE_PLUGINS];
+    [$loadProgress createProgress: BTFUSECONTEXT_LOAD_WEBVIEW];
+    
+    [$loadProgress set:BTFUSECONTEXT_LOAD_CORE          max: 1];
+    [$loadProgress set:BTFUSECONTEXT_LOAD_API_SERVER    max: 1];
+    [$loadProgress set:BTFUSECONTEXT_LOAD_CORE_PLUGINS  max: 1];
+    [$loadProgress set:BTFUSECONTEXT_LOAD_WEBVIEW       max: 1];
+    
+    [$loadProgress addListener: self];
     
     $contextDelegate = delegate;
     $logger = [[BTFuseLogger alloc] init: self];
@@ -51,15 +71,31 @@ limitations under the License.
     NSString* build = [bundle objectForInfoDictionaryKey: @"CFBundleVersion"];
     [$logger info:@"Fuse %@ (%@)", version, build];
     
-    $apiServer = [[BTFuseAPIServer alloc] init: self];
-    
     $responseFactory = [[BTFuseAPIResponseFactory alloc] init];
     $apiRouter = [[BTFuseAPIRouter alloc] init: self];
     $pluginMap = [[NSMutableDictionary alloc] init];
     
+    [$loadProgress update: BTFUSECONTEXT_LOAD_CORE value: 1];
+    
     [self registerPlugin:[[BTFuseRuntime alloc] init: self]];
+    [$loadProgress update: BTFUSECONTEXT_LOAD_CORE_PLUGINS value: 1];
     
     return self;
+}
+
+- (void) initAPIServer {
+    if ($apiServer != nil) return;
+    
+    $apiServer = [[BTFuseAPIServer alloc] init: self];
+    [$loadProgress update: BTFUSECONTEXT_LOAD_API_SERVER value: 1];
+}
+
+- (void) onProgressContextUpdate:(id<BTFuseProgressContextProtocol>) progress {
+    if ([progress isComplete]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self->$contextDelegate onFuseLoad];
+        });
+    }
 }
 
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data {
@@ -126,6 +162,14 @@ limitations under the License.
 
 - (nonnull NSString*) getHost {
     return @"localhost";
+}
+
+- (nonnull BTFuseProgressContext*) getProgressContext {
+    return $loadProgress;
+}
+
+- (void) onWebviewReady {
+    [$loadProgress update: BTFUSECONTEXT_LOAD_WEBVIEW value: 1];
 }
 
 @end
