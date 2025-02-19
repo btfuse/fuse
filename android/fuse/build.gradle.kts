@@ -106,6 +106,12 @@ android {
                     apiLevel = 34
                     systemImageSource = "aosp-atd"
                 }
+
+                register("api35", ManagedVirtualDevice::class) {
+                    device = "Nexus One"
+                    apiLevel = 35
+                    systemImageSource = "aosp-atd"
+                }
             }
         }
     }
