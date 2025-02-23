@@ -24,6 +24,8 @@ import android.webkit.WebView;
 
 import com.breautek.fuse.views.SplashLoaderView;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FuseFragment#newInstance} factory method to
@@ -69,11 +71,12 @@ public class FuseFragment extends Fragment {
 
     @Nullable
     public WebView getWebview() {
-        return getView().findViewById(R.id.webview);
+        return requireView().findViewById(R.id.webview);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     protected void _onContextReady() {
-        WebView webview = this.getView().findViewById(R.id.webview);
+        WebView webview = this.requireView().findViewById(R.id.webview);
         WebSettings settings = webview.getSettings();
         settings.setAllowFileAccess(false);
         settings.setAllowContentAccess(false);
@@ -180,14 +183,14 @@ public class FuseFragment extends Fragment {
     }
 
     void onFuseLoad() {
-        SplashLoaderView loaderView = getView().findViewById(R.id.splash_loader);
-        WebView wb = getView().findViewById(R.id.webview);
+        SplashLoaderView loaderView = requireView().findViewById(R.id.splash_loader);
+        WebView wb = requireView().findViewById(R.id.webview);
 
         wb.setVisibility(View.VISIBLE);
         loaderView.setVisibility(View.GONE);
     }
 
     public ViewGroup getLayout() {
-        return getView().findViewById(R.id.layout_container);
+        return requireView().findViewById(R.id.layout_container);
     }
 }
