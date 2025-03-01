@@ -13,4 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rsync -avz --delete ./site/* fusedocs:~/
+rsync -avz --delete ./site/* fuse:~/docs
