@@ -69,7 +69,7 @@ export class FuseGoogleMapOptionsBuilder {
      * 
      * This is required and building without this being set will raise an error.
      * 
-     * @param node The containing node for the map.
+     * @param node - The containing node for the map.
      * @returns 
      */
     public setContainer(node: HTMLElement): FuseGoogleMapOptionsBuilder {
@@ -83,7 +83,7 @@ export class FuseGoogleMapOptionsBuilder {
      * 
      * This option is mutually exclusive to setOverlayFile. If both is set, an error will be raised.
      * 
-     * @param html HTML string
+     * @param html - HTML string
      * @returns 
      */
     public setOverlayHTML(html: string): FuseGoogleMapOptionsBuilder {
@@ -97,7 +97,7 @@ export class FuseGoogleMapOptionsBuilder {
      * 
      * This option is mutually exclusive to setOverlayHTML. If both is set, an error will be raised.
      * 
-     * @param file The path to an HTML file
+     * @param file - The path to an HTML file
      * @returns 
      */
     public setOverlayFile(file: string): FuseGoogleMapOptionsBuilder {

@@ -8,25 +8,33 @@
     "doc": "docs"
   },
   "scripts": {
+    "lint:js:core": "cd js && npm run lint",
+    "lint:js:filesystem": "cd plugins/filesystem && npm run lint",
+    "lint:js:nativeview": "cd plugins/native-view && npm run lint",
+    "lint:js:googlemaps": "cd plugins/google-maps && npm run lint",
+    "lint": "npm run lint:js:core && npm run lint:js:filesystem && npm run lint:js:nativeview && npm run lint:js:googlemaps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "norman@breautek.com",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@eslint/js": "^9.22.0",
     "@types/jest": "^29.5.14",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "copy-webpack-plugin": "^12.0.2",
-    "eslint": "^8.57.1",
-    "eslint-plugin-tsdoc": "^0.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "copy-webpack-plugin": "^13.0.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-tsdoc": "^0.4.0",
+    "globals": "^16.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "source-map-loader": "^5.0.0",
-    "ts-jest": "^29.2.5",
-    "ts-loader": "^9.5.1",
+    "ts-jest": "^29.2.6",
+    "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
-    "typescript": "5.5",
-    "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4"
+    "typescript": "5.7",
+    "typescript-eslint": "^8.26.1",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
   }
 }

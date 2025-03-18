@@ -5,6 +5,7 @@
   "main": "lib/api.js",
   "scripts": {
     "build": "tsc",
+    "lint": "npx eslint ./src",
     "build:tests:ios": "cd testapp && npm run build:ios",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -76,8 +76,8 @@ export class FuseNativeViewPlugin extends FusePlugin {
      * 
      * TBD: Notes on event propagation.
      * 
-     * @param node The node to track
-     * @returns 
+     * @param node - The node to track
+     * @returns Promise<FuseNativeViewNode>
      */
     public async create(node: HTMLElement, options?: ICreateNativeViewOptions): Promise<FuseNativeViewNode> {
         let params: ICreateNativeViewAPIParams = {

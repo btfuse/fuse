@@ -21,7 +21,7 @@
     "scripts": {
         "build": "npm run lint && tsc",
         "unit:js": "jest",
-        "lint": "eslint .",
+        "lint": "npx eslint ./src",
         "test": "npm run lint && npm run unit:js",
         "e2e:ios": "echo \"Error: no iOS E2E test specified\" && exit 0",
         "e2e:android": "echo \"Error: no android E2E test specified\" && exit 0",

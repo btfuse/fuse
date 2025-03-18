@@ -5,6 +5,7 @@
   "main": "lib/api.js",
   "scripts": {
     "build": "tsc",
+    "lint": "npx eslint ./src",
     "build:tests:android": "cd testapp && webpack --config ./webpack.android.js --mode development",
     "build:tests:ios": "cd testapp && webpack --config ./webpack.ios.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"

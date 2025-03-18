@@ -4,6 +4,7 @@
   "description": "Filesystem plugin for the Fuse framework",
   "main": "lib/api.js",
   "scripts": {
+    "lint": "npx eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
