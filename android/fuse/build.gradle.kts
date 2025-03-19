@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ManagedVirtualDevice
+import com.android.build.api.dsl.Packaging
 
 /*
 Copyright 2023 Breautek 
@@ -25,7 +26,7 @@ android {
     namespace = "com.breautek.fuse"
 
     compileSdk = 35
-    buildToolsVersion = "34.0.0"
+    buildToolsVersion = "36.0.0"
 
     buildFeatures {
         buildConfig = true
@@ -69,8 +70,12 @@ android {
     testOptions {
         targetSdk = 35
 
+        packaging {
+            resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+        }
+
         managedDevices {
-            devices {
+            allDevices {
                 register("api29", ManagedVirtualDevice::class) {
                     device = "Pixel 7"
                     apiLevel = 29
@@ -120,10 +125,10 @@ android {
 dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.webkit:webkit:1.12.1")
+    implementation("androidx.webkit:webkit:1.13.0")
     implementation("androidx.fragment:fragment:1.8.6")
-    implementation("org.bouncycastle:bcprov-jdk18on:1.77")
-    implementation("org.bouncycastle:bcpkix-jdk18on:1.77")
+    implementation("org.bouncycastle:bcprov-jdk18on:1.79")
+    implementation("org.bouncycastle:bcpkix-jdk18on:1.79")
 
     testImplementation("junit:junit:4.13.2")
 

@@ -6,3 +6,5 @@ fuseTestTools/build
 .idea/deploymentTargetSelector.xml
 .idea/deviceManager.xml
 .idea/androidTestResultsUserPreferences.xml
+/build
+

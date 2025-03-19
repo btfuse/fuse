@@ -38,7 +38,7 @@ android {
         targetSdk = 35
 
         managedDevices {
-            devices {
+            allDevices {
                 register("api29", ManagedVirtualDevice::class) {
                     device = "Pixel 7"
                     apiLevel = 29

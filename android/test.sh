@@ -35,8 +35,6 @@ if [ "$target" == "" ]; then
     ./gradlew :fuse:test
     assertLastCall
 
-    ./gradlew :fuse:api28DebugAndroidTest
-    assertLastCall
     ./gradlew :fuse:api29DebugAndroidTest
     assertLastCall
     ./gradlew :fuse:api30DebugAndroidTest
