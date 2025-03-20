@@ -23,7 +23,7 @@ VERSION="$1"
 
 assertVersion $VERSION
 
-assetGitTagAvailable $VERSION
+assertGitTagAvailable $VERSION
 
 ./gradlew :fuse:test
 assertLastCall
