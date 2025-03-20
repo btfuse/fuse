@@ -16,8 +16,6 @@
 
 source ../build-tools/assertions.sh
 
-# TODO Remove mac requirement
-assertMac "Mac is required for publishing"
 assertGitRepo
 assertCleanRepo
 
@@ -36,12 +34,12 @@ echo $VERSION > VERSION
 assertLastCall
 
 git add VERSION
-git commit -m "Android Release: $VERSION"
+git commit -m "Fuse Android Core Release: $VERSION"
 git push
-git tag -a fuse-android/core/$VERSION -m "Android Release: $VERSION"
+git tag -a fuse-android/core/$VERSION -m "Fuse Android Core Release: $VERSION"
 git push --tags
 
-./gradlew publishReleasePublicationToMavenRepository
+./gradlew :fuse:publishReleasePublicationToMavenRepository
 
 gh release create android/core/$VERSION \
     ./fuse/build/outputs/aar/fuse-debug.aar \

@@ -39,9 +39,9 @@ spopd
 
 git add VERSION BTFuse/configs/version.xcconfig
 git add VERSION
-git commit -m "iOS Release: $VERSION"
+git commit -m "Fuse iOS Core Release: $VERSION"
 git push
-git tag -a ios/core/$VERSION -m "iOS Release: $VERSION"
+git tag -a ios/core/$VERSION -m "Fuse iOS Core Release: $VERSION"
 git push --tags
 
 DIST_DIR="dist/ios/core"
