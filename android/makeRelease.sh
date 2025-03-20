@@ -36,7 +36,7 @@ assertLastCall
 git add VERSION
 git commit -m "Fuse Android Core Release: $VERSION"
 git push
-git tag -a fuse-android/core/$VERSION -m "Fuse Android Core Release: $VERSION"
+git tag -a android/core/$VERSION -m "Fuse Android Core Release: $VERSION"
 git push --tags
 
 ./gradlew :fuse:publishReleasePublicationToMavenRepository
