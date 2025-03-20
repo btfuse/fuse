@@ -55,7 +55,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.breautek.fuse"
             artifactId = "test-tools"
-            version = "0.0.2"
+            version = "0.0.3"
 
             afterEvaluate {
                 from(components["release"])
@@ -65,7 +65,7 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://nexus.breautek.com/repository/breautek")
+            url = uri("https://nexus.breautek.com/repository/android")
             credentials {
                 username = findProperty("breautek.repository.user").toString()
                 password = findProperty("breautek.repository.password").toString()
