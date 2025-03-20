@@ -155,7 +155,7 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://nexus.breautek.com/repository/breautek")
+            url = uri("https://nexus.breautek.com/repository/android")
             credentials {
                 username = findProperty("breautek.repository.user").toString()
                 password = findProperty("breautek.repository.password").toString()
