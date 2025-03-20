@@ -37,6 +37,8 @@ spopd
 ./build.sh
 ./test.sh
 
+LAST_TAG=$(git tag --list "ios/core/*" --sort=-v:refname | head -n 1)
+
 git add VERSION BTFuse/configs/version.xcconfig
 git add VERSION
 git commit -m "Fuse iOS Core Release: $VERSION"
@@ -59,7 +61,8 @@ gh release create ios/core/$VERSION \
     $DIST_DIR/BTFuseTestTools.framework.dSYM.zip \
     $DIST_DIR/BTFuseTestTools.framework.dSYM.zip.sha1.txt \
     $DIST_DIR/BTFuseTestTools.framework.dSYM.zip.sha256.txt \
-    --verify-tag --generate-notes
+    --verify-tag --generate-notes \
+    --notes-start-tag "$LAST_TAG"
 
 assertLastCall
 

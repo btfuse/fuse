@@ -33,6 +33,8 @@ echo $VERSION > VERSION
 ./gradlew :fuse:build
 assertLastCall
 
+LAST_TAG=$(git tag --list "android/core/*" --sort=-v:refname | head -n 1)
+
 git add VERSION
 git commit -m "Fuse Android Core Release: $VERSION"
 git push
@@ -44,4 +46,5 @@ git push --tags
 gh release create android/core/$VERSION \
     ./fuse/build/outputs/aar/fuse-debug.aar \
     ./fuse/build/outputs/aar/fuse-release.aar \
-    --verify-tag --generate-notes
+    --verify-tag --generate-notes \
+    --notes-start-tag "$LAST_TAG"
