@@ -17,14 +17,13 @@
 source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
 
-assertMac "Mac is required for publishing"
 assertGitRepo
 assertCleanRepo
 
 VERSION="$1"
 
 assertVersion $VERSION
-assertGitTagAvailable "android/$VERSION"
+assertGitTagAvailable "android/filesystem/$VERSION"
 
 echo $VERSION > android/VERSION
 BUILD_NO=$(< "./android/BUILD")
@@ -38,18 +37,21 @@ spushd android
     ./gradlew :filesystem:cAT
 spopd
 
+LAST_TAG=$(git tag --list "android/filesystem/*" --sort=-v:refname | head -n 1)
+
 git add android/VERSION android/BUILD
-git commit -m "Android Release: $VERSION"
+git commit -m "Fuse Filesystem Android Release: $VERSION"
 git push
-git tag -a android/$VERSION -m "Android Release: $VERSION"
+git tag -a android/filesystem/$VERSION -m "Fuse Filesystem Android Release: $VERSION"
 git push --tags
 
-gh release create android/$VERSION \
+gh release create android/filesystem/$VERSION \
     ./dist/android/filesystem-debug.aar \
     ./dist/android/filesystem-debug.aar.sha1.txt \
     ./dist/android/filesystem-release.aar \
     ./dist/android/filesystem-release.aar.sha1.txt \
-    --verify-tag --generate-notes
+    --verify-tag --generate-notes \
+    --notes-start-tag "$LAST_TAG"
 
 spushd android
     ./gradlew :filesystem:publishReleasePublicationToMavenRepository
