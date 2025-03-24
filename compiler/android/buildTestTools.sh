@@ -1,4 +1,4 @@
-# Copyright 2025 Breautek 
+# Copyright 2023-2025 Breautek 
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,39 +14,6 @@
 
 source build-tools/DirectoryTools.sh
 
-PLATFORM_ANDROID="android"
-PLATFORM_IOS="ios"
-
-MODULE_CORE="core"
-MODULE_TEST_TOOLS="testtools"
-MODULE_FILESYSTEM="filesystem"
-MODULE_NATIVE_VIEW="nativeview"
-MODULE_GOOGLE_MAPS="googlemaps"
-
-SUPPORTED_PLATFORMS=(
-    "$PLATFORM_ANDROID"
-    "$PLATFORM_IOS"
-)
-
-SUPPORTED_MODULES=(
-    "$MODULE_CORE"
-    "$MODULE_TEST_TOOLS"
-    "$MODULE_FILESYSTEM"
-    "$MODULE_NATIVE_VIEW"
-    "$MODULE_GOOGLE_MAPS"
-)
-
-SUPPORTED_ANDROID_VERSIONS=(
-    29
-    30
-    31
-    32
-    33
-    34
-    35
-)
-
 spushd android
-    ANDROID_PROJECT_DIR=`pwd`
-    GRADLE=`pwd`/gradlew
+    ./gradlew :fuseTestTools:build
 spopd

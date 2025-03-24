@@ -19,6 +19,7 @@ source build-tools/assertions.sh
 
 platform="$1"
 module="$2"
+sdkVersion="$3"
 
 #region Input Validations
 
@@ -62,18 +63,18 @@ fi
 
 case "$module" in
     $MODULE_CORE)
-        source compiler/$platform/buildCore.sh
+        source compiler/$platform/testCore.sh
     ;;
     $MODULE_TEST_TOOLS)
-        source compiler/$platform/buildTestTools.sh
+        source compiler/$platform/testTestTools.sh
     ;;
     $MODULE_FILESYSTEM)
-        source compiler/$platform/buildFilesystem.sh
+        source compiler/$platform/testFilesystem.sh
     ;;
     $MODULE_NATIVE_VIEW)
-        source compiler/$platform/buildNativeView.sh
+        source compiler/$platform/testNativeView.sh
     ;;
     $MODULE_GOOGLE_MAPS)
-        source compiler/$platform/buildGoogleMaps.sh
+        source compiler/$platform/testGoogleMaps.sh
     ;;
 esac
