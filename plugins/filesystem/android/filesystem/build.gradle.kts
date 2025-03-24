@@ -37,6 +37,10 @@ android {
     testOptions {
         targetSdk = 35
 
+        packaging {
+            resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+        }
+
         managedDevices {
             allDevices {
                 register("api29", ManagedVirtualDevice::class) {
@@ -72,6 +76,12 @@ android {
                 register("api34", ManagedVirtualDevice::class) {
                     device = "Nexus One"
                     apiLevel = 34
+                    systemImageSource = "aosp-atd"
+                }
+
+                register("api35", ManagedVirtualDevice::class) {
+                    device = "Nexus One"
+                    apiLevel = 35
                     systemImageSource = "aosp-atd"
                 }
             }

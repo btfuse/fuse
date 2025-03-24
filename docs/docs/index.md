@@ -42,7 +42,7 @@ Supported Platforms:
 
 |Platform|Version|
 |---|---|
-|Android|API 29+|
+|Android|API 30+|
 |iOS|15+|
 |JS|ES8/ES2017|
 
