@@ -61,7 +61,7 @@ jobs:
           google_maps_api_key: ${{ secrets.GOOGLE_MAPS_API_KEY }}
 
       - name: Build with Gradle
-        run: ./bulid.sh android nativeview
+        run: ./build.sh android nativeview
 
   build-google-maps:
     runs-on: ubuntu-24.04
