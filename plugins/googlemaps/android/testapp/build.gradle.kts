@@ -5,7 +5,23 @@ plugins {
 
 android {
     namespace = "com.breautek.fuse.googlemaps.testapp"
-    compileSdk = 35
+    compileSdk = 36
+
+    packaging {
+        // https://issuetracker.google.com/issues/379732901?pli=1
+        resources.excludes.addAll(
+            listOf(
+                "META-INF/versions/**",
+                "META-INF/AL2.0",
+                "META-INF/LGPL2.1",
+                "META-INF/DEPENDENCIES",
+                "META-INF/NOTICE",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE.txt",
+            )
+        )
+    }
 
     defaultConfig {
         applicationId = "com.breautek.fuse.googlemaps.testapp"

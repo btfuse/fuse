@@ -25,7 +25,7 @@ plugins {
 android {
     namespace = "com.breautek.fuse"
 
-    compileSdk = 35
+    compileSdk = 36
     buildToolsVersion = "36.0.0"
 
     buildFeatures {
@@ -68,10 +68,22 @@ android {
     }
 
     testOptions {
-        targetSdk = 35
+        targetSdk = 36
 
         packaging {
-            resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+            // https://issuetracker.google.com/issues/379732901?pli=1
+            resources.excludes.addAll(
+                listOf(
+                    "META-INF/versions/**",
+                    "META-INF/AL2.0",
+                    "META-INF/LGPL2.1",
+                    "META-INF/DEPENDENCIES",
+                    "META-INF/NOTICE",
+                    "META-INF/LICENSE",
+                    "META-INF/LICENSE.txt",
+                    "META-INF/NOTICE.txt",
+                )
+            )
         }
 
         managedDevices {
@@ -127,8 +139,8 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.webkit:webkit:1.13.0")
     implementation("androidx.fragment:fragment:1.8.6")
-    implementation("org.bouncycastle:bcprov-jdk18on:1.79")
-    implementation("org.bouncycastle:bcpkix-jdk18on:1.79")
+    implementation("org.bouncycastle:bcprov-jdk18on:1.80")
+    implementation("org.bouncycastle:bcpkix-jdk18on:1.80")
 
     testImplementation("junit:junit:4.13.2")
 

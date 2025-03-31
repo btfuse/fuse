@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.breautek.fuse.filesystem"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 29
@@ -35,10 +35,22 @@ android {
     }
 
     testOptions {
-        targetSdk = 35
+        targetSdk = 36
 
         packaging {
-            resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+            // https://issuetracker.google.com/issues/379732901?pli=1
+            resources.excludes.addAll(
+                listOf(
+                    "META-INF/versions/**",
+                    "META-INF/AL2.0",
+                    "META-INF/LGPL2.1",
+                    "META-INF/DEPENDENCIES",
+                    "META-INF/NOTICE",
+                    "META-INF/LICENSE",
+                    "META-INF/LICENSE.txt",
+                    "META-INF/NOTICE.txt",
+                )
+            )
         }
 
         managedDevices {
