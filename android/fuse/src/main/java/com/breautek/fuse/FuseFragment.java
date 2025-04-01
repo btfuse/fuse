@@ -33,25 +33,28 @@ public class FuseFragment extends Fragment {
     private FuseContext $fuseContext;
     private FuseContext.IReadyCallback $fuseCB;
     private boolean $isReady;
+    private Bundle $savedInstanceState;
 
     public FuseFragment() {
         $isReady = false;
+        $savedInstanceState = null;
     }
 
     public void setOnReadyCallback(FuseContext.IReadyCallback callback) {
         $fuseCB = callback;
-        this.$emitReadyCallback();
+        this.$emitReadyCallback($savedInstanceState);
     }
 
-    private void $emitReadyCallback() {
+    private void $emitReadyCallback(@Nullable Bundle savedInstanceState) {
         if ($isReady && $fuseCB != null) {
-            $fuseCB.onReady();
+            $fuseCB.onReady(savedInstanceState);
         }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        $savedInstanceState = savedInstanceState;
         $fuseContext = new FuseContext(this, this.getActivity(), this::_onContextReady);
         $fuseContext.onCreate(savedInstanceState);
     }
@@ -66,7 +69,7 @@ public class FuseFragment extends Fragment {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    protected void _onContextReady() {
+    protected void _onContextReady(@Nullable Bundle savedInstanceState) {
         WebView webview = this.requireView().findViewById(R.id.webview);
         WebSettings settings = webview.getSettings();
         settings.setAllowFileAccess(false);
@@ -77,7 +80,7 @@ public class FuseFragment extends Fragment {
         webview.addJavascriptInterface($fuseContext, "BTFuseNative");
         webview.loadUrl("https://localhost/assets/index.html");
         $isReady = true;
-        this.$emitReadyCallback();
+        this.$emitReadyCallback(savedInstanceState);
     }
 
     @Override

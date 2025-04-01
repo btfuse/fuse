@@ -47,23 +47,33 @@ public class FuseTestActivity extends AppCompatActivity {
 
         setContentView(layout);
 
-        $fuse = FuseFragment.newInstance(() -> {
-            $ready = true;
+        if (savedInstanceState == null) {
+            $fuse = new FuseFragment();
+            getSupportFragmentManager().beginTransaction().add(layout.getId(), $fuse).commit();
+        }
+        else {
+            $fuse = (FuseFragment) getSupportFragmentManager().findFragmentById(layout.getId());
+        }
 
+        if ($fuse == null) {
+            throw new RuntimeException("Fuse Initialization Error");
+        }
+
+        $fuse.setOnReadyCallback((Bundle saveInstanceState) -> {
             FuseContext fuseContext = $fuse.getFuseContext();
             _registerPlugins(fuseContext);
+
             if ($callback != null) {
-                $callback.onReady();
+                $callback.onReady(saveInstanceState);
             }
         });
-        getSupportFragmentManager().beginTransaction().add(layout.getId(), $fuse).commit();
     }
 
     public void setOnReadyCallback(FuseContext.IReadyCallback callback) {
         $callback = callback;
 
         if ($ready) {
-            $callback.onReady();
+            $callback.onReady(null);
         }
     }
 

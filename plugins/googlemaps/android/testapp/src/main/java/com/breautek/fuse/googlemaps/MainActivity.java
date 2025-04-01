@@ -32,15 +32,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        SplashScreen.installSplashScreen(this);
+        //SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         setContentView(com.breautek.fuse.googlemaps.testapp.R.layout.activity_main);
-        $fuse = FuseFragment.newInstance(() -> {
+
+        if (savedInstanceState == null) {
+            $fuse = new FuseFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fuse_fragment_container, $fuse).commit();
+        }
+        else {
+            $fuse = (FuseFragment) getSupportFragmentManager().findFragmentById(R.id.fuse_fragment_container);
+        }
+
+        if ($fuse == null) {
+            throw new RuntimeException("Fuse Initialization Error");
+        }
+
+        $fuse.setOnReadyCallback((Bundle fuseInstanceState) -> {
             FuseContext fuseContext = $fuse.getFuseContext();
             NativeViewPlugin nviewAPI = new NativeViewPlugin(fuseContext);
             fuseContext.registerPlugin(nviewAPI);
             fuseContext.registerPlugin(new GoogleMapsPlugin(fuseContext, nviewAPI));
         });
-        getSupportFragmentManager().beginTransaction().add(R.id.fuse_fragment_container, $fuse).commit();
     }
 }

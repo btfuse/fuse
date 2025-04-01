@@ -22,7 +22,7 @@ import {
 } from '@btfuse/core';
 import {EchoPlugin} from 'echo';
 
-var sleep = (ms: number): Promise<void> => {
+let sleep = (ms: number): Promise<void> => {
     return new Promise<void>((resolve) => {
         setTimeout(() => {
             resolve();
@@ -70,6 +70,10 @@ var sleep = (ms: number): Promise<void> => {
         let debug: boolean = await context.isDebugMode();
         appendInfo(`Debug: ${debug ? 'true' : 'false'}`);
 
+        appendInfo(await context.getMemoryStore().get('test-key'));
+
+        await context.getMemoryStore().set('test-key', 'test value');
+
         // await echoPlugin.subscribe((d: string) => {
         //     console.log('d', d);
         // });
@@ -80,6 +84,7 @@ var sleep = (ms: number): Promise<void> => {
         console.log('big resp', resp);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).fusecontext = context;
     
     context.getLogger().info('test log from webview');

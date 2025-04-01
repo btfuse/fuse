@@ -25,7 +25,7 @@ import {
 } from './plugins/FuseRuntime';
 import {Version} from './Version';
 import {IFuseLogger} from './IFuseLogger';
-import { AbstractFuseLoggerFactory } from './AbstractFuseLoggerFactory';
+import { FuseMemoryStore } from './plugins/FuseMemoryStore';
 
 /**
  * A context class that holds Fuse Framework state
@@ -37,6 +37,7 @@ export abstract class FuseContext {
     private $runtimeInfo: IRuntimeInfo;
     private $defaultAPIFactory: AbstractFuseAPIFactory;
     private $logger: IFuseLogger;
+    private $memStore: FuseMemoryStore;
 
     public constructor(
         platform: Platform,
@@ -49,6 +50,7 @@ export abstract class FuseContext {
         this.$runtimeVersion = null;
         this.$defaultAPIFactory = apiFactory;
         this.$runtime = new FuseRuntime(this);
+        this.$memStore = new FuseMemoryStore(this);
     }
 
     public getLogger(): IFuseLogger {
@@ -103,6 +105,10 @@ export abstract class FuseContext {
 
     public async unregisterResumeHandler(callbackID: string): Promise<void> {
         return await this.$runtime.unregisterResumeHandler(callbackID);
+    }
+
+    public getMemoryStore(): FuseMemoryStore {
+        return this.$memStore;
     }
 
     public abstract onWebviewReady(): Promise<void>;

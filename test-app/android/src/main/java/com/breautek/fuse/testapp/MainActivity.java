@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException("Fuse Initialization Error");
         }
 
-        $fuse.setOnReadyCallback(() -> {
+        $fuse.setOnReadyCallback((Bundle fuseInstanceState) -> {
             FuseContext fuseContext = $fuse.getFuseContext();
             fuseContext.registerPlugin(new EchoPlugin(fuseContext));
         });

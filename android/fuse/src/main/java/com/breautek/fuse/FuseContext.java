@@ -31,6 +31,8 @@ import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -41,6 +43,7 @@ import java.security.cert.CertificateException;
 import java.util.Map;
 import java.util.HashMap;
 
+import com.breautek.fuse.plugins.FuseMemoryStore;
 import com.breautek.fuse.plugins.FuseRuntime;
 import com.breautek.fuse.utils.IProgressContext;
 import com.breautek.fuse.utils.IProgressContextListener;
@@ -78,7 +81,8 @@ public class FuseContext implements IProgressContextListener  {
 
     private final FuseLogger $logger;
     private final FuseScreenUtils $screenUtils;
-    private final FuseRuntime $runtime;
+    private FuseRuntime $runtime;
+    private FuseMemoryStore $memStore;
     private final IReadyCallback $readyCallback;
     private final FuseFragment $view;
 
@@ -88,7 +92,7 @@ public class FuseContext implements IProgressContextListener  {
     private static final String LOAD_CONTEXT_WEBVIEW = "FuseContext_webview";
 
     public static interface IReadyCallback {
-        void onReady();
+        void onReady(@Nullable Bundle savedInstanceState);
     }
 
     public FuseContext(FuseFragment view, FragmentActivity context, IReadyCallback callback) {
@@ -119,8 +123,21 @@ public class FuseContext implements IProgressContextListener  {
         $apiRouter = new FuseAPIRouter(this);
         $loadProgress.update(LOAD_CONTEXT_CORE, 1);
 
+//        $runtime = new FuseRuntime(this);
+//        $memStore = new FuseMemoryStore(this);
+//
+//        registerPlugin($runtime);
+//        registerPlugin($memStore);
+//
+//        $loadProgress.update(LOAD_CONTEXT_CORE_PLUGINS, 1);
+    }
+
+    private void $initPlugins(@Nullable Bundle fuseInstanceState) {
         $runtime = new FuseRuntime(this);
+        $memStore = new FuseMemoryStore(this, fuseInstanceState);
+
         registerPlugin($runtime);
+        registerPlugin($memStore);
 
         $loadProgress.update(LOAD_CONTEXT_CORE_PLUGINS, 1);
     }
@@ -206,6 +223,8 @@ public class FuseContext implements IProgressContextListener  {
 
         $logger.info(TAG, "Fuse Version: " + BuildConfig.FUSE_VERSION);
 
+        $initPlugins(bundle);
+
         final FuseContext self = this;
         new Thread(() -> {
             try {
@@ -221,7 +240,9 @@ public class FuseContext implements IProgressContextListener  {
             $loadProgress.update(LOAD_CONTEXT_API_SERVER, 1);
             Log.i(TAG, "API Server Port: " + $apiServer.getPort());
 
-            self.runOnMainThread($readyCallback::onReady);
+            self.runOnMainThread(() -> {
+                $readyCallback.onReady(bundle);
+            });
         }).start();
     }
 
@@ -366,12 +387,18 @@ public class FuseContext implements IProgressContextListener  {
 
     public void execCallback(String callbackID, String payload) {
         $mainThread.post(() -> {
+            if ($view.getWebview() == null) {
+                return;
+            }
             $view.getWebview().evaluateJavascript(String.format("window.__btfuse_doCallback(\"%s\",\"%s\");", callbackID, payload.replace("\"", "\\\"")), null);
         });
     }
 
     public void execCallback(String callbackID) {
         $mainThread.post(() -> {
+            if ($view.getWebview() == null) {
+                return;
+            }
             $view.getWebview().evaluateJavascript(String.format("window.__btfuse_doCallback(\"%s\");", callbackID), null);
         });
     }
