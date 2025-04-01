@@ -26,29 +26,27 @@ import com.breautek.fuse.views.SplashLoaderView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FuseFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class FuseFragment extends Fragment {
     public static final String LOG_TAG = "FuseFragment";
 
     private FuseContext $fuseContext;
     private FuseContext.IReadyCallback $fuseCB;
+    private boolean $isReady;
 
-    public FuseFragment() {}
+    public FuseFragment() {
+        $isReady = false;
+    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment FuseFragment.
-     */
-    public static FuseFragment newInstance(FuseContext.IReadyCallback callback) {
-        FuseFragment fragment = new FuseFragment();
-        fragment.$fuseCB = callback;
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    public void setOnReadyCallback(FuseContext.IReadyCallback callback) {
+        $fuseCB = callback;
+        this.$emitReadyCallback();
+    }
+
+    private void $emitReadyCallback() {
+        if ($isReady && $fuseCB != null) {
+            $fuseCB.onReady();
+        }
     }
 
     @Override
@@ -78,7 +76,8 @@ public class FuseFragment extends Fragment {
         webview.setWebChromeClient(new WebChromeClient());
         webview.addJavascriptInterface($fuseContext, "BTFuseNative");
         webview.loadUrl("https://localhost/assets/index.html");
-        $fuseCB.onReady();
+        $isReady = true;
+        this.$emitReadyCallback();
     }
 
     @Override

@@ -33,10 +33,22 @@ public class MainActivity extends AppCompatActivity {
         SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        $fuse = FuseFragment.newInstance(() -> {
+
+        if (savedInstanceState == null) {
+            $fuse = new FuseFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fuse_fragment_container, $fuse).commit();
+        }
+        else {
+            $fuse = (FuseFragment) getSupportFragmentManager().findFragmentById(R.id.fuse_fragment_container);
+        }
+
+        if ($fuse == null) {
+            throw new RuntimeException("Fuse Initialization Error");
+        }
+
+        $fuse.setOnReadyCallback(() -> {
             FuseContext fuseContext = $fuse.getFuseContext();
             fuseContext.registerPlugin(new EchoPlugin(fuseContext));
         });
-        getSupportFragmentManager().beginTransaction().add(R.id.fuse_fragment_container, $fuse).commit();
     }
 }
