@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -76,7 +75,7 @@ public class FuseFragment extends Fragment {
         settings.setAllowContentAccess(false);
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
-        webview.setWebChromeClient(new WebChromeClient());
+        webview.setWebChromeClient(new FuseChromeClient());
         webview.addJavascriptInterface($fuseContext, "BTFuseNative");
         webview.loadUrl("https://localhost/assets/index.html");
         $isReady = true;

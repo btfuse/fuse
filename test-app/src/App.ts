@@ -51,7 +51,7 @@ let sleep = (ms: number): Promise<void> => {
 
     await (async () => {
         let response: string = await echoPlugin.echo('Hi from TS');
-        // alert(response);
+        alert(response);
         appendInfo(response);
 
         context.getLogger().info(`ECHO RESPONSE: ${response}`);
