@@ -21,6 +21,7 @@ export default [
     ...tslint.configs.recommended,
     {
         rules: {
+            "@typescript-eslint/triple-slash-reference": 'off',
             "@typescript-eslint/no-unused-vars": 'off',
             'tsdoc/syntax': 'warn',
             "prefer-const": 'off'

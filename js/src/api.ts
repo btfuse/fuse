@@ -15,6 +15,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+/// <reference path="./android/internal/BTFuseNative.d.ts" />
+/// <reference path="./ios/internal/messageHandlers.d.ts" />
+
+
 // Common API
 export {Platform} from './Platform';
 export {PlatformResolver} from './PlatformResolver';

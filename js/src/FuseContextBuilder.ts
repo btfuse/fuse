@@ -17,7 +17,6 @@ limitations under the License.
 
 import { AbstractFuseAPIFactory } from "./AbstractFuseAPIFactory";
 import { AbstractFuseLoggerFactory } from "./AbstractFuseLoggerFactory";
-import { AndroidFuseContext } from './android/AndroidFuseContext';
 import { FuseAPIFactory } from "./FuseAPIFactory";
 import { FuseContext } from "./FuseContext";
 import { FuseContextFactory } from './FuseContextFactory';

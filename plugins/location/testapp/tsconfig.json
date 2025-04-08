@@ -1,0 +1,16 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "@btfuse/core": ["../../../js/src/api.ts"],
+            "@btfuse/location": ["../src/api.ts"]
+        }
+    },
+    "references": [
+        { "path": "../../../js" }
+    ],
+    "include": [
+        "./src/**/*.ts"
+
+    ]
+}

@@ -27,22 +27,15 @@
   },
   "homepage": "https://github.com/btfuse/fuse-google-maps#readme",
   "devDependencies": {
-    "@btfuse/core": "0.8.0",
+    "@btfuse/core": "file:../../js",
     "@btfuse/native-view": "../native-view",
-    "@types/geojson": "^7946.0.14",
-    "copy-webpack-plugin": "^12.0.2",
-    "source-map-loader": "^5.0.0",
-    "ts-loader": "9.5.1",
-    "typescript": "5.3.3",
-    "webpack": "^5.90.2",
-    "webpack-cli": "5.1.4"
+    "@types/geojson": "^7946.0.14"
   },
   "peerDependencies": {
-    "@btfuse/core": "^0.8.0",
-    "@btfuse/native-view": "../native-view"
+    "@btfuse/core": "^0.9.0",
+    "@btfuse/native-view": "*"
   },
   "dependencies": {
-    "path": "^0.12.7",
-    "tslib": "2.6.2"
+    "path": "^0.12.7"
   }
 }

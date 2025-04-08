@@ -40,6 +40,11 @@ project(":EchoPlugin").projectDir = File("../echo/android")
 include(":testapp")
 project(":testapp").projectDir = File("../test-app/android")
 
+include(":plugins:location")
+project(":plugins:location").projectDir = File("../plugins/location/android/location")
+include(":plugins:location:testapp")
+project(":plugins:location:testapp").projectDir = File("../plugins/location/android/testapp")
+
 include(":plugins:nativeview")
 project(":plugins:nativeview").projectDir = File("../plugins/nativeview/android/nativeview")
 include(":plugins:nativeview:testapp")

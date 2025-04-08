@@ -18,6 +18,8 @@
             <option value="$PROJECT_DIR$/../plugins/filesystem/android/testapp" />
             <option value="$PROJECT_DIR$/../plugins/googlemaps/android/googlemaps" />
             <option value="$PROJECT_DIR$/../plugins/googlemaps/android/testapp" />
+            <option value="$PROJECT_DIR$/../plugins/location/android/location" />
+            <option value="$PROJECT_DIR$/../plugins/location/android/testapp" />
             <option value="$PROJECT_DIR$/../plugins/nativeview/android/nativeview" />
             <option value="$PROJECT_DIR$/../plugins/nativeview/android/testapp" />
             <option value="$PROJECT_DIR$/../test-app/android" />

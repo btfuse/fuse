@@ -76,4 +76,7 @@ case "$module" in
     $MODULE_GOOGLE_MAPS)
         source compiler/$platform/buildGoogleMaps.sh
     ;;
+    $MODULE_LOCATION)
+        source compiler/$platform/buildLocation.sh
+    ;;
 esac

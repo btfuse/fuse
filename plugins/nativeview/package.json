@@ -22,6 +22,9 @@
     "url": "https://github.com/btfuse/fuse-native-dom/issues"
   },
   "homepage": "https://github.com/btfuse/fuse-native-dom#readme",
+  "peerDependencies": {
+    "@btfuse/core": "^0.9.0"
+  },
   "devDependencies": {
     "@btfuse/core": "file:../../js"
   }
