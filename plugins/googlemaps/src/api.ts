@@ -16,4 +16,7 @@ limitations under the License.
 */
 
 export {FuseGoogleMap} from './FuseGoogleMap';
-export {FuseGoogleMapPlugin} from './FuseGoogleMapPlugin';
+export {
+    FuseGoogleMapPlugin,
+    FuseGoogleMapOptionsBuilder
+} from './FuseGoogleMapPlugin';

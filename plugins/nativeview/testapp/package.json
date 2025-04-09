@@ -6,12 +6,10 @@
   "main": "webpack.android.js",
   "scripts": {
     "build:ios": "webpack --config ./webpack.ios.js --mode development",
+    "build:android": "webpack --config ./webpack.android.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "norman@breautek.com",
   "license": "Apache-2.0",
-  "dependencies": {
-    "@btfuse/core": "file:../../../js",
-    "@btfuse/native-view": "file:.."
-  }
+  "dependencies": {}
 }

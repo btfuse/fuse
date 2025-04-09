@@ -5,6 +5,7 @@
   "main": "lib/api.js",
   "scripts": {
     "lint": "npx eslint ./src",
+    "build": "npm run lint && tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,9 +25,7 @@
     "url": "https://github.com/btfuse/fuse-filesystem/issues"
   },
   "homepage": "https://github.com/btfuse/fuse-filesystem#readme",
-  "devDependencies": {
-    "@btfuse/core": "file:../../js"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "@btfuse/core": "^0.9.0"
   },

@@ -59,3 +59,16 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
+
+android.applicationVariants.configureEach {
+    val variantName = this.baseName.replaceFirstChar(Char::titlecase)
+
+    val prepareJSTask = tasks.register<Exec>("prepareJS${variantName}") {
+        workingDir("../..")
+        commandLine("npm", "run", "build:tests:android")
+    }
+
+    tasks.named("generate${variantName}Resources").configure {
+        this.dependsOn(prepareJSTask)
+    }
+}

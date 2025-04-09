@@ -1,9 +1,19 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "composite": true,
     "outDir": "./lib",
-    "noEmit": false
+    "rootDir": "./src",
+    "noEmit": false,
+    "paths": {
+      "@btfuse/core": ["../../js/src/api.ts"],
+      "@btfuse/native-view": ["../nativeview/src/api.ts"]
+    }
   },
+  "references": [
+    { "path": "../../js" },
+    { "path": "../nativeview" }
+  ],
   "include": [
     "./src/**/*.ts"
   ]

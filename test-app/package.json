@@ -9,16 +9,6 @@
   },
   "author": "norman@breautek.com",
   "license": "Apache-2.0",
-  "dependencies": {
-    "@btfuse/core": "file:../js/dist/fuse.tgz",
-    "echo": "file:../echo/dist/echo.tgz"
-  },
-  "devDependencies": {
-    "copy-webpack-plugin": "12.0.2",
-    "source-map-loader": "5.0.0",
-    "ts-loader": "9.5.1",
-    "typescript": "5.5.4",
-    "webpack": "5.95.0",
-    "webpack-cli": "5.1.4"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

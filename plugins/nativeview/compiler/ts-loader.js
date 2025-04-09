@@ -1,7 +1,11 @@
 
 module.exports = {
     test: /(\.tsx?|\.jsx?)$/,
-    loader: 'ts-loader',
-    exclude: /node_modules/,
-    options: {}
+    use: {
+        loader: 'ts-loader',
+        options: {
+            projectReferences: true
+        }
+    },
+    exclude: /node_modules/
 };

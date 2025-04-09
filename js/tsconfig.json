@@ -3,11 +3,11 @@
     "compilerOptions": {
       "composite": true,
       "noEmit": false,
+      "rootDir": "./src",
       "outDir": "./lib"
     },
     "include": [
-      "./src/**/*.ts",
-      "./src/*.ts"
+      "./src/**/*.ts"
     ],
     "exclude": [
       "./lib",

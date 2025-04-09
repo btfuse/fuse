@@ -1,16 +1,18 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
+        "outDir": "./lib",
+        "rootDir": "./src",
         "paths": {
             "@btfuse/core": ["../../../js/src/api.ts"],
             "@btfuse/location": ["../src/api.ts"]
         }
     },
     "references": [
-        { "path": "../../../js" }
+        { "path": "../../../js" },
+        { "path": "../" }
     ],
     "include": [
         "./src/**/*.ts"
-
     ]
 }

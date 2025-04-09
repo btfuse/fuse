@@ -23,23 +23,7 @@ if [ -z "$assetDir" ]; then
     exit 1
 fi
 
-# Build Core Lib
-spushd ../../js
-    ./build.sh
-    assertLastCall
-spopd
-
-# # Build the test echo plugin
-spushd ../../echo
-    ./build.sh
-    assertLastCall
-spopd
-
 spushd ../../test-app
-    # Build the test app JS
-    npm install
-    assertLastCall
-
     node scripts/generateTestFile.js 
     assertLastCall
 

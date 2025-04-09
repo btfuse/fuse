@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Native View Plugin Overlay</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <style>
+            .button {
+                display: block;
+                background-color: lightblue;
+                width: 300px;
+                height: 50px;
+                position: absolute;
+                bottom: 30px;
+                left: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="btn" class="button">Overlay Webview Button</div>
+        <script type="text/javascript">
+            window.addEventListener('load', () => {
+                console.log('LOADED');
+                let x = document.getElementById('btn');
+                x.addEventListener('click', () => {
+                    console.log('overlay clicked');
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.breautek.fuse.nativeview"
+    namespace = "com.breautek.fuse.nativeview.testapp"
     compileSdk = 36
 
     packaging {
@@ -46,10 +46,24 @@ android {
 
 dependencies {
     implementation(project(":fuse"))
+    implementation(project(":plugins:nativeview"))
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+}
+
+android.applicationVariants.configureEach {
+    val variantName = this.baseName.replaceFirstChar(Char::titlecase)
+
+    val prepareJSTask = tasks.register<Exec>("prepareJS${variantName}") {
+        workingDir("../../testapp")
+        commandLine("npm", "run", "build:android")
+    }
+
+    tasks.named("generate${variantName}Resources").configure {
+        this.dependsOn(prepareJSTask)
+    }
 }

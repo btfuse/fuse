@@ -1,7 +1,20 @@
 {
-    "extends": "../tsconfig.json"
-    // "include": [
-    //     "./testapp/src/**/*.ts",
-    //     "./testapp/src/*.ts"
-    // ]
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./lib",
+        "rootDir": "./src",
+        "paths": {
+            "@btfuse/core": ["../../../js/src/api.ts"],
+            "@btfuse/native-view": ["../../nativeview/src/api.ts"],
+            "@btfuse/google-maps": ["../src/api.ts"]
+        }
+    },
+    "references": [
+        { "path": "../../../js" },
+        { "path": "../../nativeview"},
+        { "path": "../" }
+    ],
+    "include": [
+        "./src/**/*.ts"
+    ]
 }

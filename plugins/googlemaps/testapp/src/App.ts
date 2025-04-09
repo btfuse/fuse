@@ -21,9 +21,9 @@ import {
 import {FuseNativeViewPlugin} from '@btfuse/native-view';
 import {
     FuseGoogleMap,
-    FuseGoogleMapPlugin
-} from '../../src/api';
-import { FuseGoogleMapOptionsBuilder } from '../../src/FuseGoogleMapPlugin';
+    FuseGoogleMapPlugin,
+    FuseGoogleMapOptionsBuilder
+} from '@btfuse/google-maps';
 
 let viewPlugin: FuseNativeViewPlugin;
 let gmapPlugin: FuseGoogleMapPlugin;
@@ -78,6 +78,8 @@ window.onload = async () => {
         .setOverlayFile('/assets/overlay.html');
 
     let gmap: FuseGoogleMap = await gmapPlugin.createMap(gmapBuilder.build());
+
+    await context.onWebviewReady();
 
     console.log('GMAP', gmap);
 };

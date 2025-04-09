@@ -21,7 +21,11 @@ module.exports = {
             '.webpack.js',
             '.ts',
             '.js'
-        ]
+        ],
+        alias: {
+            '@btfuse/core': Path.resolve(__dirname, '../js/src/api.ts'),
+            '@btfuse/echo': Path.resolve(__dirname, '../echo/src/api.ts')
+        }
     },
     optimization: {
         minimize: false
@@ -30,7 +34,12 @@ module.exports = {
         rules: [
             {
                 test: /(\.tsx?|\.jsx?)$/,
-                use: 'ts-loader',
+                use: {
+                    loader: 'ts-loader',
+                    options: {
+                        projectReferences: true
+                    }
+                },
                 exclude: /node_modules/
             },
             { 

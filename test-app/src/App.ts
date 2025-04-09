@@ -20,7 +20,7 @@ import {
     FuseContextBuilder,
     FuseError
 } from '@btfuse/core';
-import {EchoPlugin} from 'echo';
+import {EchoPlugin} from '@btfuse/echo';
 
 let sleep = (ms: number): Promise<void> => {
     return new Promise<void>((resolve) => {

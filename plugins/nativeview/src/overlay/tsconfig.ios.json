@@ -1,6 +1,13 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "../../../../tsconfig.json",
+    "compilerOptions": {
+        "noEmit": false,
+        "rootDir": "../",
+        "outDir": "../../lib-overlay",
+        "composite": true
+    },
     "files": [
+        "../FuseNativeRect.ts",
         "./FuseNativeViewOverlay.ts",
         "./ios/IOSFuseNativeViewOverlay.ts",
         "./ios/BTFuseNativeOverlay.d.ts",

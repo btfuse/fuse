@@ -4,7 +4,8 @@
   "description": "",
   "main": "lib/api.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run lint && tsc --build && webpack --mode development --config webpack.android.js && webpack --mode development --config webpack.ios.js",
+    "clean": "npx tsc --build --clean",
     "lint": "npx eslint ./src",
     "build:tests:ios": "cd testapp && npm run build:ios",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,7 +26,5 @@
   "peerDependencies": {
     "@btfuse/core": "^0.9.0"
   },
-  "devDependencies": {
-    "@btfuse/core": "file:../../js"
-  }
+  "devDependencies": {}
 }

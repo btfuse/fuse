@@ -5,3 +5,4 @@
 .DS_Store
 /ios/GoogleMap Test App/GoogleMap Test App/secrets.plist
 /dist
+/testapp/lib

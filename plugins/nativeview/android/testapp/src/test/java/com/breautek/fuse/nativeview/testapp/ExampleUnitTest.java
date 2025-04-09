@@ -1,4 +1,4 @@
-package com.breautek.fuse.nativeview;
+package com.breautek.fuse.nativeview.testapp;
 
 import org.junit.Test;
 

@@ -1,7 +1,6 @@
-package com.breautek.fuse.nativeview;
+package com.breautek.fuse.nativeview.testapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {

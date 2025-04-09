@@ -4,8 +4,8 @@
   "description": "Google Maps plugin for the Fuse framework",
   "main": "lib/api.js",
   "scripts": {
-    "build": "tsc",
-    "lint": "npx eslint ./src",
+    "build": "npm run lint && tsc --build",
+    "lint": "eslint ./src",
     "build:tests:android": "cd testapp && webpack --config ./webpack.android.js --mode development",
     "build:tests:ios": "cd testapp && webpack --config ./webpack.ios.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,8 +27,6 @@
   },
   "homepage": "https://github.com/btfuse/fuse-google-maps#readme",
   "devDependencies": {
-    "@btfuse/core": "file:../../js",
-    "@btfuse/native-view": "../native-view",
     "@types/geojson": "^7946.0.14"
   },
   "peerDependencies": {

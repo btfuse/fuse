@@ -1,9 +1,21 @@
 
 {
-    "extends": "../js/tsconfig.json",
-    "files": [],
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "noEmit": false,
+        "declaration": false,
+        "outDir": "./lib",
+        "rootDir": "./src",
+        "paths": {
+            "@btfuse/core": ["../js/src/api.ts"],
+            "@btfuse/echo": ["../echo/src/api.ts"]
+        }
+    },
+    "references": [
+        { "path": "../js" },
+        { "path": "../echo" }
+    ],
     "include": [
-        "./src/**/*.ts",
-        "./src/*.ts"
+        "./src/**/*.ts"
     ]
 }

@@ -1,5 +1,6 @@
 {
-  "name": "echo",
+  "name": "@btfuse/echo",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "lib/api.js",
@@ -10,8 +11,5 @@
   },
   "author": "",
   "license": "Apache-2.0",
-  "devDependencies": {
-    "@btfuse/core": "file:../js/dist/fuse.tgz",
-    "typescript": "5.3.3"
-  }
+  "devDependencies": {}
 }

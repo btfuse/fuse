@@ -17,7 +17,10 @@ module.exports = {
             '.webpack.js',
             '.ts',
             '.js'
-        ]
+        ],
+        alias: {
+            '@btfuse/core': Path.resolve(__dirname, '../../js/src/api.ts')
+        }
     },
     optimization: {
         minimize: false
