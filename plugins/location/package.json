@@ -7,6 +7,7 @@
     "build": "tsc --build",
     "build:tests:android": "cd testapp && webpack --config ./webpack.android.js --mode development",
     "build:tests:ios": "cd testapp && webpack --config ./webpack.ios.js --mode development",
+    "lint": "npx eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

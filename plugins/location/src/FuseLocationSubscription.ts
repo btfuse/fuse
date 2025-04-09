@@ -52,8 +52,7 @@ export class FuseLocationSubscriptionOptionsBuilder {
      * 
      * Whether this is honoured depends if the user grants the appropriate permission.
      * 
-     * @default FuseLocationAccuracy.COARSE
-     * @param accuracy 
+     * @param FuseLocationAccuracy - accuracy 
      * @returns 
      */
     public setAccuracy(accuracy: FuseLocationAccuracy): FuseLocationSubscriptionOptionsBuilder {
@@ -66,8 +65,7 @@ export class FuseLocationSubscriptionOptionsBuilder {
      * may come quicker or slower than the desired interval. Several deciding factors
      * including but not limited to other services also using GPS and the GPS health.
      * 
-     * @default 1000
-     * @param interval 
+     * @param number - interval 
      * @returns 
      */
     public setInterval(interval: number): FuseLocationSubscriptionOptionsBuilder {

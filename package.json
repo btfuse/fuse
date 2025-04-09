@@ -10,9 +10,10 @@
   "scripts": {
     "lint:js:core": "cd js && npm run lint",
     "lint:js:filesystem": "cd plugins/filesystem && npm run lint",
-    "lint:js:nativeview": "cd plugins/native-view && npm run lint",
-    "lint:js:googlemaps": "cd plugins/google-maps && npm run lint",
-    "lint": "npm run lint:js:core && npm run lint:js:filesystem && npm run lint:js:nativeview && npm run lint:js:googlemaps",
+    "lint:js:nativeview": "cd plugins/nativeview && npm run lint",
+    "lint:js:googlemaps": "cd plugins/googlemaps && npm run lint",
+    "lint:js:location": "cd plugins/location && npm run lint",
+    "lint": "npm run lint:js:core && npm run lint:js:filesystem && npm run lint:js:nativeview && npm run lint:js:googlemaps && npm run lint:js:location",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "norman@breautek.com",
