@@ -298,7 +298,7 @@ NOTE: While we now have scripts that sets up the assets directory, nothing is ac
 
 We are almost ready to start implementing some native code. But first, we need access to the Fuse android framework.
 
-Fuse is shipped through Breautek's [Archiva Server](https://archiva.breautek.com/#browse/com.breautek.fuse). We will need to add this as a repository.
+Fuse is shipped through Breautek's [Nexus Server](https://nexus.breautek.com/#browse/browse:android). We will need to add this as a repository.
 
 Open the `settings.gradle.kts` file and modify the `dependencyResolutionManagement` -> `repositories` block.
 
@@ -307,7 +307,7 @@ repositories {
     google()
     mavenCentral()
     maven {
-        url = uri("https://archiva.breautek.com/repository/breautek")
+        url = uri("https://nexus.breautek.com/repository/android/")
     }
 }
 ```
@@ -316,12 +316,12 @@ Now we are ready to add the fuse dependency. Open the app's `build.gradle.kts` f
 
 ```
 dependencies {
-    implementation("com.breautek.fuse:core:0.8.0")
+    implementation("com.breautek.fuse:core:0.9.1")
     ...
 }
 ```
 
-TIP: Check [Archiva](https://archiva.breautek.com/#artifact/com.breautek.fuse/core) or [GitHub Releases](https://github.com/btfuse/fuse-android/releases) for the latest available version.
+TIP: Check [Nexus](https://nexus.breautek.com/#browse/browse:android:com%2Fbreautek%2Ffuse%2Fcore) or [GitHub Releases](https://github.com/btfuse/fuse/releases?q=android%2Fcore&expanded=true) for the latest available version.
 
 Sync your IDE with gradle to get intellisense.
 
@@ -335,24 +335,47 @@ Let's open our `MainActivity.java` class and replace the contents:
 package com.example.fuse.myfirstfuseapp;
 
 import android.os.Bundle;
-import com.breautek.fuse.FuseActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends FuseActivity {
+import com.breautek.fuse.FuseContext;
+import com.breautek.fuse.FuseFragment;
+import com.breautek.fuse.plugins.echo.EchoPlugin;
+
+public class MainActivity extends AppCompatActivity {
+    private FuseFragment $fuse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        setContentView(R.layout.activity_main);
+
+        if (savedInstanceState == null) {
+            $fuse = new FuseFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fuse_fragment_container, $fuse).commit();
+        }
+        else {
+            $fuse = (FuseFragment) getSupportFragmentManager().findFragmentById(R.id.fuse_fragment_container);
+        }
+
+        if ($fuse == null) {
+            throw new RuntimeException("Fuse Initialization Error");
+        }
+
+        $fuse.setOnReadyCallback((Bundle fuseInstanceState) -> {
+            // Fuse is ready here
+        });
     }
 }
 ```
 
-Here we replaced the super class `AppCompatActivity` with our `FuseActivity`. The `FuseActivity` is a convenience class that is a `AppCompatActivity` and it handles bootstrapping the `FuseContext` and all the lifecycle methods.
+Here we create an `AppCompatActivity`, which creates and holds a reference to a `FuseFragment`. This fragment sets up the core fuse environment. If we have an instance state, the state can be recovered.
 
-TIP: If you have unique requirements, you can extend from `AppCompatActivity` or any other `Activity` class, but you'll also be responsible for bootstrapping the `FuseContext`.
+Finally we use `setOnReadyCallback` which will be invoked on the main thread once Fuse is ready to be used. This is an ideal time to register native plugins.
 
 This is the bare minimum needed to launch the app. The `FuseContext` contains the `Webview` instance and will setup the content view. Running your app now should produce a screen that will contain `Platform: 2` which is a constant value for the Android platform, as well as the Android version.
 
-NOTE: When the app, you'll see a `SSLHandshakeException` for `SSLV3_ALERT_CERTIFICATE_UNKNOWN`. This exception can be safely ignored, it is a side effect of Fuse framework using self-signed certificates. This error will be silenced in a future release.
+NOTE: In the app, you'll see a `SSLHandshakeException` for `SSLV3_ALERT_CERTIFICATE_UNKNOWN`. This exception can be safely ignored, it is a side effect of Fuse framework using self-signed certificates. This error will be silenced in a future release.
 
 <div style="text-align: center">
     <img src="/res/user-guide/android/my-first-app.png" />

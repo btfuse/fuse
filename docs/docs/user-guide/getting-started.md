@@ -269,10 +269,14 @@ import {
         Platform: ${platform}<br />
         Version: ${version.toString()}
     `;
+
+    await context.onWebviewReady();
 })();
 ```
 
 This is a simple program that setups up a `FuseContext` and uses some built-in APIs to get the current platform runtime and the version and then finally update the HTML body node with the fetched information.
+
+Finally the app calls `context.onWebviewReady` which is an API that tells the native that your web application has completed loaded. It ticks the loading progress and dismisses the loading screen if everything has finished loading. Ideally this is called after you have rendered your landing screen.
 
 ## Next Steps
 
