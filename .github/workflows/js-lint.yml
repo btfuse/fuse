@@ -23,4 +23,4 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - run: npm ci # For general tooling
-      - run: npm run lint
+      - run: npx turbo run lint
