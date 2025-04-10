@@ -3,17 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "description": "",
+  "packageManager": "npm@11.1.0",
   "main": "index.js",
+  "workspaces": [
+    "js",
+    "docs",
+    "testapp",
+    "plugins/*",
+    "plugins/*/testapp"
+  ],
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "lint:js:core": "cd js && npm run lint",
-    "lint:js:filesystem": "cd plugins/filesystem && npm run lint",
-    "lint:js:nativeview": "cd plugins/nativeview && npm run lint",
-    "lint:js:googlemaps": "cd plugins/googlemaps && npm run lint",
-    "lint:js:location": "cd plugins/location && npm run lint",
-    "lint": "npm run lint:js:core && npm run lint:js:filesystem && npm run lint:js:nativeview && npm run lint:js:googlemaps && npm run lint:js:location",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "norman@breautek.com",
@@ -33,6 +35,7 @@
     "ts-jest": "^29.2.6",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
+    "turbo": "^2.5.0",
     "typedoc": "^0.28.2",
     "typedoc-plugin-markdown": "^4.2.9",
     "typescript": "5.7",

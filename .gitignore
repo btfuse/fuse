@@ -5,3 +5,4 @@ xcuserdata
 .gradle
 node_modules
 *.tsbuildinfo
+.turbo
