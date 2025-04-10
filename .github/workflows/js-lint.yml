@@ -22,5 +22,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node_version }}
-      - run: npm ci # For general tooling
+      - run: npm install
       - run: npx turbo run lint
