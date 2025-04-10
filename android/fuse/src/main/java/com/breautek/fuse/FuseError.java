@@ -22,6 +22,9 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * An error that can be serialized and sent to the webview context.
+ */
 public class FuseError extends Throwable {
     private final String $domain;
     private final int $code;

@@ -1,5 +1,4 @@
 import com.android.build.api.dsl.ManagedVirtualDevice
-import com.android.build.api.dsl.Packaging
 
 /*
 Copyright 2023 Breautek 
@@ -178,13 +177,29 @@ publishing {
 
 android.libraryVariants.configureEach {
     if (this.name.equals("release")) {
-        val variant  = this
+        val variant = this
+        val variantNameCapitalized = name.replaceFirstChar { it.uppercase() }
         tasks.register<Javadoc>("generateJavadoc") {
+            dependsOn(variant.javaCompileProvider)
+            dependsOn("generateReleaseResources")
+
             description = "Generates a Javadoc"
             source = variant.javaCompileProvider.get().source
-            classpath = files(variant.javaCompileProvider.get().classpath.files)
+            classpath += files(android.bootClasspath)
+            classpath += files(File("${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"))
+            classpath += files(variant.javaCompileProvider.get().classpath.files)
+
+            val generatedR = file("build/generated/not_namespaced_r_class_sources/${variant.name}/generate${variantNameCapitalized}RFile")
+            val generatedBuildConfig = file("build/generated/source/buildConfig/${variant.name}")
+            if (generatedR.exists()) {
+                classpath += files(generatedR)
+            }
+            if (generatedBuildConfig.exists()) {
+                classpath += files(generatedBuildConfig)
+            }
 
             options {
+                windowTitle("Fuse Android")
                 encoding("UTF-8")
                 header = "<div style=\"display:flex;justify-content:center;height:100%;width:100%;align-items:center;\"><a href=\"/\">Main Documentation</a></div>"
             }

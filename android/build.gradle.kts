@@ -33,5 +33,13 @@ allprojects {
                 options.compilerArgs.add("-Xlint:deprecation")
             }
         }
+
+        plugins.withType<JavaPlugin> {
+            extensions.configure<JavaPluginExtension>("java") {
+                toolchain {
+                    languageVersion.set(JavaLanguageVersion.of(17))
+                }
+            }
+        }
     }
 }
