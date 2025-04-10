@@ -30,6 +30,7 @@
         <td>JS Runtime</td>
         <td>
             <a href="https://github.com/btfuse/fuse/actions/workflows/js-unit-tests.yml"><img src="https://github.com/btfuse/fuse/actions/workflows/js-unit-tests.yml/badge.svg" /></a>
+            <a href="https://github.com/btfuse/fuse/actions/workflows/js-lint.yml"><img src="https://github.com/btfuse/fuse/actions/workflows/js-lint.yml/badge.svg" /></a>
         </td>
     </tr>
 </table>
