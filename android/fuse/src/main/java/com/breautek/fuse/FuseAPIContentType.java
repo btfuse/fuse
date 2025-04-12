@@ -17,6 +17,9 @@ limitations under the License.
 
 package com.breautek.fuse;
 
+/**
+ * A description of the type of content
+ */
 public enum FuseAPIContentType {
     STRING,
     BINARY,

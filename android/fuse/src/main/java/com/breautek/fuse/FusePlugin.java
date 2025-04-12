@@ -29,6 +29,13 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * <p>A fuse plugin. Implementators should implement {@link #_initHandles()} to create API handlers and {@link #getID()}
+ * to give their plugin an unique ID.</p>
+ * <p>Careful consideration must be taking when choosing an ID, as it must not conflict with other plugins.
+ * Avoid prefixing the ID with "Fuse" as that is commonly used for core plugins. Recommended to prefix the ID with a company name or reverse dns.</p>
+ * <p>Note that the ID is used in URLs, therefore URL restrictions applies. Additionally, the ID must not have any forward slashes.</p>
+ */
 public abstract class FusePlugin {
 
     private static final String TAG = "FusePlugin";

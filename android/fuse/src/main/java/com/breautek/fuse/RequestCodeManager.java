@@ -21,6 +21,9 @@ import androidx.annotation.VisibleForTesting;
 
 import java.util.HashMap;
 
+/**
+ * A Request Code Manager that keeps track of used request codes.
+ */
 public class RequestCodeManager {
     private static RequestCodeManager $instance = null;
 

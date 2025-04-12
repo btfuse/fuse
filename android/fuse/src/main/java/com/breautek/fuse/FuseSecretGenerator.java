@@ -20,6 +20,9 @@ package com.breautek.fuse;
 
 import java.security.SecureRandom;
 
+/**
+ * A class responsible for cryptographically generating a random secret key
+ */
 public class FuseSecretGenerator {
     public static String generate() {
         SecureRandom secureRandom = new SecureRandom();

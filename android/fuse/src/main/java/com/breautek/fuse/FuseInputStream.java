@@ -21,7 +21,8 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
 /**
- *
+ * A pipable input stream
+ * @experimental
  */
 public class FuseInputStream extends PipedInputStream {
     public FuseInputStream(FuseOutputStream src) throws IOException  {

@@ -20,6 +20,9 @@ import com.breautek.fuse.utils.IProgressContext;
 import com.breautek.fuse.utils.IProgressContextListener;
 import com.breautek.fuse.utils.IProgressListener;
 
+/**
+ * The loading view that displays while the Fuse runtime is initializing.
+ */
 public class SplashLoaderView extends ConstraintLayout implements IProgressListener, IProgressContextListener  {
     private ProgressBar $progressBar;
     private ConstraintLayout $container;

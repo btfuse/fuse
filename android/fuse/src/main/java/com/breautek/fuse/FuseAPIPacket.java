@@ -26,11 +26,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * A class representing a API data packet
+ */
 public class FuseAPIPacket {
     private final String $route;
     private final InputStream $inputStream;
     private final Map<String, String> $headers;
-
 
     public FuseAPIPacket(String route, Map<String, String> headers, InputStream io) {
         $route = route;
@@ -38,38 +40,72 @@ public class FuseAPIPacket {
         $headers = headers;
     }
 
+    /**
+     * Gets the byte size of the data packet
+     */
     public long getContentLength() {
         return Long.parseLong(Objects.requireNonNull($headers.getOrDefault("Content-Length", "0")).trim());
     }
 
+    /**
+     * Gets the content type indicator
+     */
     public String getContentType() {
         return $headers.get("Content-Type");
     }
 
+    /**
+     * Reads the data packet in full as an UTF-8 string.
+     *
+     * @throws IOException if the underlying socket cannot be read
+     */
     public String readAsString() throws IOException  {
         byte[] buffer = new byte[(int)getContentLength()];
         $inputStream.read(buffer);
         return new String(buffer, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Reads the data packet in full as raw binary
+     *
+     * @throws IOException if the underlying socket cannot be read
+     */
     public byte[] readAsBinary() throws IOException {
         byte[] buffer = new byte[(int) getContentLength()];
         $inputStream.read(buffer);
         return buffer;
     }
 
+    /**
+     * Reads the data packet in full as JSON object
+     *
+     * @throws IOException if the underlying socket cannot be read
+     * @throws JSONException if the data is not parseable as a JSON object
+     */
     public JSONObject readAsJSONObject() throws IOException, JSONException {
         return new JSONObject(readAsString());
     }
 
+    /**
+     * Reads the data packet in full as JSON array
+     *
+     * @throws IOException if the underlying socket cannot be read
+     * @throws JSONException if the data is not parseable as a JSON array
+     */
     public JSONArray readAsJSONArray() throws IOException, JSONException {
         return new JSONArray(readAsString());
     }
 
+    /**
+     * Gets the routing string of the data packet
+     */
     public String getRoute() {
         return $route;
     }
 
+    /**
+     * Gets the underlying socket input stream
+     */
     public InputStream getInputStream() {
         return $inputStream;
     }

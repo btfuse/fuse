@@ -32,6 +32,18 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Locale;
 
+/**
+ * <p>A class to represent a response to a {@link FuseAPIPacket}.</p>
+ * <p>The object must be used in two parts:</p>
+ * <ol>
+ *     <li>Set header information, including status code, content type, and content length. Then call {@link #didFinishHeaders()}</li>
+ *     <li>Then push data up to the content length in bytes. Then call {@link #didFinish()}</li>
+ * </ol>
+ * <p>Once {@link #didFinish()} is invoked, the packet is considered finalized. No other data can be pushed.</p>
+ * <p>Alternatively, there are several convenient methods available that handles setting up setting up
+ * the headers, and pushing the data for you, using any of the send(...) methods.
+ * Knowing how to manually setup the response is still valuable for when you need to push data chunks.</p>
+ */
 public class FuseAPIResponse {
 
     private static final String TAG = "FuseAPIResponse";
@@ -63,7 +75,7 @@ public class FuseAPIResponse {
 
     FuseContext $context;
     private int $status;
-    private Socket $client;
+    private final Socket $client;
     private boolean $hasSentHeaders;
 
     private String $contentType;
@@ -94,22 +106,51 @@ public class FuseAPIResponse {
 
 
     // Header APIs
+    /**
+     * Sets the status code of the response.
+     * Must be called before {@link #didFinishHeaders()}
+     * @param status the status code
+     */
     public void setStatus(int status) {
         $status = status;
     }
 
+    /**
+     * Sets the status code of the response.
+     * Must be called before {@link #didFinishHeaders()}
+     * @param status the status code
+     */
     public void setStatus(FuseAPIResponseStatus status) {
         setStatus(status.getValue());
     }
 
+    /**
+     * Sets the content type of the response.
+     * Must be called before {@link #didFinishHeaders()}
+     * @param type The content type
+     */
     public void setContentType(String type) {
         $contentType = type;
     }
 
+    /**
+     * Sets the content length of the response.
+     * Must be called before {@link #didFinishHeaders()}
+     * @param size The content length in bytes
+     */
     public void setContentLength(long size) {
         $contentLength = size;
     }
 
+    /**
+     * <p>A convenient method for setting the status code, content type and content length.
+     *      * Must be called before {@link #didFinishHeaders()}.</p>
+     * <p>This method sends the headers. It internally calls {@link #didFinishHeaders()}.
+     * After calling this method, only data can be pushed, up to the configured content length.</p>
+     * @param status the status code
+     * @param contentType the content type
+     * @param contentLength the content size in bytes
+     */
     public void sendHeaders(int status, String contentType, long contentLength) {
         setStatus(status);
         setContentType(contentType);
@@ -117,10 +158,24 @@ public class FuseAPIResponse {
         didFinishHeaders();
     }
 
+    /**
+     * <p>A convenient method for setting the status code, content type and content length.
+     *      * Must be called before {@link #didFinishHeaders()}.</p>
+     * <p>This method sends the headers. It internally calls {@link #didFinishHeaders()}.
+     * After calling this method, only data can be pushed, up to the configured content length.</p>
+     * @param status the status code
+     * @param contentType the content type
+     * @param contentLength the content size in bytes
+     */
     public void sendHeaders(FuseAPIResponseStatus status, String contentType, long contentLength) {
         sendHeaders(status.getValue(), contentType, contentLength);
     }
 
+    /**
+     * A convenience method for sending an "internal error" message to the client.
+     * This method must be called before {@link #didFinishHeaders()} and calling this method finalizes
+     * the packet.
+     */
     public void didInternalError() {
         byte[] data = "Internal Error. See native logs for more details.".getBytes();
         sendHeaders(FuseAPIResponseStatus.INTERNAL, "text/plain", data.length);
@@ -128,6 +183,12 @@ public class FuseAPIResponse {
         didFinish();
     }
 
+    /**
+     * <p>Finalizes the header state by preparing the headers and sending them to the wire.
+     *    Once this method is called, no more header configuration methods can be called.</p>
+     * <p>After calling this method, use {@link #pushData(byte[])} to send data to the wire, up
+     * to the specified content size of the packet.</p>
+     */
     public void didFinishHeaders() {
         StringBuilder sb = new StringBuilder();
         sb.append("HTTP/1.1 ")
@@ -171,6 +232,13 @@ public class FuseAPIResponse {
         }
     }
 
+    /**
+     * <p>Pushes data to the wire. Use this method after finalizes packet headers by using {@link #sendHeaders(int, String, long)}.
+     * Only send exactly the amount of data described by the content size of the packet.</p>
+     * </p>If less than the content size is sent, hanging will occur on the client waiting for the missing bytes.</p>
+     * <p>If more data than the content size is sent, may introduce buffer overflows.</p>
+     * @param data the data chunk
+     */
     public void pushData(byte[] data) {
         if (!$hasSentHeaders) {
             throw new RuntimeException("Cannot push data before headers have been sent. Call finishHeaders first!");
@@ -179,6 +247,10 @@ public class FuseAPIResponse {
         $write(data);
     }
 
+    /**
+     * Finalizes this packet by ensuring that the output stream is flushed to the wire and closes
+     * the socket connection.
+     */
     public void didFinish() {
         WeakReference<FuseAPIResponse> self = new WeakReference<>(this);
         $threadHandler.post(() -> {
@@ -193,20 +265,42 @@ public class FuseAPIResponse {
         });
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}
+     * @param data The data
+     * @param contentType the content type of data
+     */
     public void send(byte[] data, String contentType) {
         sendHeaders(FuseAPIResponseStatus.OK, contentType, data.length);
         pushData(data);
         didFinish();
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}
+     * @param data The data assumed to be untyped raw binary.
+     */
     public void send(byte[] data) {
         send(data, "application/octet-stream");
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}
+     * @param serializable The serializable data assumed to be untyped raw binary.
+     */
     public void send(IFuseSerializable serializable) {
         send(serializable, "application/octet-stream");
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}
+     * @param serializable The serializable data
+     * @param contentType The content type of serializable data
+     */
     public void send(IFuseSerializable serializable, String contentType) {
         byte[] data;
         try {
@@ -220,6 +314,11 @@ public class FuseAPIResponse {
         send(data, contentType);
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}
+     * @param json The JSON data to send
+     */
     public void send(JSONObject json) {
         byte[] data = json.toString().getBytes();
         sendHeaders(FuseAPIResponseStatus.OK, "application/json", data.length);
@@ -227,6 +326,11 @@ public class FuseAPIResponse {
         didFinish();
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}
+     * @param json The JSON data to send
+     */
     public void send(JSONArray json) {
         byte[] data = json.toString().getBytes();
         sendHeaders(FuseAPIResponseStatus.OK, "application/json", data.length);
@@ -234,6 +338,11 @@ public class FuseAPIResponse {
         didFinish();
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}
+     * @param stringData The string data to send
+     */
     public void send(String stringData) {
         byte[] data = stringData.getBytes();
         sendHeaders(FuseAPIResponseStatus.OK, "text/plain", data.length);
@@ -241,6 +350,11 @@ public class FuseAPIResponse {
         didFinish();
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}
+     * @param error The error data to send
+     */
     public void send(FuseError error) {
         byte[] data = error.serialize().getBytes();
         sendHeaders(FuseAPIResponseStatus.ERROR, "application/json", data.length);
@@ -248,11 +362,20 @@ public class FuseAPIResponse {
         didFinish();
     }
 
+    /**
+     * Convenience method that calls {@link #sendHeaders(FuseAPIResponseStatus, String, long)}
+     * and pushes the data and finalizes the packet with {@link #didFinish()}. No data is sent
+     * other than header data indicating that the packet has no data.
+     */
     public void send() {
         sendHeaders(204, "text/plain", 0);
         didFinish();
     }
 
+    /**
+     * Abruptly kill the connection with no reason given to the client.
+     * Ideally use {@link #send(FuseError)} to provide error feedback to the client.
+     */
     public void kill() {
         $threadHandler.post(() -> {
             try {

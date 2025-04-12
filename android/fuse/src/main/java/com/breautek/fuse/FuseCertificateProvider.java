@@ -204,7 +204,9 @@ import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import java.util.Date;
 
-
+/**
+ * Class that installs BouncyCastle and generates TLS certificates
+ */
 public class FuseCertificateProvider {
 
     public static class FuseCertificate {

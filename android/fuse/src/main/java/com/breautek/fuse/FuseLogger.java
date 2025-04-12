@@ -22,6 +22,11 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * A logger class that handles not only logging to the android logger, but directs logs to the
+ * webview as well. Allowing developer log feedback whether you're working on native environments,
+ * or in the webview debugging environment.
+ */
 public class FuseLogger {
 
     private static final String TAG = "FuseLogger";

@@ -20,6 +20,9 @@ package com.breautek.fuse;
 import android.util.DisplayMetrics;
 import androidx.fragment.app.FragmentActivity;
 
+/**
+ * A class to assist converting native display pixels to webview pixels and vice-versa.
+ */
 public class FuseScreenUtils {
     private final FragmentActivity $context;
 

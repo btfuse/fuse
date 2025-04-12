@@ -17,6 +17,9 @@ limitations under the License.
 
 package com.breautek.fuse;
 
+/**
+ * Collection of common response status codes for {@link FuseAPIResponse}.
+ */
 public enum FuseAPIResponseStatus {
     OK(200),
     ERROR(400),

@@ -24,7 +24,7 @@ import android.webkit.WebView;
 import com.breautek.fuse.views.SplashLoaderView;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link Fragment} subclass that handles initializing Fuse runtime environment.
  */
 public class FuseFragment extends Fragment {
     public static final String LOG_TAG = "FuseFragment";

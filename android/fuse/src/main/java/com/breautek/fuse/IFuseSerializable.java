@@ -19,6 +19,9 @@ package com.breautek.fuse;
 
 import org.json.JSONException;
 
+/**
+ * An interface for anything that can be serialized to raw bytes.
+ */
 public interface IFuseSerializable {
     byte[] serialize() throws JSONException;
 }

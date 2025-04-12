@@ -20,6 +20,10 @@ package com.breautek.fuse;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * The API Router that is responsible for delegating {@link FuseAPIPacket} instances to the plugin
+ * that will handle the request.
+ */
 public class FuseAPIRouter {
     private final FuseContext $context;
 
@@ -27,6 +31,12 @@ public class FuseAPIRouter {
         $context = context;
     }
 
+    /**
+     * Delegates the packet to the registered plugin
+     * @param packet The request packet.
+     * @param response the contextual response packet
+     * @throws IOException if the underlying socket produces an error on read and/or write.
+     */
     public void execute(FuseAPIPacket packet, FuseAPIResponse response) throws IOException {
         String route = packet.getRoute();
 

@@ -19,6 +19,9 @@ package com.breautek.fuse;
 
 import java.net.Socket;
 
+/**
+ * Factory class for producing API response objects.
+ */
 public class FuseAPIResponseFactory {
     public FuseAPIResponse create(FuseContext context, Socket socket) {
         return new FuseAPIResponse(context, socket);

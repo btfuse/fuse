@@ -27,6 +27,9 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 
+/**
+ * Chrome client implementation to handle creating JS dialogs.
+ */
 public class FuseChromeClient extends WebChromeClient  {
     private String $getAppName(Context context) {
         ApplicationInfo applicationInfo = context.getApplicationInfo();

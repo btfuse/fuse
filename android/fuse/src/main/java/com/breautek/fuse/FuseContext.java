@@ -56,6 +56,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.net.ssl.SSLContext;
 
+/**
+ * The main context class for a Fuse runtime environment.
+ */
 public class FuseContext implements IProgressContextListener  {
     private static final String TAG = "FuseContext";
 
