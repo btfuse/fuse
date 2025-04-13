@@ -20,7 +20,9 @@ package com.breautek.fuse.filesystem;
 import static org.junit.Assert.*;
 
 import android.net.Uri;
+import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import com.breautek.fuse.testtools.FuseTestAPIClient;
@@ -38,9 +40,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(AndroidJUnit4.class)
 public class FuseFilesystemPluginTest {
+
+    public static int DEFAULT_TIMEOUT = 10;
 
     static File dataDir = new File("/data/data/com.breautek.fuse.filesystem.test/files/");
 
@@ -201,7 +206,7 @@ public class FuseFilesystemPluginTest {
     public void shouldBeDirectoryFileType() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
 
@@ -240,14 +245,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(10, TimeUnit.SECONDS));
     }
 
     @Test
     public void shouldHaveSizeOf512() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
 
@@ -276,14 +281,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canMkdirWithoutRecursion() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -316,14 +321,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canMkdirWithRecursion() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -356,14 +361,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canReadFileEntirely() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -397,14 +402,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canReadFilePartially() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -438,14 +443,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canReadFileWithOffset() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -479,14 +484,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canTruncateFile() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -519,14 +524,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canTruncateFileWithNewContent() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 try {
                     int port = activity.getFuseContext().getAPIPort();
                     String secret = activity.getFuseContext().getAPISecret();
@@ -586,14 +591,14 @@ public class FuseFilesystemPluginTest {
                 }
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canAppendDataToFile() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -653,14 +658,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canWriteDataToFile() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 try {
                     int port = activity.getFuseContext().getAPIPort();
                     String secret = activity.getFuseContext().getAPISecret();
@@ -730,14 +735,14 @@ public class FuseFilesystemPluginTest {
                 }
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canWriteDataToFileWithOffset() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 try {
                     int port = activity.getFuseContext().getAPIPort();
                     String secret = activity.getFuseContext().getAPISecret();
@@ -807,14 +812,14 @@ public class FuseFilesystemPluginTest {
                 }
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canDeleteFile() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -855,14 +860,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void deleteAPIShouldReturnFalse() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
 
@@ -898,14 +903,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canRecursivelyDelete() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -946,14 +951,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void existsShouldBeTrue() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -989,14 +994,14 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void existsShouldBeFalse() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
 
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -1032,6 +1037,6 @@ public class FuseFilesystemPluginTest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 }
