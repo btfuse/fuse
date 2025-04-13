@@ -16,6 +16,7 @@ source build-tools/DirectoryTools.sh
 
 PLATFORM_ANDROID="android"
 PLATFORM_IOS="ios"
+PLATFORM_JS="js"
 
 MODULE_CORE="core"
 MODULE_TEST_TOOLS="testtools"
@@ -27,6 +28,7 @@ MODULE_LOCATION="location"
 SUPPORTED_PLATFORMS=(
     "$PLATFORM_ANDROID"
     "$PLATFORM_IOS"
+    "$PLATFORM_JS"
 )
 
 SUPPORTED_MODULES=(
