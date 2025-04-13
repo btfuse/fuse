@@ -34,6 +34,6 @@ function publishRelease {
 }
 
 files=(
-    "core/android/fuse/build/outputs/aar/fuse-debug.aar"
-    "core/android/fuse/build/outputs/aar/fuse-release.aar"
+    "android/fuse/build/outputs/aar/fuse-debug.aar"
+    "android/fuse/build/outputs/aar/fuse-release.aar"
 )
