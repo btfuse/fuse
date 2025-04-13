@@ -17,6 +17,7 @@ limitations under the License.
 
 package com.breautek.fuse;
 
+import androidx.annotation.Nullable;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
@@ -28,14 +29,19 @@ import org.junit.Rule;
 
 import static org.junit.Assert.*;
 
+import android.os.Bundle;
+
 import com.breautek.fuse.testtools.FuseTestAPIClient;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(AndroidJUnit4.class)
 public class FuseAPITest {
+
+    public static int DEFAULT_TIMEOUT = 10;
 
     @Rule
     public ActivityScenarioRule<TestFuseActivity> activityRule = new ActivityScenarioRule<>(TestFuseActivity.class);
@@ -50,33 +56,33 @@ public class FuseAPITest {
     public void shouldHaveAPort() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 assertTrue(port >= 1024 && port <= 65535);
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void shouldHaveASecret() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 String secret = activity.getFuseContext().getAPISecret();
                 assertNotNull(secret);
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canDoSimpleEchoRequest() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
 
@@ -101,14 +107,14 @@ public class FuseAPITest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 
     @Test
     public void canUseAnAPIThatSwitchesToMainThread() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback(() -> {
+            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
 
@@ -133,6 +139,6 @@ public class FuseAPITest {
                 latch.countDown();
             });
         });
-        latch.await();
+        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
     }
 }

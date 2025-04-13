@@ -39,6 +39,8 @@ android {
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
+
         consumerProguardFiles("consumer-rules.pro")
 
         buildConfigField("String", "FUSE_VERSION", "\"" + file("../VERSION").readText().trim() + "\"")
@@ -68,6 +70,7 @@ android {
 
     testOptions {
         targetSdk = 36
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
 
         packaging {
             // https://issuetracker.google.com/issues/379732901?pli=1
@@ -102,31 +105,31 @@ android {
                 register("api31", ManagedVirtualDevice::class) {
                     device = "Pixel 7"
                     apiLevel = 31
-                    systemImageSource = "aosp-atd"
+                    systemImageSource = "aosp"
                 }
 
                 register("api32", ManagedVirtualDevice::class) {
                     device = "Pixel 7"
                     apiLevel = 32
-                    systemImageSource = "aosp-atd"
+                    systemImageSource = "aosp"
                 }
 
                 register("api33", ManagedVirtualDevice::class) {
                     device = "Pixel 7"
                     apiLevel = 33
-                    systemImageSource = "aosp-atd"
+                    systemImageSource = "aosp"
                 }
 
                 register("api34", ManagedVirtualDevice::class) {
                     device = "Nexus One"
                     apiLevel = 34
-                    systemImageSource = "aosp-atd"
+                    systemImageSource = "aosp"
                 }
 
                 register("api35", ManagedVirtualDevice::class) {
                     device = "Nexus One"
                     apiLevel = 35
-                    systemImageSource = "aosp-atd"
+                    systemImageSource = "aosp"
                 }
             }
         }
@@ -146,6 +149,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation("androidx.test:rules:1.6.1")
+    androidTestUtil("androidx.test:orchestrator:1.5.1")
 
     androidTestImplementation(project(":EchoPlugin"))
     androidTestImplementation(project(":fuseTestTools"))
