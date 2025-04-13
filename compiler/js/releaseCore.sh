@@ -12,24 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
 
-tagMessage="Fuse Android Core Release: $version"
+tagMessage="Fuse JS Core Release: $version"
 
 function onPreRelease {
-    spushd android
-        echo $version > VERSION
-        git add VERSION
+    spushd js
+        npm version $version --no-git-tag-version
+        assertLastCall
     spopd
 }
 
 function publishRelease {
-    spushd android
-        ./gradlew :fuse:publishReleasePublicationToMavenRepository
+    spushd js
+        npm pack
+        assertLastCall
+        npm publish btfuse-core-$version.tgz
+        assertLastCall
     spopd
 }
 
 files=(
-    "android/fuse/build/outputs/aar/fuse-debug.aar"
-    "android/fuse/build/outputs/aar/fuse-release.aar"
+    "js/btfuse-core-$version.tgz"
 )
