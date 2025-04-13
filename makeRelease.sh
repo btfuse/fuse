@@ -103,7 +103,6 @@ onPreRelease
 
 publishRelease
 
-echo "TAG MESSAGE: $tagMessage"
 git commit -m "$tagMessage"
 git push
 git tag -a "$tag" -m "$tagMessage"

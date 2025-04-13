@@ -1,6 +1,6 @@
 {
     "name": "@btfuse/core",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "description": "A native-first framework for building hybdrid web-native applications",
     "main": "lib/api.js",
     "types": "lib/api.d.ts",
