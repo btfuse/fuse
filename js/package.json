@@ -26,8 +26,7 @@
         "e2e:ios": "echo \"Error: no iOS E2E test specified\" && exit 0",
         "e2e:android": "echo \"Error: no android E2E test specified\" && exit 0",
         "preversion": "npm test",
-        "version": "tsc",
-        "postversion": "git push && git push --tags"
+        "version": "tsc"
     },
     "repository": {
         "type": "git",
