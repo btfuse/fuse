@@ -17,7 +17,7 @@
 source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
 
-assertMac "Mac is required for publishing"
+# assertMac "Mac is required for publishing"
 assertGitRepo
 assertCleanRepo
 
