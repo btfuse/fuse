@@ -21,6 +21,7 @@ function onPreRelease {
     spushd js
         npm version $version --no-git-tag-version
         assertLastCall
+        git add package.json package-lock.json ../package-lock.json
     spopd
 }
 
