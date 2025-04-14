@@ -1,4 +1,4 @@
-package com.breautek.fuse.plugins.location;
+package com.breautek.fuse.location.location;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.breautek.fuse.plugins.location.test", appContext.getPackageName());
+        assertEquals("com.breautek.fuse.location.test", appContext.getPackageName());
     }
 }

@@ -15,12 +15,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package com.breautek.fuse.plugins.location;
+package com.breautek.fuse.location;
 
-import com.breautek.fuse.FuseError;
-
-public class FuseLocationGoogleServicesNotAvailableError extends FuseError {
-    public FuseLocationGoogleServicesNotAvailableError(int code) {
-        super("FuseLocation", code, "Google Play Services is not available.");
-    }
+public enum FuseLocationAccuracy {
+    COARSE,
+    FINE
 }

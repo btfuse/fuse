@@ -15,7 +15,7 @@
 //limitations under the License.
 //*/
 //
-//package ca.nbsolutions.fuse.plugins.location;
+//package com.breautek.fuse.location;
 //
 //
 //import android.app.Service;

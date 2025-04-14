@@ -22,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.breautek.fuse.FuseContext;
 import com.breautek.fuse.FuseFragment;
-import com.breautek.fuse.plugins.location.FuseLocationPlugin;
+import com.breautek.fuse.location.FuseLocationPlugin;
 
 public class MainActivity extends AppCompatActivity {
     private FuseFragment $fuse;

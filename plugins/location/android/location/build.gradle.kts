@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.breautek.fuse.plugins.location"
+    namespace = "com.breautek.fuse.location"
     compileSdk = 36
 
     defaultConfig {

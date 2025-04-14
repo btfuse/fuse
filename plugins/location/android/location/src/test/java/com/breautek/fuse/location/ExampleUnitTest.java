@@ -1,4 +1,4 @@
-package com.breautek.fuse.plugins.location;
+package com.breautek.fuse.location.location;
 
 import org.junit.Test;
 
