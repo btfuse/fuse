@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("ca.nbsolutions.fuse.plugins.location.test", appContext.getPackageName());
+        assertEquals("com.breautek.fuse.plugins.location.test", appContext.getPackageName());
     }
 }

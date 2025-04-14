@@ -14,7 +14,6 @@
 
 source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
-source compiler/vars.sh
 
 spushd plugins/filesystem
     npm test

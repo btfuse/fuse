@@ -14,8 +14,24 @@
 
 source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
+source compiler/vars.sh
 
-spushd js
-    npm test
+spushd android
+    ./gradlew :plugins:location:test
     assertLastCall
 spopd
+
+if [[ -z "$sdkVersion" ]]; then
+    for sdkVersion in "${SUPPORTED_ANDROID_VERSIONS[@]}"; do
+        spushd android
+            ./gradlew :plugins:location:api${sdkVersion}DebugAndroidTest
+            assertLastCall
+        spopd
+    done
+else
+    spushd android
+        ./gradlew :plugins:location:api${sdkVersion}DebugAndroidTest
+        assertLastCall
+    spopd
+fi
+

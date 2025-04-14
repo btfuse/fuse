@@ -15,7 +15,7 @@
 source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
 
-spushd js
+spushd plugins/location
     npm test
     assertLastCall
 spopd

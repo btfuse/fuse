@@ -81,4 +81,11 @@ case "$module" in
     $MODULE_GOOGLE_MAPS)
         source compiler/$platform/testGoogleMaps.sh
     ;;
+    $MODULE_LOCATION)
+        source compiler/$platform/testLocation.sh
+    ;;
+    *)
+        echo "Unknown module: '$module'" >&2
+        exit 1
+    ;;
 esac

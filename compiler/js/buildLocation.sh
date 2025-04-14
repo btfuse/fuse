@@ -12,10 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
 
-spushd js
-    npm test
-    assertLastCall
+spushd plugins/location
+    npm run build
 spopd

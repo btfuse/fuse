@@ -15,7 +15,25 @@
 source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
 
-spushd js
-    npm test
-    assertLastCall
-spopd
+tagMessage="Fuse JS Location Release: $version"
+
+function onPreRelease {
+    spushd plugins/location
+        npm version $version --no-git-tag-version
+        assertLastCall
+        git add package.json package-lock.json ../../package-lock.json
+    spopd
+}
+
+function publishRelease {
+    spushd plugins/location
+        npm pack
+        assertLastCall
+        npm publish btfuse-location-$version.tgz
+        assertLastCall
+    spopd
+}
+
+files=(
+    "plugins/location/btfuse-location-$version.tgz"
+)

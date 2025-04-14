@@ -83,4 +83,8 @@ case "$module" in
     $MODULE_LOCATION)
         source compiler/$platform/buildLocation.sh
     ;;
+    *)
+        echo "Unknown module: '$module'" >&2
+        exit 1
+    ;;
 esac
