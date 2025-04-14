@@ -52,6 +52,7 @@ The Fuse project is split up into several modules.
 |Fuse iOS|[/ios](https://github.com/btfuse/fuse/tree/main/ios)|The iOS Fuse Framework
 |Fuse JS|[/js](https://github.com/btfuse/fuse/tree/main/js)|The webview Fuse library
 |Fuse Docs|[/docs](https://github.com/btfuse/fuse/tree/main/docs)|The User Documentation website.
+|Fuse Plugins|[/plugins](https://github.com/btfuse/fuse/tree/main/plugins)|List of plugins maintained by Breautek.
 
 ## Committer Requirements
 
@@ -60,10 +61,10 @@ Each component has their own requirements to build the framework.
 |Name|Requirements|
 |---|---|
 |Build Tools|N/A|
-|Android|- Android Studio Koala or later<br />- NodeJS 20 or later|
-|iOS|- Xcode 16 or later<br />- NodeJS 20 or later|
-|JS|- NodeJS 20 or later|
-|Docs|- Doxygen 1.12 or later<br />- NodeJS 20 or later
+|Android|- Android Studio Meerkat or later<br />- NodeJS 22 or later|
+|iOS|- Xcode 16 or later<br />- NodeJS 22 or later|
+|JS|- NodeJS 22 or later|
+|Docs|- Doxygen 1.12 or later<br />- NodeJS 22 or later
 
 NOTE: At this time, all scripts are written in bash, therefore a unix environment is required for
 all modules.
