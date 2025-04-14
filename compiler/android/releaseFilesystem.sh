@@ -30,6 +30,8 @@ function publishRelease {
 }
 
 files=(
-    "plugins/filesystem/android/filesystem/build/outputs/aar/filesystem-debug.aar"
-    "plugins/filesystem/android/filesystem/build/outputs/aar/filesystem-release.aar"
+    "plugins/filesystem/dist/android/filesystem-$variable-debug.aar"
+    "plugins/filesystem/dist/android/filesystem-$variable-debug.aar.sha1.txt"
+    "plugins/filesystem/dist/android/filesystem-$variable.aar"
+    "plugins/filesystem/dist/android/filesystem-$variable.aar.sha1.txt"
 )
