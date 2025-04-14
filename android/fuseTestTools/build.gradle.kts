@@ -55,7 +55,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.breautek.fuse"
             artifactId = "test-tools"
-            version = "0.0.3"
+            version = file("../VERSION").readText().trim()
 
             afterEvaluate {
                 from(components["release"])
