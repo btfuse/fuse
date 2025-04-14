@@ -88,6 +88,9 @@ case "$module" in
     $MODULE_NATIVE_VIEW)
         source compiler/$platform/releaseNativeView.sh
     ;;
+    $MODULE_LOCATION)
+        source compiler/$platform/releaseLocation.sh
+    ;;
     # $MODULE_GOOGLE_MAPS)
     #     source compiler/$platform/releaseGoogleMaps.sh
     # ;;
