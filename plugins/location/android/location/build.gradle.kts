@@ -118,7 +118,7 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            groupId = "com.breautek.fuse.plugins"
+            groupId = "com.breautek.fuse"
             artifactId = "location"
             version = file("../VERSION").readText().trim()
 
