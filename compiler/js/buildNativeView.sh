@@ -14,6 +14,6 @@
 
 source build-tools/DirectoryTools.sh
 
-spushd plugins/filesystem
+spushd plugins/nativeview
     npm run build
 spopd

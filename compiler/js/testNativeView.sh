@@ -12,8 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
+source compiler/vars.sh
 
-spushd plugins/filesystem
-    npm run build
+spushd plugins/nativeview
+    npm test
+    assertLastCall
 spopd

@@ -12,8 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+source build-tools/assertions.sh
 source build-tools/DirectoryTools.sh
 
-spushd plugins/filesystem
-    npm run build
-spopd
+tagMessage="Fuse JS Native View Release: $version"
+
+function onPreRelease {
+    spushd plugins/nativeview
+        npm version $version --no-git-tag-version
+        assertLastCall
+        git add package.json package-lock.json ../../package-lock.json
+    spopd
+}
+
+function publishRelease {
+    spushd plugins/nativeview
+        npm pack
+        assertLastCall
+        npm publish btfuse-native-view-$version.tgz
+        assertLastCall
+    spopd
+}
+
+files=(
+    "plugins/filesystem/btfuse-native-view-$version.tgz"
+)
