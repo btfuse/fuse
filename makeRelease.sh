@@ -62,6 +62,10 @@ if [[ "$isModuleValid" == false ]]; then
     exit 1
 fi
 
+if [[ "$platform" == "ios" ]]; then
+    assertMac "Mac is required for producing iOS builds."
+fi
+
 tag="$module/$platform/$version"
 
 echo "Git Tag: $tag"
