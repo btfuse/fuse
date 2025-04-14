@@ -82,9 +82,9 @@ case "$module" in
     # $MODULE_TEST_TOOLS)
     #     source compiler/$platform/releaseTestTools.sh
     # ;;
-    # $MODULE_FILESYSTEM)
-    #     source compiler/$platform/releaseFilesystem.sh
-    # ;;
+    $MODULE_FILESYSTEM)
+        source compiler/$platform/releaseFilesystem.sh
+    ;;
     # $MODULE_NATIVE_VIEW)
     #     source compiler/$platform/releaseNativeView.sh
     # ;;
