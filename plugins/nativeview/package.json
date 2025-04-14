@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "",
   "main": "lib/api.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "scripts": {
     "build": "npm run lint && tsc --build && webpack --mode development --config webpack.android.js && webpack --mode development --config webpack.ios.js",
     "clean": "npx tsc --build --clean",

@@ -4,6 +4,7 @@
   "description": "Filesystem plugin for the Fuse framework",
   "main": "lib/api.js",
   "publishConfig": {
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "scripts": {

@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "Geolocation plugin for the Fuse framework",
   "main": "lib/api.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc --build",
     "build:tests:android": "cd testapp && webpack --config ./webpack.android.js --mode development",
