@@ -68,14 +68,10 @@ fi
 
 tag="$module/$platform/$version"
 
-echo "Git Tag: $tag"
-
 assertVersion $version
 assertGitTagAvailable $tag
 
 #endregion
-
-# ./build.sh $platform $module
 
 LAST_TAG=$(git tag --list "$module/$platform/*" --sort=-v:refname | head -n 1)
 
@@ -89,9 +85,9 @@ case "$module" in
     $MODULE_FILESYSTEM)
         source compiler/$platform/releaseFilesystem.sh
     ;;
-    # $MODULE_NATIVE_VIEW)
-    #     source compiler/$platform/releaseNativeView.sh
-    # ;;
+    $MODULE_NATIVE_VIEW)
+        source compiler/$platform/releaseNativeView.sh
+    ;;
     # $MODULE_GOOGLE_MAPS)
     #     source compiler/$platform/releaseGoogleMaps.sh
     # ;;
