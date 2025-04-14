@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Filesystem plugin for the Fuse framework",
   "main": "lib/api.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "npx eslint ./src",
     "build": "npm run lint && tsc --build",
