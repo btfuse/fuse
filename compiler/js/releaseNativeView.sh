@@ -35,5 +35,5 @@ function publishRelease {
 }
 
 files=(
-    "plugins/filesystem/btfuse-native-view-$version.tgz"
+    "plugins/nativeview/btfuse-native-view-$version.tgz"
 )
