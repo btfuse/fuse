@@ -6,3 +6,4 @@ xcuserdata
 node_modules
 *.tsbuildinfo
 .turbo
+*.tgz
