@@ -1,6 +1,6 @@
 {
   "name": "@btfuse/location",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Geolocation plugin for the Fuse framework",
   "main": "lib/api.js",
   "publishConfig": {
