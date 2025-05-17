@@ -84,6 +84,12 @@ case "$module" in
     $MODULE_LOCATION)
         source compiler/$platform/testLocation.sh
     ;;
+    $MODULE_SQLITE)
+        source compiler/$platform/testSQLite.sh
+    ;;
+    $MODULE_SQLITE_LIB)
+        source compiler/$platform/testSQLiteLib.sh
+    ;;
     *)
         echo "Unknown module: '$module'" >&2
         exit 1

@@ -61,6 +61,8 @@ export {
 } from './FusePermissionRequest';
 export {IFuseGrantResult} from './IFuseGrantResult';
 export {FusePermissionGrantResult} from './FusePermissionGrantResult';
+export * from './FuseBinaryTools';
+export {Buffer} from 'buffer';
 
 // Logger
 export {FuseLoggerLevel} from './FuseLoggerLevel';

@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/development/breautek/fuse/plugins/sqlite/android/sqlite/.cxx/Debug/111d5d82/x86",
+  "command": "/development/tools/Android/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android29 --sysroot=/development/tools/Android/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dfusesqlite_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -o CMakeFiles/fusesqlite.dir/development/breautek/fuse/plugins/sqlite/src/native/BTFuseSQLitePacket.c.o -c /development/breautek/fuse/plugins/sqlite/src/native/BTFuseSQLitePacket.c",
+  "file": "/development/breautek/fuse/plugins/sqlite/src/native/BTFuseSQLitePacket.c"
+},
+{
+  "directory": "/development/breautek/fuse/plugins/sqlite/android/sqlite/.cxx/Debug/111d5d82/x86",
+  "command": "/development/tools/Android/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android29 --sysroot=/development/tools/Android/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dfusesqlite_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -o CMakeFiles/fusesqlite.dir/FuseSQLite.c.o -c /development/breautek/fuse/plugins/sqlite/android/sqlite/src/main/cpp/FuseSQLite.c",
+  "file": "/development/breautek/fuse/plugins/sqlite/android/sqlite/src/main/cpp/FuseSQLite.c"
+}
+]

@@ -1,4 +1,30 @@
 {
     "java.configuration.updateBuildConfiguration": "disabled",
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        "*.ejs": "html",
+        "sqlite3.h": "c",
+        "compare": "c",
+        "cstdint": "c",
+        "format": "c",
+        "__locale": "c",
+        "chrono": "c",
+        "functional": "c",
+        "stdint.h": "c",
+        "__bit_reference": "c",
+        "__node_handle": "c",
+        "bitset": "c",
+        "deque": "c",
+        "limits": "c",
+        "locale": "c",
+        "optional": "c",
+        "ratio": "c",
+        "tuple": "c",
+        "vector": "c",
+        "charconv": "c",
+        "system_error": "c",
+        "array": "c",
+        "type_traits": "c",
+        "utility": "c"
+    }
 }

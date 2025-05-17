@@ -59,3 +59,8 @@ include(":plugins:filesystem")
 project(":plugins:filesystem").projectDir = File("../plugins/filesystem/android/filesystem")
 include(":plugins:filesystem:testapp")
 project(":plugins:filesystem:testapp").projectDir = File("../plugins/filesystem/android/testapp")
+
+include(":plugins:sqlite")
+project(":plugins:sqlite").projectDir = File("../plugins/sqlite/android/sqlite")
+include(":plugins:sqlite:lib")
+project(":plugins:sqlite:lib").projectDir = File("../plugins/sqlite/android/sqlite/lib")

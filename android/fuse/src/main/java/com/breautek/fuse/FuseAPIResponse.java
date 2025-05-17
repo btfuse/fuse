@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -47,6 +48,11 @@ import java.util.Locale;
 public class FuseAPIResponse {
 
     private static final String TAG = "FuseAPIResponse";
+
+    public static enum Mode {
+        STANDARD,
+        CHUNK
+    }
 
     private static class StatusCodes {
         private final HashMap<Integer, String> $statusTextMap;
@@ -78,6 +84,8 @@ public class FuseAPIResponse {
     private final Socket $client;
     private boolean $hasSentHeaders;
 
+    private Mode $mode;
+
     private String $contentType;
     private long $contentLength;
     private final Handler $threadHandler;
@@ -94,6 +102,7 @@ public class FuseAPIResponse {
         $status = FuseAPIResponseStatus.OK.getValue();
         $contentType = "application/octet-stream";
         $contentLength = 0;
+        $mode = Mode.STANDARD;
     }
 
     public Handler getNetworkThreadHandler() {
@@ -125,6 +134,17 @@ public class FuseAPIResponse {
     }
 
     /**
+     * Sets the transfer mode.
+     * If STANDARD, contentLength is required.
+     * If CHUNK, contentLength will be ignored.
+     *
+     * @param mode The transfer mode
+     */
+    public void setMode(Mode mode) {
+        $mode = mode;
+    }
+
+    /**
      * Sets the content type of the response.
      * Must be called before {@link #didFinishHeaders()}
      * @param type The content type
@@ -136,6 +156,7 @@ public class FuseAPIResponse {
     /**
      * Sets the content length of the response.
      * Must be called before {@link #didFinishHeaders()}
+     * Ignored if transfer mode is set to Mode.CHUNK
      * @param size The content length in bytes
      */
     public void setContentLength(long size) {
@@ -153,6 +174,7 @@ public class FuseAPIResponse {
      */
     public void sendHeaders(int status, String contentType, long contentLength) {
         setStatus(status);
+        setMode(Mode.STANDARD);
         setContentType(contentType);
         setContentLength(contentLength);
         didFinishHeaders();
@@ -199,9 +221,18 @@ public class FuseAPIResponse {
                 .append("Access-Control-Allow-Origin: https://localhost\r\n")
                 .append("Access-Control-Allow-Headers: *\r\n")
                 .append("Cache-Control: no-cache\r\n")
-                .append("Content-Type: ").append($contentType).append("\r\n")
-                .append("Content-Length: ").append(Long.toString($contentLength)).append("\r\n")
-                .append("\r\n");
+                .append("Content-Type: ").append($contentType).append("\r\n");
+
+        switch ($mode) {
+            case STANDARD:
+                sb.append("Content-Length: ").append(Long.toString($contentLength)).append("\r\n");
+                break;
+            case CHUNK:
+                sb.append("Transfer-Encoding: Chunked\r\n");
+                break;
+        }
+
+        sb.append("\r\n");
 
         $write(sb.toString().getBytes(), true);
 
@@ -221,7 +252,15 @@ public class FuseAPIResponse {
     protected void __writeImpl(byte[] data, boolean flush) {
         try {
             OutputStream io = $client.getOutputStream();
+            if ($mode == Mode.CHUNK) {
+                int payloadSize = data.length;
+                String header = Integer.toHexString(payloadSize) + "\r\n";
+                io.write(header.getBytes(StandardCharsets.US_ASCII));
+            }
             io.write(data);
+            if ($mode == Mode.CHUNK) {
+                io.write("\r\n".getBytes(StandardCharsets.US_ASCII));
+            }
             if (flush) {
                 io.flush();
             }
@@ -255,6 +294,10 @@ public class FuseAPIResponse {
         WeakReference<FuseAPIResponse> self = new WeakReference<>(this);
         $threadHandler.post(() -> {
             try {
+                if ($mode == Mode.CHUNK) {
+                    __writeImpl(new byte[0], false); // Write empty chunk
+                    $client.getOutputStream().write("\r\n".getBytes(StandardCharsets.US_ASCII)); // Terminate the chunked stream
+                }
                 $client.getOutputStream().flush();
                 $client.close();
                 $printElapsedTime();

@@ -91,6 +91,9 @@ case "$module" in
     $MODULE_LOCATION)
         source compiler/$platform/releaseLocation.sh
     ;;
+    $MODULE_SQLITE)
+        source compiler/$platform/releaseSQLite.sh
+    ;;
     # $MODULE_GOOGLE_MAPS)
     #     source compiler/$platform/releaseGoogleMaps.sh
     # ;;
