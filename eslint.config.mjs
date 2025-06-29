@@ -12,10 +12,34 @@ export default [
         languageOptions: {
             sourceType: 'module',
             globals: {
-                ...globals.browser,
-                ...globals.jest
+                ...globals.browser
             }
         }
+    },
+    {
+        plugins: {},
+        languageOptions: {
+            sourceType: 'module',
+            globals: {
+                ...globals.node
+            }
+        },
+        files: [
+            '**/webpack.*',
+            "./compiler/webpack/**"
+        ]
+    },
+    {
+        plugins: {},
+        languageOptions: {
+            sourceType: 'module',
+            globals: {
+                ...globals.jest
+            }
+        },
+        files: [
+            '**/spec/jest/**/*.spec.ts'
+        ]
     },
     eslint.configs.recommended,
     ...tslint.configs.recommended,
@@ -23,25 +47,9 @@ export default [
         rules: {
             "@typescript-eslint/triple-slash-reference": 'off',
             "@typescript-eslint/no-unused-vars": 'off',
+            "@typescript-eslint/no-require-imports": 'off',
             'tsdoc/syntax': 'warn',
             "prefer-const": 'off'
         }
     }
 ];
-
-// module.exports = {
-//     extends: [
-//         'eslint:recommended',
-//         'plugin:@typescript-eslint/recommended'
-//     ],
-//     parser: '@typescript-eslint/parser',
-//     plugins: ['@typescript-eslint', 'eslint-plugin-tsdoc'],
-//     ignorePatterns: [
-//         "**/lib/**"
-//     ],
-//     root: true,
-//     rules: {
-//         "@typescript-eslint/no-unused-vars": 'off',
-//         'tsdoc/syntax': 'warn'
-//     }
-// };

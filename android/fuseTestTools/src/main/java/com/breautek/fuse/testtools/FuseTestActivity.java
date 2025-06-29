@@ -1,6 +1,6 @@
 
 /*
-Copyright 2023 Breautek
+Copyright 2023-2025 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,10 +24,9 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import com.breautek.fuse.FuseContext;
-import com.breautek.fuse.FuseFragment;
 
 public class FuseTestActivity extends AppCompatActivity {
-    private FuseFragment $fuse;
+    private FuseTestFragment $fuse;
     private FuseContext.IReadyCallback $callback;
     private boolean $ready;
 
@@ -48,11 +47,11 @@ public class FuseTestActivity extends AppCompatActivity {
         setContentView(layout);
 
         if (savedInstanceState == null) {
-            $fuse = new FuseFragment();
+            $fuse = new FuseTestFragment();
             getSupportFragmentManager().beginTransaction().add(layout.getId(), $fuse).commit();
         }
         else {
-            $fuse = (FuseFragment) getSupportFragmentManager().findFragmentById(layout.getId());
+            $fuse = (FuseTestFragment) getSupportFragmentManager().findFragmentById(layout.getId());
         }
 
         if ($fuse == null) {
@@ -62,6 +61,8 @@ public class FuseTestActivity extends AppCompatActivity {
         $fuse.setOnReadyCallback((Bundle saveInstanceState) -> {
             FuseContext fuseContext = $fuse.getFuseContext();
             _registerPlugins(fuseContext);
+
+            $ready = true;
 
             if ($callback != null) {
                 $callback.onReady(saveInstanceState);

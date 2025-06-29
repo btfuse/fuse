@@ -15,49 +15,49 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import * as api from '../src/api';
-import {AbstractFuseAPIFactory} from '../src/AbstractFuseAPIFactory';
-import {AbstractFuseLoggerFactory} from '../src/AbstractFuseLoggerFactory';
-import {ContentType} from '../src/ContentType';
+import * as api from '../../src/api';
+import {AbstractFuseAPIFactory} from '../../src/AbstractFuseAPIFactory';
+import {AbstractFuseLoggerFactory} from '../../src/AbstractFuseLoggerFactory';
+import {ContentType} from '../../src/ContentType';
 import {
     FuseAPI
-} from '../src/FuseAPI';
-import {FuseAPIFactory} from '../src/FuseAPIFactory';
-import {FuseAPIResponse} from '../src/FuseAPIResponse';
-import {FuseContext} from '../src/FuseContext';
-import {FuseContextBuilder} from '../src/FuseContextBuilder';
-import {FuseError} from '../src/FuseError';
+} from '../../src/FuseAPI';
+import {FuseAPIFactory} from '../../src/FuseAPIFactory';
+import {FuseAPIResponse} from '../../src/FuseAPIResponse';
+import {FuseContext} from '../../src/FuseContext';
+import {FuseContextBuilder} from '../../src/FuseContextBuilder';
+import {FuseError} from '../../src/FuseError';
 import {
     FuseLogger,
     FuseLoggerSerializer
-} from '../src/FuseLogger';
-import {FuseLoggerFactory} from '../src/FuseLoggerFactory';
-import {FuseLoggerLevel} from '../src/FuseLoggerLevel';
-import {FusePermissionGrantResult} from '../src/FusePermissionGrantResult';
+} from '../../src/FuseLogger';
+import {FuseLoggerFactory} from '../../src/FuseLoggerFactory';
+import {FuseLoggerLevel} from '../../src/FuseLoggerLevel';
+import {FusePermissionGrantResult} from '../../src/FusePermissionGrantResult';
 import {
     FusePermissionRequest
-} from '../src/FusePermissionRequest';
-import {FusePermissionState} from '../src/FusePermissionState';
+} from '../../src/FusePermissionRequest';
+import {FusePermissionState} from '../../src/FusePermissionState';
 import {
     FusePlugin
-} from '../src/FusePlugin';
-import {FuseCallbackManager} from '../src/FuseCallbackManager';
-import {FuseResponseReader} from '../src/FuseResponseReader';
-import {FuseSerializer} from '../src/FuseSerializer';
-import {HTTPFuseAPI} from '../src/HTTPFuseAPI';
-import {Platform} from '../src/Platform';
-import {PlatformResolver} from '../src/PlatformResolver';
-import {Version} from '../src/Version';
+} from '../../src/FusePlugin';
+import {FuseCallbackManager} from '../../src/FuseCallbackManager';
+import {FuseResponseReader} from '../../src/FuseResponseReader';
+import {FuseSerializer} from '../../src/FuseSerializer';
+import {HTTPFuseAPI} from '../../src/HTTPFuseAPI';
+import {Platform} from '../../src/Platform';
+import {PlatformResolver} from '../../src/PlatformResolver';
+import {Version} from '../../src/Version';
 
-import * as testAPI from '../src/test/api';
-import {FuseTestAPI} from '../src/test/FuseTestAPI';
-import {FuseTestAPIFactory} from '../src/test/FuseTestAPIFactory';
-import {FuseTestContextBuilder} from '../src/test/FuseTestContextBuilder';
-import {FuseTestPlataformResolver} from '../src/test/FuseTestPlatformResolver';
-import {IOSFuseLogger} from '../src/ios/IOSFuseLogger';
-import {IOSSchemeFuseAPI} from '../src/ios/IOSSchemeFuseAPI';
-import {AndroidFuseLogger} from '../src/android/AndroidFuseLogger';
-import {AndroidSchemeFuseAPI} from '../src/android/AndroidSchemeFuseAPI';
+import * as testAPI from '../../src/test/api';
+import {FuseTestAPI} from '../../src/test/FuseTestAPI';
+import {FuseTestAPIFactory} from '../../src/test/FuseTestAPIFactory';
+import {FuseTestContextBuilder} from '../../src/test/FuseTestContextBuilder';
+import {FuseTestPlataformResolver} from '../../src/test/FuseTestPlatformResolver';
+import {IOSFuseLogger} from '../../src/ios/IOSFuseLogger';
+import {IOSSchemeFuseAPI} from '../../src/ios/IOSSchemeFuseAPI';
+import {AndroidFuseLogger} from '../../src/android/AndroidFuseLogger';
+import {AndroidSchemeFuseAPI} from '../../src/android/AndroidSchemeFuseAPI';
 
 describe('Public API', () => {
 

@@ -64,3 +64,6 @@ include(":plugins:sqlite")
 project(":plugins:sqlite").projectDir = File("../plugins/sqlite/android/sqlite")
 include(":plugins:sqlite:lib")
 project(":plugins:sqlite:lib").projectDir = File("../plugins/sqlite/android/sqlite/lib")
+
+include(":plugins:mocha")
+project(":plugins:mocha").projectDir = File("../plugins/mocha/android/mocha")

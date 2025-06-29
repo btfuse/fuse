@@ -1,0 +1,20 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "noEmit": false,
+    "declaration": false,
+    "paths": {
+      "@btfuse/core": ["../../../js/src/api.ts"],
+      "@btfuse/mocha": ["../src/api.ts"]
+    }
+  },
+  "references": [
+    { "path": "../../../js" }
+  ],
+  "files": [
+    "../../../compiler/ts/assets.d.ts",
+    "../src/vendor.d.ts",
+    "./UnitTestApplication.ts"
+  ]
+}

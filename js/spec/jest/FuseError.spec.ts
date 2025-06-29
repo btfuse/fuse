@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {FuseError} from '../src/FuseError';
+import {FuseError} from '../../src/FuseError';
 
 describe('FuseError', () => {
     it('should identify as FuseError via toString', () => {

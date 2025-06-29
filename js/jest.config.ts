@@ -5,7 +5,7 @@ export const JEST_CONFIG: Config = {
     preset: 'ts-jest',
     testEnvironment: 'jsdom',
     verbose: true,
-    testMatch: [ '**/spec/**/*.spec.ts' ],
+    testMatch: [ '**/spec/jest/**/*.spec.ts' ],
     collectCoverageFrom: [ '**/src/**/*.ts' ],
     // We will get here eventually
     // coverageThreshold: {

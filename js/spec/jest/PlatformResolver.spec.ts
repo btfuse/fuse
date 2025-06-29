@@ -18,7 +18,7 @@ limitations under the License.
 import {
     Platform,
     PlatformResolver
-} from '../src/api';
+} from '../../src/api';
 
 describe('PlatformResolver', () => {
     let resolver: PlatformResolver = null;

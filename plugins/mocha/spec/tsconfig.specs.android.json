@@ -1,0 +1,6 @@
+{
+    "extends": "./tsconfig.specs.json",
+    "compilerOptions": {
+        "outDir": "../android/mocha/src/androidTest/assets/specs"
+    }
+}

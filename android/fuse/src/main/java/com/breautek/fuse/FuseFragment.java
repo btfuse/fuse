@@ -50,11 +50,15 @@ public class FuseFragment extends Fragment {
         }
     }
 
+    protected FuseContext _createFuseContext() {
+        return new FuseContext(this, this.getActivity(), this::_onContextReady);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         $savedInstanceState = savedInstanceState;
-        $fuseContext = new FuseContext(this, this.getActivity(), this::_onContextReady);
+        $fuseContext = this._createFuseContext();
         $fuseContext.onCreate(savedInstanceState);
     }
 

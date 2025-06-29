@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Version} from '../src/Version';
+import {Version} from '../../src/Version';
 
 describe('Version', () => {
     const lhs: Version = new Version(1, 2, 3);

@@ -15,9 +15,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {FuseSerializer} from '../src/FuseSerializer';
-import { ISerializable } from '../src/ISerializable';
-import { TFuseSerializable, TSerializable } from '../src/TSerializable';
+import {FuseSerializer} from '../../src/FuseSerializer';
+import { ISerializable } from '../../src/ISerializable';
+import { TFuseSerializable, TSerializable } from '../../src/TSerializable';
 
 describe('FuseSerializer', () => {
     let serializer: FuseSerializer;

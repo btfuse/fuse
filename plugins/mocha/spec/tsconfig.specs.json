@@ -1,0 +1,21 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "noEmit": false,
+    "declaration": false,
+    "paths": {
+      "@btfuse/core": ["../../../js/src/api.ts"],
+      "@btfuse/mocha": ["../src/api.ts"]
+    }
+  },
+  "files": [
+    "../src/vendor.d.ts",
+  ],
+  "references": [
+    { "path": "../../../js" }
+  ],
+  "include": [
+    "./**/*.spec.ts"
+  ]
+}

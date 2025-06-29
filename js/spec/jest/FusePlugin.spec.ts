@@ -20,7 +20,7 @@ import {
     FuseTestAPI,
     FuseContext,
     FuseTestContextBuilder
-} from '../src/test/api';
+} from '../../src/test/api';
 
 class TestPlugin extends FusePlugin {
     public getAPI(): FuseTestAPI {
