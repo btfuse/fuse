@@ -43,7 +43,7 @@ export class FuseFilesystem extends FusePlugin {
     }
 
     public async getFileType(file: FuseFileObject): Promise<FuseFileType> {
-        let response: FuseAPIResponse = await this._exec('file/type', ContentType.TEXT, file.getPath());
+        let response: FuseAPIResponse = await this._exec('/file/type', ContentType.TEXT, file.getPath());
         
         if (response.isError()) {
             throw await response.readAsError();
@@ -59,7 +59,7 @@ export class FuseFilesystem extends FusePlugin {
     }
 
     public async getSize(file: FuseFileObject): Promise<number> {
-        let response: FuseAPIResponse = await this._exec('file/size', ContentType.TEXT, file.getPath());
+        let response: FuseAPIResponse = await this._exec('/file/size', ContentType.TEXT, file.getPath());
 
         if (response.isError()) {
             throw await response.readAsError();
@@ -75,7 +75,7 @@ export class FuseFilesystem extends FusePlugin {
     }
 
     public async mkdir(file: FuseFileObject, recursive?: boolean): Promise<boolean> {
-        let response: FuseAPIResponse = await this._exec('file/mkdir', ContentType.JSON, {
+        let response: FuseAPIResponse = await this._exec('/file/mkdir', ContentType.JSON, {
             path: file.getPath(),
             recursive: !!recursive
         });
@@ -89,7 +89,7 @@ export class FuseFilesystem extends FusePlugin {
     }
 
     public async read(file: FuseFileObject, length: number, offset: number): Promise<ArrayBuffer> {
-        let response: FuseAPIResponse = await this._exec('file/read', ContentType.JSON, {
+        let response: FuseAPIResponse = await this._exec('/file/read', ContentType.JSON, {
             path: file.getPath(),
             length: length,
             offset: offset
@@ -116,7 +116,7 @@ export class FuseFilesystem extends FusePlugin {
     public async truncate(file: FuseFileObject, data: TSerializable): Promise<number> {
         let payload: Blob = this.$createDataPacket(file.getPath(), this._getAPI().getSerializer().serialize(data));
 
-        let response: FuseAPIResponse = await this._exec('file/truncate', ContentType.BINARY, payload);
+        let response: FuseAPIResponse = await this._exec('/file/truncate', ContentType.BINARY, payload);
 
         if (response.isError()) {
             throw await response.readAsError();
@@ -128,7 +128,7 @@ export class FuseFilesystem extends FusePlugin {
     public async append(file: FuseFileObject, data: TSerializable): Promise<number> {
         let payload: Blob = this.$createDataPacket(file.getPath(), this._getAPI().getSerializer().serialize(data));
 
-        let response: FuseAPIResponse = await this._exec('file/append', ContentType.BINARY, payload);
+        let response: FuseAPIResponse = await this._exec('/file/append', ContentType.BINARY, payload);
 
         if (response.isError()) {
             throw await response.readAsError();
@@ -143,7 +143,7 @@ export class FuseFilesystem extends FusePlugin {
             offset: offset
         }), this._getAPI().getSerializer().serialize(data));
 
-        let response: FuseAPIResponse = await this._exec('file/write', ContentType.BINARY, payload);
+        let response: FuseAPIResponse = await this._exec('/file/write', ContentType.BINARY, payload);
 
         if (response.isError()) {
             throw await response.readAsError();
@@ -153,7 +153,7 @@ export class FuseFilesystem extends FusePlugin {
     }
 
     public async remove(file: FuseFileObject, recursive: boolean = false): Promise<void> {
-        let response: FuseAPIResponse = await this._exec('file/remove', ContentType.JSON, {
+        let response: FuseAPIResponse = await this._exec('/file/remove', ContentType.JSON, {
             path: file.getPath(),
             recursive: recursive
         });
@@ -163,7 +163,7 @@ export class FuseFilesystem extends FusePlugin {
     }
 
     public async exists(file: FuseFileObject): Promise<boolean> {
-        let response: FuseAPIResponse = await this._exec('file/exists', ContentType.TEXT, file.getPath());
+        let response: FuseAPIResponse = await this._exec('/file/exists', ContentType.TEXT, file.getPath());
         if (response.isError()) {
             throw await response.readAsError();
         }
