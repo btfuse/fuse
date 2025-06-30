@@ -90,6 +90,9 @@ case "$module" in
     $MODULE_SQLITE_LIB)
         source compiler/$platform/testSQLiteLib.sh
     ;;
+    $MODULE_MOCHA)
+        source compiler/$platform/testMocha.sh
+    ;;
     *)
         echo "Unknown module: '$module'" >&2
         exit 1

@@ -63,6 +63,22 @@ jobs:
       - name: Build with Gradle
         run: ./build.sh android nativeview
 
+  build-mocha:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
+
+      - name: Set up Android environment
+        uses: ./.github/actions/fuse-android-setup
+        with:
+          google_maps_api_key: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+
+      - name: Build with Gradle
+        run: ./build.sh android mocha
+
   build-google-maps:
     runs-on: ubuntu-24.04
 
@@ -130,3 +146,21 @@ jobs:
 
       - name: Run Tests on API ${{ matrix.api-level }}
         run: ./test.sh android filesystem ${{ matrix.api-level }}
+  
+  mocha-test:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        api-level: [30, 31, 32, 33, 34, 35]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: True
+
+      - name: Set up Android environment
+        uses: ./.github/actions/fuse-android-setup
+        with:
+          google_maps_api_key: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+
+      - name: Run Tests on API ${{ matrix.api-level }}
+        run: ./test.sh android mocha ${{ matrix.api-level }}
