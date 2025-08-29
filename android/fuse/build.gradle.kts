@@ -19,6 +19,7 @@ limitations under the License.
 plugins {
     id("com.android.library")
     id("maven-publish")
+    id("de.mannodermaus.android-junit5")
 }
 
 android {
@@ -40,6 +41,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments["clearPackageData"] = "true"
+        testInstrumentationRunnerArguments["runnerBuilder"] = "de.mannodermaus.junit5.AndroidJUnit5Builder"
 
         consumerProguardFiles("consumer-rules.pro")
 
@@ -144,12 +146,20 @@ dependencies {
     implementation("org.bouncycastle:bcprov-jdk18on:1.80")
     implementation("org.bouncycastle:bcpkix-jdk18on:1.80")
 
-    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.13.4")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.13.4")
 
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation("androidx.test:rules:1.6.1")
-    androidTestUtil("androidx.test:orchestrator:1.5.1")
+    androidTestImplementation("androidx.test:runner:1.7.0")
+    androidTestImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
+    androidTestImplementation("org.junit.platform:junit-platform-suite-api:1.13.4")
+    androidTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.13.4")
+    androidTestImplementation("org.junit.jupiter:junit-jupiter-params:5.13.4")
+    androidTestImplementation("de.mannodermaus.junit5:android-test-core:1.8.0")
+    androidTestRuntimeOnly("de.mannodermaus.junit5:android-test-runner:1.8.0")
+    androidTestImplementation("de.mannodermaus.junit5:android-test-extensions:1.8.0")
+
+    androidTestUtil("androidx.test:orchestrator:1.6.1")
 
     androidTestImplementation(project(":EchoPlugin"))
     androidTestImplementation(project(":fuseTestTools"))
@@ -208,5 +218,11 @@ android.libraryVariants.configureEach {
                 header = "<div style=\"display:flex;justify-content:center;height:100%;width:100%;align-items:center;\"><a href=\"/\">Main Documentation</a></div>"
             }
         }
+    }
+}
+
+junitPlatform {
+    instrumentationTests {
+        includeExtensions.set(true)
     }
 }

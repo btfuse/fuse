@@ -17,14 +17,14 @@ limitations under the License.
 
 package com.breautek.fuse;
 
-import org.junit.Test;
-import org.junit.Before;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 public class RequestCodeManagerTest {
 
-    @Before
+    @BeforeEach
     public void setup() {
         RequestCodeManager.getInstance().reset();
     }

@@ -17,71 +17,63 @@ limitations under the License.
 
 package com.breautek.fuse;
 
-import androidx.annotation.Nullable;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.Rule;
-
-import static org.junit.Assert.*;
-
+import static org.junit.jupiter.api.Assertions.*;
 import android.os.Bundle;
-
+import androidx.annotation.Nullable;
+import de.mannodermaus.junit5.ActivityScenarioExtension;
 import com.breautek.fuse.testtools.FuseTestAPIClient;
-
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-@RunWith(AndroidJUnit4.class)
 public class FuseAPITest {
 
     public static int DEFAULT_TIMEOUT = 10;
 
-    @Rule
-    public ActivityScenarioRule<TestFuseActivity> activityRule = new ActivityScenarioRule<>(TestFuseActivity.class);
+    @RegisterExtension
+    public ActivityScenarioExtension<TestFuseActivity> scenario = ActivityScenarioExtension.launch(TestFuseActivity.class);
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {}
 
-    @AfterClass
+    @AfterAll
     public static void tearDown() {}
 
     @Test
     public void shouldHaveAPort() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        activityRule.getScenario().onActivity(activity -> {
+        scenario.getScenario().onActivity(activity -> {
             activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 assertTrue(port >= 1024 && port <= 65535);
                 latch.countDown();
             });
         });
-        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
+        assertTrue(latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS), "Timeout");
     }
 
     @Test
     public void shouldHaveASecret() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        activityRule.getScenario().onActivity(activity -> {
+        scenario.getScenario().onActivity(activity -> {
             activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 String secret = activity.getFuseContext().getAPISecret();
                 assertNotNull(secret);
                 latch.countDown();
             });
         });
-        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
+        assertTrue(latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS), "Timeout");
     }
 
     @Test
     public void canDoSimpleEchoRequest() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        activityRule.getScenario().onActivity(activity -> {
+        scenario.getScenario().onActivity(activity -> {
             activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -107,13 +99,13 @@ public class FuseAPITest {
                 latch.countDown();
             });
         });
-        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
+        assertTrue(latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS), "Timeout");
     }
 
     @Test
     public void canUseAnAPIThatSwitchesToMainThread() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        activityRule.getScenario().onActivity(activity -> {
+        scenario.getScenario().onActivity(activity -> {
             activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
                 int port = activity.getFuseContext().getAPIPort();
                 String secret = activity.getFuseContext().getAPISecret();
@@ -139,6 +131,6 @@ public class FuseAPITest {
                 latch.countDown();
             });
         });
-        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
+        assertTrue(latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS), "Timeout");
     }
 }
