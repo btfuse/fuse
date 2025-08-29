@@ -83,8 +83,7 @@ android {
                     "META-INF/LGPL2.1",
                     "META-INF/DEPENDENCIES",
                     "META-INF/NOTICE",
-                    "META-INF/LICENSE",
-                    "META-INF/LICENSE.txt",
+                    "META-INF/LICENSE*",
                     "META-INF/NOTICE.txt",
                 )
             )
