@@ -31,10 +31,6 @@ export class FuseSQLitePlugin extends FusePlugin {
         return await response.readAsText();
     }
 
-    /**
-     * @param path 
-     * @param flags 
-     */
     public async open(path: string, flags?: number): Promise<FuseSQLiteConnection> {
         let response: FuseAPIResponse = await this._exec('/open', ContentType.JSON, {
             path: path,
@@ -58,7 +54,7 @@ export class FuseSQLitePlugin extends FusePlugin {
     }
 
     public async query<TResponse>(connection: FuseSQLiteConnection, query: FuseSQLiteQuery<Record<string, TFuseSupportedSQLiteTypes>, TResponse>): Promise<TResponse> {
-        let payload: Blob = await this.$packetBuilder.build(connection.getHandle(), query);
+        let payload: Blob = await this.$packetBuilder.build(connection, query);
 
         let response: FuseAPIResponse = await this._exec('/query', ContentType.BINARY, payload);
 

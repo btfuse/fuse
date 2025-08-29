@@ -108,13 +108,48 @@ android {
     }
 }
 
+android.testVariants.configureEach {
+    val cap = name.replaceFirstChar(Char::titlecase) // e.g., "debugAndroidTest" -> "DebugAndroidTest"
+
+    val prepareJSTest = tasks.register<Exec>("prepareJS${cap}") {
+        workingDir("../../")
+        commandLine("pwd")
+        commandLine("npm", "run", "build:unit:test:android")
+//        commandLine("./scripts/build.sh", "./src/androidTest/assets")
+    }
+
+    tasks.named("merge${cap}Assets").configure {
+        dependsOn(prepareJSTest)
+    }
+}
+
+//androidComponents {
+//    onVariants(selector().all()) { variant ->
+//        val cap = variant.name.replaceFirstChar(Char::titlecase)
+//
+//        // Only if this variant actually has androidTest
+//        variant.androidTest?.let {
+//            val prepareJSTest = tasks.register<Exec>("prepareJS${cap}AndroidTest") {
+//                workingDir("../../")
+//                commandLine("pwd")
+////                commandLine("./scripts/build.sh", "./src/androidTest/assets")
+//            }
+//
+//            // Hook before test assets are merged
+//            tasks.named("merge${cap}AndroidTestAssets").configure {
+//                dependsOn(prepareJSTest)
+//            }
+//        }
+//    }
+//}
+
 dependencies {
     compileOnly(project(":fuse"))
     androidTestImplementation(project(":fuse"))
     androidTestImplementation(project(":fuseTestTools"))
+    androidTestImplementation(project(":plugins:mocha"))
     implementation(project(":plugins:sqlite:lib"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.20")
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.android.gms:play-services-location:21.3.0")
     testImplementation("junit:junit:4.13.2")

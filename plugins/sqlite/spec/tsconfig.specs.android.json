@@ -1,0 +1,6 @@
+{
+    "extends": "./tsconfig.specs.json",
+    "compilerOptions": {
+        "outDir": "../android/sqlite/src/androidTest/assets/specs"
+    }
+}

@@ -1,6 +1,6 @@
 
 /*
-Copyright 2025 Breautek
+Copyright 2025-2025 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,10 +19,16 @@ package com.breautek.fuse.sqlite;
 
 import com.breautek.fuse.FuseContext;
 import com.breautek.fuse.testtools.FuseTestActivity;
+import com.breautek.fuse.mocha.FuseMochaPlugin;
 import com.breautek.fuse.sqlite.FuseSQLitePlugin;
 
-public class FuseSQLiteTestActivity: FuseTestActivity() {
-    protected override fun _registerPlugins(context: FuseContext): Unit {
-        context.registerPlugin(FuseSQLitePlugin(context));
+public class FuseMochaTestActivity extends FuseTestActivity {
+    public FuseMochaPlugin mocha;
+
+    @Override
+    protected void _registerPlugins(FuseContext context) {
+        mocha = new FuseMochaPlugin(context);
+        context.registerPlugin(mocha);
+        context.registerPlugin(new FuseSQLitePlugin(context));
     }
 }

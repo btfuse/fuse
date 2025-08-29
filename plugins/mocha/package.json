@@ -9,9 +9,8 @@
   },
   "scripts": {
     "lint": "npx eslint ./src",
-    "build": "npm run lint && tsc --build",
+    "build": "npm run lint && tsc --build && npm run build:unit:test:android",
     "build:unit:test:android": "webpack --mode development --config webpack.android.app.js && webpack --mode development --config webpack.android.specs.js",
-    "build:unit:test:androidxxx": "webpack --mode development --config webpack.android.js && tsc -p spec/tsconfig.specs.android.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
