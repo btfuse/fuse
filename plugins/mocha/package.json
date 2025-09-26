@@ -1,6 +1,6 @@
 {
   "name": "@btfuse/mocha",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Mocha plugin for the Fuse framework",
   "main": "lib/api.js",
   "publishConfig": {
