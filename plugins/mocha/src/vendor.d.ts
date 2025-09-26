@@ -23,12 +23,34 @@ export interface MochaStats {
 
 export interface MochaRunner {
     stats: MochaStats;
-    on(e: string, callback: () => void): void;
+    on(e: string, callback: Function): void;
+}
+
+export interface IMochaError {
+    code: string;
+    message: string;
+}
+
+export interface IMochaTest {
+    title: string;
+    sync: boolean;
+    timedOut: boolean;
+    pending: boolean;
+    fn: Function;
+    state: "passed" | "failed" | "pending";
+    err: IMochaError | null;
+}
+
+export interface IMochaSuite {
+    suites: IMochaSuite[];
+    tests: IMochaTest[];
+    title: string;
 }
 
 interface MochaAPI {
     setup(opts): void;
     run(): MochaRunner;
+    suite: IMochaSuite;
 }
 
 declare global {

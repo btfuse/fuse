@@ -19,6 +19,7 @@ package com.breautek.fuse.mocha;
 
 import com.breautek.fuse.FuseAPIPacket;
 import com.breautek.fuse.FuseAPIResponse;
+import com.breautek.fuse.FuseError;
 import com.breautek.fuse.FusePlugin;
 import com.breautek.fuse.FuseContext;
 
@@ -27,10 +28,18 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
 
 public class FuseMochaPlugin extends FusePlugin {
     private final ArrayList<IListener> $listeners;
+
+    /**
+     * @deprecated - I think we can just remove runner stats now that we have dynamic tests
+     */
     private Stats $runnerStats;
+
+    private static final String DOMAIN = "FuseMochaPlugin";
 
     public FuseMochaPlugin(FuseContext context) {
         super(context);
@@ -60,7 +69,9 @@ public class FuseMochaPlugin extends FusePlugin {
         }
     }
 
-    public static interface IListener {
+    public interface IListener {
+        void onTestResult(TestResult result) throws ExecutionException, InterruptedException;
+        void onLoad(FuseMochaSuiteParser.Data data);
         void onRunnerComplete(Stats stats);
     }
 
@@ -71,6 +82,68 @@ public class FuseMochaPlugin extends FusePlugin {
 
     @Override
     protected void _initHandles() {
+        attachHandler("/runner/load", new APIHandler<FuseMochaPlugin>(this) {
+            @Override
+            public void execute(FuseAPIPacket packet, FuseAPIResponse response) throws IOException, JSONException {
+                JSONObject suites = packet.readAsJSONObject();
+
+                int testCount = suites.getInt("totalTestCount");
+
+                CountDownLatch latch = new CountDownLatch(testCount);
+
+                FuseMochaSuiteParser parser = new FuseMochaSuiteParser();
+                FuseMochaSuiteParser.Data data = parser.parse(suites, latch);
+                this.plugin.$onRunnerLoad(data);
+
+//                try {
+//                    latch.await();
+//                } catch (InterruptedException e) {
+//                    response.send(new FuseError(DOMAIN, 0, "Thread Interrupted.", e));
+//                    return;
+//                }
+
+                response.send();
+            }
+        });
+
+        attachHandler("/runner/post", new APIHandler<FuseMochaPlugin>(this) {
+            @Override
+            public void execute(FuseAPIPacket packet, FuseAPIResponse response) throws IOException, JSONException {
+                JSONObject jTestResult = packet.readAsJSONObject();
+
+                String id = jTestResult.getString("id");
+
+                TestState state;
+                int testState = jTestResult.getInt("state");
+                switch (testState) {
+                    case 0: state = TestState.PASSED; break;
+                    case 1: state = TestState.FAILED; break;
+                    case 2: state = TestState.TIMEOUT; break;
+                    case 3: state = TestState.SKIPPED; break;
+                    default: {
+                        response.send(new FuseError(DOMAIN, 0, "Invalid State Value"));
+                        return;
+                    }
+                }
+
+                String reason = "";
+                if (state == TestState.FAILED) {
+                    reason = jTestResult.optString("reason", "");
+                }
+
+                TestResult result = new TestResult(id, state, reason);
+
+                try {
+                    this.plugin.$onRunnerTestResult(result);
+                } catch (ExecutionException | InterruptedException e) {
+                    response.send(new FuseError("FuseMochaPlugin", 0,"Unable to post test result", e));
+                    return;
+                }
+
+                response.send();
+            }
+        });
+
         attachHandler("/runner/complete", new APIHandler<FuseMochaPlugin>(this) {
             @Override
             public void execute(FuseAPIPacket packet, FuseAPIResponse response) throws IOException, JSONException {
@@ -88,6 +161,8 @@ public class FuseMochaPlugin extends FusePlugin {
                 Stats stats = new Stats(suites, tests, passes, pending, failures, duration, start, end);
 
                 this.plugin.$onRunnerComplete(stats);
+
+                response.send();
             }
         });
     }
@@ -107,6 +182,28 @@ public class FuseMochaPlugin extends FusePlugin {
         }
     }
 
+    private void $onRunnerTestResult(TestResult data) throws ExecutionException, InterruptedException {
+        ArrayList<IListener> listeners = null;
+        synchronized ($listeners) {
+            listeners = new ArrayList<>($listeners);
+        }
+
+        for (IListener listener : listeners) {
+            listener.onTestResult(data);
+        }
+    }
+
+    private void $onRunnerLoad(FuseMochaSuiteParser.Data data) {
+        ArrayList<IListener> listeners = null;
+        synchronized ($listeners) {
+            listeners = new ArrayList<>($listeners);
+        }
+
+        for (IListener listener : listeners) {
+            listener.onLoad(data);
+        }
+    }
+
     private void $onRunnerComplete(Stats stats) {
         ArrayList<IListener> listeners = null;
         synchronized ($listeners) {
@@ -117,5 +214,4 @@ public class FuseMochaPlugin extends FusePlugin {
             listener.onRunnerComplete(stats);
         }
     }
-
 }

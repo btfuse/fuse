@@ -1,4 +1,3 @@
-
 /*
 Copyright 2023-2024 Breautek
 
@@ -17,51 +16,27 @@ limitations under the License.
 
 package com.breautek.fuse.mocha;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.DynamicNode;
+import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
-import android.os.Bundle;
+import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
-import androidx.annotation.Nullable;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import de.mannodermaus.junit5.ActivityScenarioExtension;
 
-@RunWith(AndroidJUnit4.class)
 public class FuseMochaPluginTest {
+    @RegisterExtension
+    public ActivityScenarioExtension<FuseMochaTestActivity> scenarioExtension = ActivityScenarioExtension.launch(FuseMochaTestActivity.class);
 
-    public static int DEFAULT_TIMEOUT = 60;
+    private final FuseMochaTestRunner runner;
 
-    @Rule
-    public ActivityScenarioRule<FuseMochaTestActivity> activityRule = new ActivityScenarioRule<>(FuseMochaTestActivity.class);
+    public FuseMochaPluginTest() {
+        runner = new FuseMochaTestRunner();
+    }
 
-    @BeforeClass
-    public static void setUp() {}
-
-
-    @AfterClass
-    public static void tearDown() {}
-
-    @Test
-    public void shouldRunMochaTestsInWebview() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(1);
-        activityRule.getScenario().onActivity(activity -> {
-            activity.setOnReadyCallback((@Nullable Bundle savedInstanceState) -> {
-                activity.mocha.addListener((FuseMochaPlugin.Stats stats) -> {
-                    assertEquals(1, stats.suites);
-                    assertEquals(2, stats.tests);
-                    assertEquals(1, stats.passes);
-                    assertEquals(0, stats.pending);
-                    assertEquals(1, stats.failures);
-                    latch.countDown();
-                });
-            });
-        });
-        assertTrue("Timeout", latch.await(DEFAULT_TIMEOUT, TimeUnit.SECONDS));
+    @TestFactory
+    public Collection<DynamicNode> runWebviewTests() throws InterruptedException, ExecutionException {
+        return runner.runWebviewTests(scenarioExtension);
     }
 }

@@ -13,7 +13,8 @@ android {
         minSdk = 29
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArguments["clearPackageData"] = "true"
+//        testInstrumentationRunnerArguments["clearPackageData"] = "true"
+        testInstrumentationRunnerArguments["runnerBuilder"] = "de.mannodermaus.junit5.AndroidJUnit5Builder"
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -39,7 +40,7 @@ android {
     testOptions {
         targetSdk = 36
 
-        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+//        execution = "ANDROIDX_TEST_ORCHESTRATOR"
 
         packaging {
             // https://issuetracker.google.com/issues/379732901?pli=1
@@ -50,8 +51,7 @@ android {
                     "META-INF/LGPL2.1",
                     "META-INF/DEPENDENCIES",
                     "META-INF/NOTICE",
-                    "META-INF/LICENSE",
-                    "META-INF/LICENSE.txt",
+                    "META-INF/LICENSE*",
                     "META-INF/NOTICE.txt",
                 )
             )
@@ -113,14 +113,31 @@ android {
 
 dependencies {
     compileOnly(project(":fuse"))
+    compileOnly(project(":fuseTestTools"))
+    compileOnly("androidx.test:runner:1.7.0")
+    compileOnly("org.junit.jupiter:junit-jupiter-api:5.13.4")
+    compileOnly("org.junit.jupiter:junit-jupiter-params:5.13.4")
+    compileOnly("de.mannodermaus.junit5:android-test-core:1.8.0")
+    compileOnly("de.mannodermaus.junit5:android-test-extensions:1.8.0")
+
+
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("com.google.android.material:material:1.13.0")
+    implementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.13.4")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.13.4")
+
     androidTestImplementation(project(":fuse"))
     androidTestImplementation(project(":fuseTestTools"))
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestUtil("androidx.test:orchestrator:1.5.1")
+    androidTestImplementation("androidx.test:runner:1.7.0")
+    androidTestImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
+    androidTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.13.4")
+    androidTestImplementation("org.junit.jupiter:junit-jupiter-params:5.13.4")
+    androidTestImplementation("de.mannodermaus.junit5:android-test-core:1.8.0")
+    androidTestRuntimeOnly("de.mannodermaus.junit5:android-test-runner:1.8.0")
+    androidTestImplementation("de.mannodermaus.junit5:android-test-extensions:1.8.0")
 }
 
 publishing {

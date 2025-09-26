@@ -19,7 +19,6 @@ package com.breautek.fuse.mocha;
 
 import com.breautek.fuse.FuseContext;
 import com.breautek.fuse.testtools.FuseTestActivity;
-import com.breautek.fuse.mocha.FuseMochaPlugin;
 
 public class FuseMochaTestActivity extends FuseTestActivity {
     public FuseMochaPlugin mocha;
@@ -27,6 +26,16 @@ public class FuseMochaTestActivity extends FuseTestActivity {
     @Override
     protected void _registerPlugins(FuseContext context) {
         mocha = new FuseMochaPlugin(context);
-         context.registerPlugin(mocha);
+        context.registerPlugin(mocha);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

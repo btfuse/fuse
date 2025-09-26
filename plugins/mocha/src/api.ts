@@ -17,3 +17,5 @@ limitations under the License.
 
 export {FuseMochaPlugin} from './FuseMochaPlugin';
 export {IMochaStats} from './IMochaStats';
+export {TestState} from './TestState';
+export * from './vendor';

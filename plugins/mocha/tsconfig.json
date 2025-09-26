@@ -2,9 +2,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./lib",
-    "rootDir": ".",
     "noEmit": false,
     "allowJs": true,
+    "tsBuildInfoFile": "./.tsbuildinfo/",
     "paths": {
       "@btfuse/core": ["../../js/src/api.ts"]
     }
