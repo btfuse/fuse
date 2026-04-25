@@ -26,5 +26,6 @@
         "array": "c",
         "type_traits": "c",
         "utility": "c"
-    }
+    },
+    "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

@@ -221,6 +221,7 @@ public class FuseAPIResponse {
                 .append("Access-Control-Allow-Origin: https://localhost\r\n")
                 .append("Access-Control-Allow-Headers: *\r\n")
                 .append("Cache-Control: no-cache\r\n")
+                .append("Connection: close")
                 .append("Content-Type: ").append($contentType).append("\r\n");
 
         switch ($mode) {
@@ -234,7 +235,7 @@ public class FuseAPIResponse {
 
         sb.append("\r\n");
 
-        $write(sb.toString().getBytes(), true);
+        $writeRaw(sb.toString().getBytes());
 
         $hasSentHeaders = true;
     }
@@ -246,6 +247,22 @@ public class FuseAPIResponse {
     private void $write(byte[] data, boolean flush) {
         $threadHandler.post(() -> {
             __writeImpl(data, flush);
+        });
+    }
+
+    // Use this instead of $write when the data must never be chunk-encoded, regardless of $mode.
+    // HTTP response headers fall into this category: chunk transfer-encoding applies only to the
+    // body, so didFinishHeaders() must always write through here, not through __writeImpl.
+    private void $writeRaw(byte[] data) {
+        $threadHandler.post(() -> {
+            try {
+                OutputStream io = $client.getOutputStream();
+                io.write(data);
+                io.flush();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                this.kill();
+            }
         });
     }
 

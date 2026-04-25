@@ -15,7 +15,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export {FuseMochaPlugin} from './FuseMochaPlugin';
-export {IMochaStats} from './IMochaStats';
-export {TestState} from './TestState';
-export * from './vendor';
+const Path = require('node:path');
+let config = require('./webpack.config.app');
+const CopyPlugin = require("copy-webpack-plugin");
+
+let assetsDir = Path.join(__dirname, 'android/sqlite/src/androidTest/assets');
+
+config.output.path = Path.join(assetsDir, 'js');
+
+config.plugins.push(
+    new CopyPlugin({
+        patterns: [
+            {
+                from: Path.resolve(__dirname, 'spec/index.html'),
+                to: Path.join(assetsDir, 'index.html')
+            }
+        ]
+    })
+);
+
+module.exports = config;

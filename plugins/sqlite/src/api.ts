@@ -1,6 +1,6 @@
 
 /*
-Copyright 2025 Breautek
+Copyright 2026 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,3 +17,7 @@ limitations under the License.
 
 export {FuseSQLitePlugin} from './FuseSQLitePlugin';
 export {FuseSQLiteType, TFuseSupportedSQLiteTypes} from './FuseSQLiteType';
+export {FuseSQLiteConnectionFlags} from './FuseSQLiteConnectionFlags';
+export {FuseSQLiteConnection} from './FuseSQLiteConnection'
+export {FuseSQLiteQuery} from './FuseSQLiteQuery';
+export {FuseSQLiteRawQuery} from './FuseSQLiteRawQuery';

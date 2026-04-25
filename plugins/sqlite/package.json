@@ -1,7 +1,7 @@
 {
   "name": "@btfuse/sqlite",
   "version": "0.1.0",
-  "description": "Geolocation plugin for the Fuse framework",
+  "description": "SQLite plugin for the Fuse framework",
   "main": "lib/api.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
@@ -10,13 +10,14 @@
   "scripts": {
     "build": "tsc --build",
     "build:tests:android": "cd testapp && webpack --config ./webpack.android.js --mode development",
+    "build:unit:test:android": "webpack --mode development --config webpack.android.app.js && webpack --mode development --config webpack.android.specs.js",
     "build:tests:ios": "cd testapp && webpack --config ./webpack.ios.js --mode development",
     "lint": "npx eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/btfuse/fuse-location.git"
+    "url": "git+https://github.com/btfuse/fuse.git"
   },
   "keywords": [
     "fuse"
@@ -24,13 +25,14 @@
   "author": "norman@breautek.com",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/btfuse/fuse-location/issues"
+    "url": "https://github.com/btfuse/fuse/issues"
   },
-  "homepage": "https://github.com/btfuse/fuse-location#readme",
+  "homepage": "https://github.com/btfuse/fuse#readme",
   "peerDependencies": {
     "@btfuse/core": "^0.9.0"
   },
   "devDependencies": {
-    "@types/geojson": "^7946.0.16"
+    "@btfuse/mocha": "0.0.1",
+    "@types/geojson": "7946.0.16"
   }
 }

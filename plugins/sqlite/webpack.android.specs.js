@@ -15,7 +15,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { TFuseSerializable } from '@btfuse/core';
-import {MochaStats} from './vendor';
 
-export type IMochaStats = TFuseSerializable<MochaStats>;
+const Path = require('node:path');
+let config = require('./webpack.config.specs');
+
+let assetsDir = Path.join(__dirname, 'android/sqlite/src/androidTest/assets');
+
+config.output.path = Path.join(assetsDir, 'specs');
+
+module.exports = config;

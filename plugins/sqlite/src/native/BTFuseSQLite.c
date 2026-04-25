@@ -230,7 +230,6 @@ const char* BTFuseSQLite_execute(void* context, const uint8_t* stream, BTFuseSQL
                     }
                     break;
                     case SQLITE_NULL: {
-                        double value = sqlite3_column_double(statement, i);
                         uint64_t payloadSize = 8 + 1;
                         uint8_t* chunk = malloc(payloadSize);
                         uint8_t* buffer = chunk;

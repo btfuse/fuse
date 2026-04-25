@@ -1,6 +1,6 @@
 
 /*
-Copyright 2025-2025 Breautek
+Copyright 2026 Breautek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,23 +15,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {
-    FuseContext,
-    FuseContextBuilder
-} from '@btfuse/core';
-import {
-    FuseMochaPlugin,
-    IMochaStats
-} from '@btfuse/mocha';
+package com.breautek.fuse.sqlite;
 
-(async () => {
-    let builder: FuseContextBuilder = new FuseContextBuilder();
-    let context: FuseContext = await builder.build();
-    let mocha: FuseMochaPlugin = new FuseMochaPlugin(context);
+// Mirrors BTFuseSQLiteDataType enum in BTFuseSQLite.h — values must stay in sync.
+public class BTFuseSQLiteDataType {
+    public static final byte VOID    = 0;
+    public static final byte INTEGER = 1;
+    public static final byte REAL    = 2;
+    public static final byte TEXT    = 3;
+    public static final byte BLOB    = 4;
 
-    await mocha.addTestSuite('specs/Mocha.spec.js');
-
-    await context.onWebviewReady();
-
-    await mocha.run();
-})();
+    private BTFuseSQLiteDataType() {}
+}

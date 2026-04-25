@@ -91,46 +91,25 @@ android {
 
         managedDevices {
             allDevices {
-                register("api29", ManagedVirtualDevice::class) {
-                    device = "Pixel 7"
-                    apiLevel = 29
-                    systemImageSource = "aosp"
-                }
-
-                register("api30", ManagedVirtualDevice::class) {
-                    device = "Pixel 7"
-                    apiLevel = 30
-                    systemImageSource = "aosp-atd"
-                }
-
-                register("api31", ManagedVirtualDevice::class) {
-                    device = "Pixel 7"
-                    apiLevel = 31
-                    systemImageSource = "aosp"
-                }
-
-                register("api32", ManagedVirtualDevice::class) {
-                    device = "Pixel 7"
-                    apiLevel = 32
-                    systemImageSource = "aosp"
-                }
-
                 register("api33", ManagedVirtualDevice::class) {
                     device = "Pixel 7"
                     apiLevel = 33
                     systemImageSource = "aosp"
+                    testedAbi = "x86_64"
                 }
 
                 register("api34", ManagedVirtualDevice::class) {
                     device = "Nexus One"
                     apiLevel = 34
                     systemImageSource = "aosp"
+                    testedAbi = "x86_64"
                 }
 
                 register("api35", ManagedVirtualDevice::class) {
                     device = "Nexus One"
                     apiLevel = 35
                     systemImageSource = "aosp"
+                    testedAbi = "x86_64"
                 }
             }
         }
@@ -179,7 +158,7 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://nexus.breautek.com/repository/android")
+            url = uri("https://artifact.breautek.com/releases")
             credentials {
                 username = findProperty("breautek.repository.user").toString()
                 password = findProperty("breautek.repository.password").toString()

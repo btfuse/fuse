@@ -1,9 +1,0 @@
-tsconfig.json
-*.tsbuildinfo
-*.tgz
-spec
-/android
-/ios
-/src
-/dist
-/webpack.*

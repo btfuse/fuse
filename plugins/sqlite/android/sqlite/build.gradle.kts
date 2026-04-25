@@ -16,6 +16,8 @@ android {
         minSdk = 29
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
+
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -29,10 +31,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     publishing {
@@ -53,8 +51,7 @@ android {
                     "META-INF/LGPL2.1",
                     "META-INF/DEPENDENCIES",
                     "META-INF/NOTICE",
-                    "META-INF/LICENSE",
-                    "META-INF/LICENSE.txt",
+                    "META-INF/LICENSE*",
                     "META-INF/NOTICE.txt",
                 )
             )
@@ -110,16 +107,20 @@ android {
 
 dependencies {
     compileOnly(project(":fuse"))
+    implementation(project(":plugins:sqlite:lib"))
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("com.google.android.material:material:1.13.0")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    testImplementation("junit:junit:4.13.2")
+
     androidTestImplementation(project(":fuse"))
     androidTestImplementation(project(":fuseTestTools"))
-    implementation(project(":plugins:sqlite:lib"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.20")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("com.google.android.gms:play-services-location:21.3.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test:runner:1.7.0")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
+
+    androidTestUtil("androidx.test:orchestrator:1.6.1")
 }
 
 publishing {

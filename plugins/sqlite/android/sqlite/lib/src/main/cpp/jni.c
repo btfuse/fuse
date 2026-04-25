@@ -497,15 +497,8 @@ bool BTFuseSQLiteJNI_OnDataChunk(void* context, uint64_t payloadSize, void* payl
 
 JNIEXPORT void JNICALL
 Java_com_breautek_fuse_sqlite_SQLite_executeFromBinaryPacket(JNIEnv *env, jclass clazz, jbyteArray packet, jobject callback) {
-    jsize dataLength = (*env)->GetArrayLength(env, packet);
-    jbyte* data = (*env)->GetPrimitiveArrayCritical(env, packet, NULL);
-    const uint8_t* stream = (const uint8_t*) data;
-
-    if (data == NULL) {
-        throwFuseError(env, 0, "Unable to access packet data");
-        return;
-    }
-
+    // Resolve class and method IDs before entering the critical section.
+    // GetPrimitiveArrayCritical forbids calling most JNI functions while held.
     jclass callbackClass = (*env)->GetObjectClass(env, callback);
     if (callbackClass == NULL) {
         throwFuseError(env, 0, "Unable to find SQLite.Callback");
@@ -530,15 +523,25 @@ Java_com_breautek_fuse_sqlite_SQLite_executeFromBinaryPacket(JNIEnv *env, jclass
         return;
     }
 
+    jbyte* data = (*env)->GetPrimitiveArrayCritical(env, packet, NULL);
+
+    if (data == NULL) {
+        throwFuseError(env, 0, "Unable to access packet data");
+        return;
+    }
+
+    const uint8_t* stream = (const uint8_t*) data;
+
     struct BTFuseSQLiteJNI_ExecutionContext context = {
-        env,
-        packet,
-        data,
-        false,
-        callback,
-        onChunkMethod,
-        onResolve,
-        onFinish
+        .env = env,
+        .packet = packet,
+        .data = data,
+        .hasReleasedPrimitiveArray = false,
+        .callback = callback,
+        .callbackClass = callbackClass,
+        .onChunkMethod = onChunkMethod,
+        .onResolve = onResolve,
+        .onFinish = onFinish
     };
 
     const char* message = BTFuseSQLite_execute(

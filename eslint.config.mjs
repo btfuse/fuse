@@ -49,7 +49,8 @@ export default [
             "@typescript-eslint/no-unused-vars": 'off',
             "@typescript-eslint/no-require-imports": 'off',
             'tsdoc/syntax': 'warn',
-            "prefer-const": 'off'
+            "prefer-const": 'off',
+            "@typescript-eslint/no-unsafe-function-type": "off"
         }
     }
 ];

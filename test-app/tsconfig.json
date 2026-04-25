@@ -11,10 +11,6 @@
             "@btfuse/echo": ["../echo/src/api.ts"]
         }
     },
-    "references": [
-        { "path": "../js" },
-        { "path": "../echo" }
-    ],
     "include": [
         "./src/**/*.ts"
     ]

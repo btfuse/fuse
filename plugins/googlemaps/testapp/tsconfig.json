@@ -9,11 +9,6 @@
             "@btfuse/google-maps": ["../src/api.ts"]
         }
     },
-    "references": [
-        { "path": "../../../js" },
-        { "path": "../../nativeview"},
-        { "path": "../" }
-    ],
     "include": [
         "./src/**/*.ts"
     ]

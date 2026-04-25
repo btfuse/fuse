@@ -56,7 +56,7 @@ public class FuseTestAPIClient {
     private String $type;
     private final ExecutorService $bgThread;
 
-    private static OkHttpClient $httpClient;
+    private OkHttpClient $httpClient;
 
     public static class Builder {
         private String $pluginID;

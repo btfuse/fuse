@@ -21,6 +21,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
+}
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -64,6 +67,3 @@ include(":plugins:sqlite")
 project(":plugins:sqlite").projectDir = File("../plugins/sqlite/android/sqlite")
 include(":plugins:sqlite:lib")
 project(":plugins:sqlite:lib").projectDir = File("../plugins/sqlite/android/sqlite/lib")
-
-include(":plugins:mocha")
-project(":plugins:mocha").projectDir = File("../plugins/mocha/android/mocha")

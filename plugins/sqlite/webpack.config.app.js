@@ -41,7 +41,8 @@ module.exports = {
         ],
         alias: {
             '@btfuse/core': Path.resolve(__dirname, '../../js/src/api.ts'),
-            '@btfuse/mocha': Path.resolve(__dirname, './src/api.ts')
+            '@btfuse/mocha': Path.resolve(__dirname, '../mocha/src/api.ts'),
+            '@btfuse/sqlite': Path.resolve(__dirname, './src/api.ts')
         }
     },
     optimization: {

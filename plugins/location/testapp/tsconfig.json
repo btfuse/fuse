@@ -8,10 +8,6 @@
             "@btfuse/location": ["../src/api.ts"]
         }
     },
-    "references": [
-        { "path": "../../../js" },
-        { "path": "../" }
-    ],
     "include": [
         "./src/**/*.ts"
     ]

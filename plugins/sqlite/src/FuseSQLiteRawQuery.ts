@@ -15,12 +15,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export enum FuseSQLiteType {
-    NULL,
-    INTEGER,
-    REAL,
-    TEXT,
-    BLOB
-}
+import {FuseSQLiteQuery} from './FuseSQLiteQuery';
+import { TFuseSupportedSQLiteTypes } from './FuseSQLiteType';
 
-export type TFuseSupportedSQLiteTypes = null | number | string | Blob;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export class FuseSQLiteRawQuery<TInput extends Record<string, TFuseSupportedSQLiteTypes> = any, TOutput = any> extends FuseSQLiteQuery<TInput, TOutput> {
+    private $sql: string;
+
+    public constructor(sql: string, input?: TInput) {
+        super(input);
+        this.$sql = sql;
+    }
+
+    public override getSQL(): string {
+        return this.$sql;
+    }
+}

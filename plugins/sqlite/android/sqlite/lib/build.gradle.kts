@@ -144,7 +144,7 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://nexus.breautek.com/repository/android")
+            url = uri("https://artifact.breautek.com/releases")
             credentials {
                 username = findProperty("breautek.repository.user").toString()
                 password = findProperty("breautek.repository.password").toString()
